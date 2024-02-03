@@ -1,14 +1,14 @@
+import { DefaultTemplate } from "./componets/DefaultTemplate";
+import { RouteMain } from "./routes";
 
 function App() {
-
-
   return (
-
-      <div>
-
-      </div>
-
-  )
+    <>
+      <DefaultTemplate>
+          <RouteMain/>
+      </DefaultTemplate>
+    </>
+);
 }
 
-export default App
+export default App;
