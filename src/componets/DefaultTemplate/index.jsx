@@ -1,5 +1,7 @@
 import { Footer } from "../Footer";
 import { Header } from "../Header";
+import PropTypes from 'prop-types';
+
 
 export const DefaultTemplate = ({children}) => {
     return(
@@ -11,4 +13,8 @@ export const DefaultTemplate = ({children}) => {
             <Footer/>
         </>
     );
+};
+
+DefaultTemplate.propTypes = {
+    children: PropTypes.node.isRequired,
 };
