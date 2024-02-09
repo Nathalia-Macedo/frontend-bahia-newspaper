@@ -1,70 +1,67 @@
 import { Link } from "react-router-dom";
-import { MdSearch, MdFacebook } from "react-icons/md";
+import { MdFacebook, MdSearch } from "react-icons/md";
 import { FaInstagram, FaWhatsapp, FaSquareXTwitter} from "react-icons/fa6";
+import { NavBarSection } from "../NavBarSection";
+import Logo from "../../assets/logo-jornalBa.png";
+import styles from "./style.module.scss"
+
 export const Header = () => {
+
+    const submit = (e) => {
+        e.preventDefault();
+        console.log('cadastrou');
+    }
+
     return (
         <header>
-            <div>
-
-                <div>
+            <div className="container">
+                <div className={styles.flexBox}>
                     <Link to="/">
-                        <img src="/src/assets/Logo.jpeg" alt="Logo do jornal" width="200"  />
+                        <img src={Logo} alt="Logo do jornal"/>
                     </Link>
-                    <Link><FaInstagram/></Link>
-                    <Link><FaSquareXTwitter/></Link>
-                    <Link><MdFacebook/></Link>
-                    <Link><FaWhatsapp/></Link>
-                    <form>
+                    <span>
+                        <Link 
+                            to=""
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <FaInstagram size={25}/>
+                        </Link>
+                        <Link 
+                            to=""
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                                <FaSquareXTwitter size={25}/>
+                        </Link>
+                        <Link 
+                            to=""
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                                <MdFacebook size={25}/>
+                        </Link>
+                        <Link 
+                            to=""
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                                <FaWhatsapp size={25}/>
+                        </Link>
+                    <form onSubmit={submit}>
                         <input 
                             type="text"
                             placeholder="Digitar Pesquisa"
                         />
+                        <button type="submit">
+                            <MdSearch size={25} />
+                        </button>
                     </form>
-                    <button type="submit">
-                        <MdSearch size={25} />
-                    </button>
+                    </span>
                 </div>
+                <NavBarSection/>
             </div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/item1">Item 1</Link>
-                    </li>
-                    <li>
-                        <Link to="/item2">Item 2</Link>
-                    </li>
-                    <li>
-                        <Link to="/item3">Item 3</Link>
-                    </li>
-                    <li>
-                        <Link to="/item4">Item 4</Link>
-                    </li>
-                    <li>
-                        <Link to="/item5">Item 5</Link>
-                    </li>
-                    <li>
-                        <Link to="/item6">Item 6</Link>
-                    </li>
-                    <li>
-                        <Link to="/item7">Item 7</Link>
-                    </li>
-                    <li>
-                        <Link to="/item8">Item 8</Link>
-                    </li>
-                    <li>
-                        <Link to="/item9">Item 9</Link>
-                    </li>
-                    <li>
-                        <Link to="/item10">Item 10</Link>
-                    </li>
-                    <li>
-                        <Link to="/item10">Item 10</Link>
-                    </li>
-                </ul>
-            </nav>
         </header>
     );
 };
+
+
 
 
 

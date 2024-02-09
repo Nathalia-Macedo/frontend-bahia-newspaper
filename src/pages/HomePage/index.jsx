@@ -1,7 +1,15 @@
+import { BannerSection } from "../../componets/sections/BannerSection";
+import { ContentSection } from "../../componets/sections/ContentSection";
+import { PostSection } from "../../componets/sections/PosteSection";
+
+
+
 export const HomePage = () => {
     return (
         <>
-            <h1>Home Page</h1>
+            <BannerSection alt="Banner Home"/>
+            <ContentSection/>
+            {/* <PostSection /> */}
         </>
     );
 };
