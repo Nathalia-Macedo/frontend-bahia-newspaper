@@ -4,21 +4,23 @@ import { PostSection } from "../../componets/sections/PosteSection";
 import { PostContext } from "../../providers/PostContexto";
 import { useContext } from "react";
 import { BannerSection } from "../../componets/sections/BannerSection";
+import styles from "./style.module.scss";
 
 export const PostPage = () => {
     const { loading} = useContext(PostContext);
     return (
-        <>
-        
-            {loading ? (
-                <p>Carregando...</p>
-            ) : (
-                <>
-                    {/* <BannerSection/> */}
-                    {/* <ContentSection/> */}
-                    <PostSection/>
-                </>
-            )}
-        </>
+        <main>
+            <div className={styles.postPage}>
+                {loading ? (
+                    <p>Carregando...</p>
+                ) : (
+                    <>
+                        {/* <BannerSection/> */}
+                        {/* <ContentSection/> */}
+                        <PostSection/>
+                    </>
+                )}
+            </div>
+        </main>
     );
 };

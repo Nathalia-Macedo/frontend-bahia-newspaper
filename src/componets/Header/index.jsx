@@ -1,29 +1,59 @@
 import { Link } from "react-router-dom";
-import { MdFacebook } from "react-icons/md";
+import { MdFacebook, MdSearch } from "react-icons/md";
 import { FaInstagram, FaWhatsapp, FaSquareXTwitter} from "react-icons/fa6";
-import { SearchForm } from "../SearchForm";
 import { NavBarSection } from "../NavBarSection";
-import Logo from "../../assets/Logo.jpeg";
+import Logo from "../../assets/logo-jornalBa.png";
 import styles from "./style.module.scss"
 
 export const Header = () => {
+
+    const submit = (e) => {
+        e.preventDefault();
+        console.log('cadastrou');
+    }
+
     return (
         <header>
             <div className="container">
                 <div className={styles.flexBox}>
                     <Link to="/">
-                        <img src={Logo} alt="Logo do jornal" width="200" />
+                        <img src={Logo} alt="Logo do jornal"/>
                     </Link>
-                    <div>
-                        <Link to=""target="_blank" rel="noopener noreferrer"><FaInstagram/></Link>
-                        <Link to=""target="_blank" rel="noopener noreferrer"><FaSquareXTwitter/></Link>
-                        <Link to=""target="_blank" rel="noopener noreferrer"><MdFacebook/></Link>
-                        <Link to=""target="_blank" rel="noopener noreferrer"><FaWhatsapp/></Link>
-                    </div>
-                    <div>
-                        <SearchForm/>
-                    </div>
-
+                    <span>
+                        <Link 
+                            to=""
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <FaInstagram size={25}/>
+                        </Link>
+                        <Link 
+                            to=""
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                                <FaSquareXTwitter size={25}/>
+                        </Link>
+                        <Link 
+                            to=""
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                                <MdFacebook size={25}/>
+                        </Link>
+                        <Link 
+                            to=""
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                                <FaWhatsapp size={25}/>
+                        </Link>
+                    <form onSubmit={submit}>
+                        <input 
+                            type="text"
+                            placeholder="Digitar Pesquisa"
+                        />
+                        <button type="submit">
+                            <MdSearch size={25} />
+                        </button>
+                    </form>
+                    </span>
                 </div>
                 <NavBarSection/>
             </div>

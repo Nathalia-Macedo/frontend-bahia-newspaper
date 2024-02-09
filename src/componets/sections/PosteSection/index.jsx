@@ -7,7 +7,7 @@ export const PostSection = () => {
 
   return (
     <section>
-      <ul>
+      <ul className="container">
         {filteredPost ? 
             filteredPost.map(post =>
               <PostCard key={post.id} post={post} />)

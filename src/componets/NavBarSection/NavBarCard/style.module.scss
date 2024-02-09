@@ -1,0 +1,15 @@
+.categories{
+
+    button{       
+        font-size: var(--font-primary);
+        color: var(--color-white);
+        padding: 20px;
+        font-weight: 400;
+        line-height: 1.6;
+        transition: color 0.3s ease;
+
+        &:hover{
+            color: var(--color-red); 
+        }
+    }
+}
