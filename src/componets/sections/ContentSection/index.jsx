@@ -4,7 +4,7 @@ import { PostContext } from "../../../providers/PostContexto";
 export const ContentSection = () => {
     const {  postList } = useContext(PostContext);
 // preciso renderizar um unico conteudo pos imagem
-    console.log(postList)
+    // console.log(postList)
     return postList ?(
         <section>
             <h1>{postList.title}</h1>

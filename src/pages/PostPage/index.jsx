@@ -5,6 +5,8 @@ import { PostContext } from "../../providers/PostContexto";
 import { useContext } from "react";
 import { BannerSection } from "../../componets/sections/BannerSection";
 import styles from "./style.module.scss";
+import { AsideLeft } from "../../componets/sections/AsideLeft";
+import { AsideRight } from "../../componets/sections/AsideRight";
 
 export const PostPage = () => {
     const { loading} = useContext(PostContext);
@@ -15,9 +17,9 @@ export const PostPage = () => {
                     <p>Carregando...</p>
                 ) : (
                     <>
-                        {/* <BannerSection/> */}
-                        {/* <ContentSection/> */}
                         <PostSection/>
+                        {/* <AsideLeft/> */}
+                        {/* <AsideRight/> */}
                     </>
                 )}
             </div>
