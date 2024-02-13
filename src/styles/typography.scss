@@ -1,5 +1,5 @@
 .title{
-    font-size: var(--font-primary);
+    font-family: var(--font-primary);
     font-weight: 800;
     line-height: 1.6;
 
@@ -19,6 +19,7 @@
     }
     &.center{
         text-align: center;
+        font-size:20px ;
     }
 }
 

@@ -8,8 +8,7 @@ import styles from "./style.module.scss";
 export const NavBarCard = ({index, category, objects}) => {
     const [ updateCategory,  setUpdateCategory] = useAtom(categoryAtom);
 
-    const {  setFilteredPost} = useContext(PostContext)
-    // console.log(objects)
+    const {  setFilteredPost } = useContext(PostContext)
 
     const navigate = useNavigate();
     

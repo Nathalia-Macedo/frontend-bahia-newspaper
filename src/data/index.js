@@ -26,4 +26,23 @@ export const imgList = [
     
 ];
 
+export const quickies = [
+    {
+        id: 1,
+        image: "https://str1.lnmimg.com/img/2024/01/14/574af95d51a01169525c7f0314c2473d.webp",
+        category: "economia",
+        title: "Entendendo o Cenário Econômico do Brasil: Uma Visão Abrangente",
+        content: "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.",
+        author: "Ricardo Souza",
+    },
+    {
+        id: 2,
+        image: "https://str1.lnmimg.com/img/2024/02/08/e577eb73aeb9a7805381310f0cb63a47.webp",
+        category: "mundo",
+        title: "Perspectivas Globais: Uma Análise da Economia Mundial",
+        content: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+        author: "Fernanda Lima",
+    },
+
+];
 
