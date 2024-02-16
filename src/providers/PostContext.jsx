@@ -42,6 +42,7 @@ export const PostProvider = ({children}) => {
         scrollTo(0, 0);
         const getPosts = async () =>{
             try {
+                setLoading(true);
                 const { data } = await blogApi.get("/news")
                 let newData = data.filter(post => post.id !== Number(id));
                 newData.reverse();
@@ -49,11 +50,15 @@ export const PostProvider = ({children}) => {
                 setPostList(newData);
             } catch (error) {
                 console.error(error);
+            }finally{
+                setLoading(false);
             }
         };
 
         getPosts();
     }, [id])
+
+
 
     return(
         <PostContext.Provider value={{loading, postList, filteredPost, currentPost,  setFilteredPost}}>

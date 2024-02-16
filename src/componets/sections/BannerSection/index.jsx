@@ -9,17 +9,18 @@ import { imgList } from "../../../data";
 import { Pagination, Navigation } from "swiper/modules";
 import { AsideRight } from "../AsideRight";
 import { AsideLeft } from "../AsideLeft";
-import { PostContext } from "../../../providers/PostContexto";
+import { PostContext } from "../../../providers/PostContext";
 import { useNavigate } from "react-router-dom";
 
 export const BannerSection = () => {
   const [slidePerView, setSlidePerView] = useState(1);
 
-  const {  setFilteredPost, postList } = useContext(PostContext)
+  const { setFilteredPost, postList } = useContext(PostContext);
   // console.log(postList)
+  // tirar o mock usar a requizicao 
+  //corrigir a barra de pagnation
 
   const navigate = useNavigate();
-
 
   return (
     <section className="container">

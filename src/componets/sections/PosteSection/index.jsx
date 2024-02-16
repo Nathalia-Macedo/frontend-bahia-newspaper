@@ -1,25 +1,36 @@
 import { useContext } from "react";
 import { PostCard } from "./PostCard";
-import { PostContext } from "../../../providers/PostContexto";
-import { AsideRight } from "../AsideRight";
 import { AsideLeft } from "../AsideLeft";
+import styles from "./style.module.scss";
+import { AsideAds } from "../AsideAds";
+import { PostContext } from "../../../providers/PostContext";
+
 
 export const PostSection = () => {
   const {  postList, filteredPost } = useContext(PostContext);
 
+  const postsToRender = filteredPost && filteredPost.length > 0 ? filteredPost : postList;
+  // console.log(postsToRender);
   return (
-    <section>
-        <AsideRight/>
-      <ul className="container">
-        {filteredPost ? 
-            filteredPost.map(post =>
-              <PostCard key={post.id} post={post} />)
-        : (postList.map((post) => (
-          <PostCard key={post.id} post={post} />
-        )))}
-
-      </ul>
-      <AsideLeft/>
+    <section className="container">
+      <div className={styles.flexBox}>
+          <AsideAds/>
+        <ul>
+        {postsToRender.map(post => (
+            <PostCard key={post.id} post={post} />
+          ))}
+          <strong>adSense</strong>
+        </ul>
+        <AsideLeft/>
+      </div>
     </section>
   );
 };
+
+
+// {filteredPost ? 
+//   filteredPost.map(post =>
+//     <PostCard key={post.id} post={post} />)
+// : (postList.map((post) => (
+// <PostCard key={post.id} post={post} />
+// )))}
