@@ -1,27 +1,27 @@
 import { useAtom } from "jotai";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { categoryAtom } from "../../../state/dataAtomo";
-import { PostContext } from "../../../providers/PostContexto";
+
 import styles from "./style.module.scss";
+import { PostContext } from "../../../providers/PostContext";
 
-export const NavBarCard = ({index, category, objects}) => {
-    const [ updateCategory,  setUpdateCategory] = useAtom(categoryAtom);
+export const NavBarCard = ({ category,  setCategory}) => {
+  const [updateCategory, setUpdateCategory] = useAtom(categoryAtom);
+  const { postList, setFilteredPost } = useContext(PostContext);
+  const navigate = useNavigate();
 
-    const {  setFilteredPost } = useContext(PostContext)
+  const update = () => {
+    const filteredPosts = postList.filter(post => post.category === category);
+    setFilteredPost(filteredPosts); // Define os posts filtrados como a lista fornecida
+    setUpdateCategory(category); // Atualiza a categoria selecionada
+    setCategory(category);
+    navigate(`/post/${filteredPosts[0].id}`); // Navega para o primeiro post na lista
+  };
 
-    const navigate = useNavigate();
-    
-    const update = (category) => {
-        const filtered = objects.filter(post => post.category === category) 
-        setFilteredPost(filtered)
-        setUpdateCategory(category)
-        navigate(`/post/${objects[0].id}`)
-    }
-    
-    return(
-        <li className={styles.categories}>
-            <button onClick={() => update(category)}>{category.toUpperCase()}</button>            
-        </li>
-    );
+  return (
+    <li className={styles.categories}>
+        <button onClick={update}>{category.toUpperCase()}</button>
+    </li>
+  );
 };

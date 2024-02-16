@@ -44,15 +44,15 @@ export const Header = () => {
                             rel="noopener noreferrer">
                                 <FaWhatsapp size={25}/>
                         </Link>
-                    <form onSubmit={submit}>
-                        <input 
-                            type="text"
-                            placeholder="Digitar Pesquisa"
-                        />
-                        <button type="submit">
-                            <MdSearch size={25} />
-                        </button>
-                    </form>
+                        <form onSubmit={submit}>
+                            <input 
+                                type="text"
+                                placeholder="Digitar Pesquisa"
+                            />
+                            <button type="submit">
+                                <MdSearch size={25} />
+                            </button>
+                        </form>
                     </span>
                 </div>
                 <NavBarSection/>
