@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import styles from "./style.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
-// import 'swiper/css/pagination';
+import 'swiper/css/pagination';
 import "swiper/css/scrollbar";
 import { imgList } from "../../../data";
 import { Pagination, Navigation } from "swiper/modules";

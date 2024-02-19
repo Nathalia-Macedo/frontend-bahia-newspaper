@@ -31,7 +31,7 @@
         position: relative;
         width: 100%;
         margin-top: 42px;
-        height: 350px;
+        height: 380px;
         overflow: hidden;
         gap: 20px;
         
@@ -76,7 +76,6 @@
     height: 100%;
     flex-wrap: wrap;
     flex-direction: column;
-    // background: rgb(218, 100, 120);
 
 
     & >strong {
@@ -97,39 +96,6 @@
         flex-direction:row;
     }
 }
-// .swiper-pagination {
-//     position: relative; 
-//     // margin-bottom: 100px;
-// }
-
-// .swiper-pagination-bullet-active{
-//     background: var(--color-red)!important;
-// }
-// .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-//     bottom: 0;
-//     top: var(--swiper-pagination-top, auto);
-//     left: 0;
-//     width: 50%;
-// }
-
-
-// .swiper-button-prev::after, .swiper-button-next::after {
-//     color: white;
-// }
-
-// .swiper-pagination > .swiper-pagination-bullets-dynamic{
-//     background-color: red;
-//     color: white;
-//     border-radius: 0;
-// }
-
-
-// .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-//     bottom: var(--swiper-pagination-bottom, 1px);
-//     top: var(--swiper-pagination-top, auto);
-//     left: 0;
-//     width: 50%;
-// }
 
 
 

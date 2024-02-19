@@ -14,39 +14,42 @@ export const Footer = () => {
                     </Link>
                 <span>
                     <div>
-                        <Link 
-                            to=""
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            <FaInstagram size={25}/>
-                        </Link>
-                        <Link 
-                            to=""
-                            target="_blank" 
-                            rel="noopener noreferrer">
-                            <FaSquareXTwitter size={25}/>
-                        </Link>
-                        <Link 
-                            to=""
-                            target="_blank" 
-                            rel="noopener noreferrer">
-                            <MdFacebook size={25}/>
-                        </Link>
-                        <Link 
-                            to=""
-                            target="_blank" 
-                            rel="noopener noreferrer">
-                            <FaWhatsapp size={25}/>
-                        </Link>
+
+                    <Link 
+                        to=""
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <FaInstagram size={25}/>
+                    </Link>
+                    <Link 
+                        to=""
+                        target="_blank" 
+                        rel="noopener noreferrer">
+                        <FaSquareXTwitter size={25}/>
+                    </Link>
+                    <Link 
+                        to=""
+                        target="_blank" 
+                        rel="noopener noreferrer">
+                        <MdFacebook size={25}/>
+                    </Link>
+                    <Link 
+                        to=""
+                        target="_blank" 
+                        rel="noopener noreferrer">
+                        <FaWhatsapp size={25}/>
+                    </Link>
                     </div>
-                    <p>Todos os direitos reservados &copy; 
-                        {new Date().getFullYear()} 
-                        Jornal da Bahia Online
-                    </p>
+                        <p>Todos os direitos reservados &copy; 
+                            {new Date().getFullYear()} 
+                            <strong>Jornal da Bahia Online</strong> 
+                        </p>
                 </span>
                 </div>
             </div>
         </footer>
     );
 };
+
+
 
