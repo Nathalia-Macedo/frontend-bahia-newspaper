@@ -1,0 +1,46 @@
+.flexBox{
+    display: flex;
+    gap: 1rem;
+    height: 60px;
+    margin-top: 60px;
+    align-items: center;
+    flex-direction: row-reverse;
+    
+
+    @media (max-width: 500px) {
+        justify-content: center;   
+        flex-direction: row;
+        flex-wrap: wrap;
+    } 
+
+    img{
+        width: 200px;
+    }
+    span{
+        display: flex;
+        width: 100%;
+        padding: 20px;
+        background: black;
+        justify-content: space-evenly;
+        align-items: center;
+        // gap: 40px;
+        
+            
+        & div > a{
+            padding: 10px;
+            color: var(--color-red);
+            transition: color 0.3s ease;
+    
+            &:hover{
+                color: var(--color-black); 
+            }
+        }
+        & > p{
+            color: var(--color-white);  
+            
+            & > strong{
+                margin: 15px;
+            }
+        }
+    }
+}

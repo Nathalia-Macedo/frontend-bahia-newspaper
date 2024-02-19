@@ -1,0 +1,8 @@
+.flexBox{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: var(--color-black);
+    border-bottom: 2px solid var(--color-red);
+}
