@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "../../assets/logo-jornal.png";
+import Logo2 from "../../assets/Logo Jornal da Bahia2.png";
 import styles from "./style.module.scss";
 import { MdFacebook} from "react-icons/md";
 import { FaInstagram, FaWhatsapp, FaSquareXTwitter} from "react-icons/fa6";
@@ -10,7 +10,7 @@ export const Footer = () => {
             <div className="container">
                 <div className={styles.flexBox}>
                     <Link to="/">
-                            <img src={Logo} alt="Logo do jornal" width="200" />
+                            <img src={Logo2} alt="Logo do jornal" width="200" />
                     </Link>
                 <span>
                     <div>
@@ -40,9 +40,8 @@ export const Footer = () => {
                         <FaWhatsapp size={25}/>
                     </Link>
                     </div>
-                        <p>Todos os direitos reservados &copy; 
+                        <p className="title three">Todos os direitos reservados &copy; 
                             {new Date().getFullYear()} 
-                            <strong>Jornal da Bahia Online</strong> 
                         </p>
                 </span>
                 </div>
