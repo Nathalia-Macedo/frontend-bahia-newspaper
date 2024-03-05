@@ -19,6 +19,7 @@ export const BannerSection = () => {
   // console.log(postList)
   // tirar o mock usar a requizicao 
   //corrigir a barra de pagnation
+  // verificar quebra 
 
   const navigate = useNavigate();
 

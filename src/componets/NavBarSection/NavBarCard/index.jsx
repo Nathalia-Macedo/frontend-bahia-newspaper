@@ -21,7 +21,7 @@ export const NavBarCard = ({ category,  setCategory}) => {
 
   return (
     <li className={styles.categories}>
-        <button onClick={update}>{category.toUpperCase()}</button>
+        <button className="btn" onClick={update}>{category.toUpperCase()}</button>
     </li>
   );
 };

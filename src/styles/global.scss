@@ -1,5 +1,10 @@
+@font-face {
+    font-family: "beton";
+    src: url("../assets/fonts/beton.otf");
+}
+
 :root{
-    --font-primary: 'Arial', sans-serif;
+    --font-primary: "beton";
     --color-red: #ff0000;
     --color-white: #ffffff;
     --color-black: #000000;
