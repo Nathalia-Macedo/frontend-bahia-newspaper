@@ -3,13 +3,14 @@ import { MdFacebook, MdSearch } from "react-icons/md";
 import { FaInstagram, FaWhatsapp, FaSquareXTwitter} from "react-icons/fa6";
 import { NavBarSection } from "../NavBarSection";
 import Logo from "../../assets/Logo Jornal da Bahia.png";
+
 import styles from "./style.module.scss"
+import styles from "./style.module.scss";
 
 export const Header = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log('cadastrou');
     }
 
     return (

@@ -1,33 +1,30 @@
 .flexBox{
     display: flex;
     gap: 1rem;
-    height: 60px;
+    height: 10vh;
     margin-top: 60px;
     align-items: center;
-    flex-direction: row-reverse;
-    
+    justify-content: center;
 
     @media (max-width: 500px) {
-        justify-content: center;   
-        flex-direction: row;
-        flex-wrap: wrap;
+        justify-content:center;   
+        height: 30vh;
     } 
 
-    img{
-        width: 200px;
-    }
     span{
         display: flex;
         width: 100%;
-        padding: 20px;
-        background: black;
-        justify-content: space-evenly;
+        padding: 5px 0;
+        border-top: 3px solid var(--color-red);
+        justify-content: space-between;
         align-items: center;
-        // gap: 40px;
+        margin-bottom: 50px;
+        gap: 20px;
+        flex-wrap: wrap;
         
             
         & div > a{
-            padding: 10px;
+            padding: 0 10px;
             color: var(--color-red);
             transition: color 0.3s ease;
     
@@ -36,10 +33,12 @@
             }
         }
         & > p{
-            color: var(--color-white);  
+            color: var(--color-black);
+            text-align: center;  
             
             & > strong{
-                margin: 15px;
+                // margin: 15px;
+                text-align: center; 
             }
         }
     }
