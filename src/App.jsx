@@ -5,9 +5,7 @@ import "./styles/index.scss";
 function App() {
   return (
     <>
-      <DefaultTemplate>
-          <RouteMain/>
-      </DefaultTemplate>
+      <RouteMain/>
     </>
 );
 }

@@ -6,6 +6,7 @@ export const PostContext = createContext({});
 
 export const PostProvider = ({children}) => {
 
+    const [value, setValue] = useState("");
     const [postList, setPostList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [filteredPost, setFilteredPost] = useState(null);
@@ -59,9 +60,12 @@ export const PostProvider = ({children}) => {
     }, [id])
 
 
+    // const searchResult = postList.filter((post) => (
+    //     post.title.toLowerCase().includes(value.toLowerCase())));
+    // const resultList = value ? searchResult : postList;
 
     return(
-        <PostContext.Provider value={{loading, postList, filteredPost, currentPost,  setFilteredPost}}>
+        <PostContext.Provider value={{loading, setPostList, postList, filteredPost, currentPost,  setFilteredPost, setValue, value}}>
             {children}
         </PostContext.Provider>
     )
