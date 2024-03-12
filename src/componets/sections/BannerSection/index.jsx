@@ -18,7 +18,6 @@ export const BannerSection = () => {
   const { setFilteredPost, postList } = useContext(PostContext);
   // console.log(postList)
   // tirar o mock usar a requizicao 
-  //corrigir a barra de pagnation
   // verificar quebra 
 
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ export const BannerSection = () => {
         <Swiper
           className={styles.customSwiper}
           pagination={{ clickable: true }}
-          navigation={true}
+          // navigation={true}
           slidesPerView={slidePerView}
           modules={[Pagination, Navigation]}
         >
