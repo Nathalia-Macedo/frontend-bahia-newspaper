@@ -10,7 +10,7 @@ export const PostPage = () => {
         <DefaultTemplate>
             <div className={styles.postPage}>
                 {loading ? (
-                    <p>Carregando...</p>
+                    <p className="title one">Carregando...</p>
                 ) : (
                     <>
                         <PostSection/>

@@ -47,7 +47,7 @@ export const PostProvider = ({children}) => {
                 const { data } = await blogApi.get("/news")
                 let newData = data.filter(post => post.id !== Number(id));
                 newData.reverse();
-                // newData.length = 2;
+                // newData.length = 1;
                 setPostList(newData);
             } catch (error) {
                 console.error(error);

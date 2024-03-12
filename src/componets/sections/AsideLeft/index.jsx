@@ -5,7 +5,7 @@ export const AsideLeft = () => {
     return (
         <aside className={styles.leftAside}>
             <ul>
-                <h1 className="title center">Rapidinhas</h1>
+                {/* <h1 className="title center">Rapidinhas</h1> */}
                 {quickies.map((obj, index) => (
                 <li key={index}>
                     <img src={obj.image} />
