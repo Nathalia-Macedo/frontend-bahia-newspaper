@@ -23,19 +23,18 @@ export const Header = () => {
                     <Link to="/">
                         <img src={Logo} alt="Logo do jornal"/>
                     </Link>
-                    <span>
-                        <form onSubmit={submit}>
-                            <input 
-                                type="text"
-                                placeholder="BUSCAR NO SITE"
-                                onChange={(e) => setValue(e.target.value)}
-                                required
-                            />
-                            <button className="" type="submit">
-                                <MdSearch size={25} />
-                            </button>
-                        </form>
-                    </span>
+                    <form onSubmit={submit}>
+                        <input
+                            className="paragraph" 
+                            type="text"
+                            placeholder="BUSCAR NO SITE"
+                            onChange={(e) => setValue(e.target.value)}
+                            required
+                        />
+                        <button type="submit">
+                            <MdSearch size={25} />
+                        </button>
+                    </form>
                 </div>
                 <NavBarSection/>
             </div>
