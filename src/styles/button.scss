@@ -8,8 +8,8 @@
     height: 2.9375rem;
 
     font-family: var(--font-primary);
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.0625rem);
+    font-weight: 200;
     color: var(--color-black);
 
     transition: .4s;
