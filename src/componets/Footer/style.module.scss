@@ -1,22 +1,24 @@
 .flexBox{
     display: flex;
-    gap: 1rem;
-    height: 10vh;
-    margin-top: 60px;
-    align-items: center;
+    gap: 5px;
+    margin-top: 80px;
+    flex-direction: column;
     justify-content: center;
     
 
-    @media (max-width: 500px) {
+    & > section> div> ul > li > button{
+        height: 15px;
+    }
+
+    @media (min-width: 980px) {
         justify-content:center;   
-        height: 30vh;
+        height: 10vh;
     } 
 
     span{
         display: flex;
         width: 100%;
         padding: 5px 0;
-        border-top: 3px solid var(--color-red);
         justify-content: space-between;
         align-items: center;
         margin-bottom: 50px;
@@ -26,20 +28,11 @@
             
         & div > a{
             padding: 0 10px;
-            color: var(--color-red);
+            color: var(--color-black);
             transition: color 0.3s ease;
     
             &:hover{
-                color: var(--color-black); 
-            }
-        }
-        & > p{
-            color: var(--color-black);
-            text-align: center;  
-            
-            & > strong{
-                // margin: 15px;
-                text-align: center; 
+                color: var(--color-red); 
             }
         }
     }

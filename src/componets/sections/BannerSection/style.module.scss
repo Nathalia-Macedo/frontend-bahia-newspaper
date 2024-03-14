@@ -34,11 +34,9 @@
         overflow: hidden;
         gap: 20px;
         
-        
         img {
             width: 100%;
             height: 100%;
-            // margin-bottom: 60px;
             object-fit: cover;
 
             @media (min-width: 980px) {
@@ -52,12 +50,12 @@
             position: absolute;
             top: 265px;
             width: 100%;
-            height: 40%;
+            height: 90%;
             display: flex;
             flex-direction: column;
             background-color: rgba(0, 0, 0, 0.5); 
             color: white;
-            padding:  20px 30px ;
+            padding:  20px 10px ;
             box-sizing: border-box; 
 
             & > h1{
@@ -71,20 +69,20 @@
     display: flex;
     position: relative; 
     max-width: 100%;
-    height: 100%;
+    height: 80%;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
     align-self: flex-start;
 
-    & > strong {
-            display: flex;
-            // position: relative;
-            align-items: center;
-            justify-content: center;
+    & > strong > img {
+            // display: flex;
+            // position: absolute;
+            // align-items: center;
+            // justify-content: center;
             padding: 10px;
-            max-width: 85%;
-            border: 2px solid;
-            margin: 20px auto;
+            width: 100%;
+            height: 15vh;
+
     }
     
 

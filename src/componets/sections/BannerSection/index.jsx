@@ -11,6 +11,7 @@ import { AsideRight } from "../AsideRight";
 import { AsideLeft } from "../AsideLeft";
 import { PostContext } from "../../../providers/PostContext";
 import { useNavigate } from "react-router-dom";
+import img from "../../../assets/imgs/fake.png"
 
 export const BannerSection = () => {
   const [slidePerView, setSlidePerView] = useState(1);
@@ -47,7 +48,9 @@ export const BannerSection = () => {
               </div>
             </SwiperSlide>
           ))}
-            <strong>adSense</strong>
+            <strong>
+              <img src={img} alt="" />
+            </strong>
         </Swiper>
         <AsideLeft />
       </div>

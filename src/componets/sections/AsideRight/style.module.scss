@@ -9,7 +9,7 @@
             margin-bottom: 35px;
             gap: 5px;
             width: 100%;
-            background: rgba(219, 215, 215, 0.744);
+            background:  rgba(128, 128, 128, 0.085);
 
             @media (min-width: 980px) {
                 width: 200px;
@@ -29,10 +29,14 @@
         }
     }
     
-    & > div{
+    & > span > img{
         width: 100%;
-        padding: 10px;
-        border: 2px solid;
+        height: 35vh;
+
+        @media (min-width: 980px) {
+            width: 200px;
+            height: 200px;
+        }
     }
 
 }

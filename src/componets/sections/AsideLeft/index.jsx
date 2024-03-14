@@ -1,6 +1,7 @@
 import styles from "./style.module.scss";
 import { quickies } from "../../../data";
 import { Link } from "react-router-dom";
+import img from "../../../assets/imgs/publicidade-1.jpg"
 
 export const AsideLeft = () => {
     return (
@@ -17,9 +18,9 @@ export const AsideLeft = () => {
                 </li>
                 ))}
             </ul>
-            {/* <div>
-                <h1 className="paragraph bold">adSense</h1>
-            </div> */}
+            <span >
+                <img src={img} alt="" />
+            </span>
         </aside>
     );
 };

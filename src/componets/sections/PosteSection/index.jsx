@@ -4,7 +4,7 @@ import { AsideLeft } from "../AsideLeft";
 import styles from "./style.module.scss";
 import { AsideAds } from "../AsideAds";
 import { PostContext } from "../../../providers/PostContext";
-
+import img from "../../../assets/imgs/fake.png"
 
 export const PostSection = () => {
   const {  postList, filteredPost } = useContext(PostContext);
@@ -14,12 +14,12 @@ export const PostSection = () => {
   return (
     <section className="container">
       <div className={styles.flexBox}>
-          <AsideAds/>
+          <AsideAds/>         
         <ul>
+          <img src={img} alt="" />
         {postsToRender.map(post => (
             <PostCard key={post.id} post={post} />
           ))}
-          <strong>adSense</strong>
         </ul>
         <AsideLeft/>
       </div>
