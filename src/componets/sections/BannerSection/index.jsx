@@ -47,7 +47,7 @@ export const BannerSection = () => {
               </div>
             </SwiperSlide>
           ))}
-          <strong>adSense</strong>
+            <strong>adSense</strong>
         </Swiper>
         <AsideLeft />
       </div>

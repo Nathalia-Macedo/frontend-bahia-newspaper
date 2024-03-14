@@ -2,6 +2,7 @@ import { useContext } from "react";
 // import { PostContext } from "../../../providers/PostContexto";
 import styles from "./style.module.scss";
 import { imgList } from "../../../data";
+import { Link } from "react-router-dom";
 
 export const AsideRight = () => {
 
@@ -13,7 +14,10 @@ export const AsideRight = () => {
                 {limitedImgList.map((obj, index) => (
                 <li key={index}>
                     <img src={obj.image}/>
-                    <p className="paragraph bold">{obj.title}</p>
+                    <Link className="link">{obj.category.charAt(0).toUpperCase() 
+                        + obj.category.slice(1)}
+                    </Link>
+                    <p className="paragraph small">{obj.title}</p>
                 </li>
                 ))}
             </ul>
