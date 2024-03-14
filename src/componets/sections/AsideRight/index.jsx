@@ -1,5 +1,4 @@
-import { useContext } from "react";
-// import { PostContext } from "../../../providers/PostContexto";
+import img from "../../../assets/imgs/publicidade-1.jpg"
 import styles from "./style.module.scss";
 import { imgList } from "../../../data";
 import { Link } from "react-router-dom";
@@ -21,9 +20,9 @@ export const AsideRight = () => {
                 </li>
                 ))}
             </ul>
-            <div>
-                <h1 className="paragraph bold">adSense</h1>
-            </div>
+            <span>
+                <img src={img} alt="" />
+            </span>
         </aside>
     );
 };

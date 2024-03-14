@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PostContext } from "../../providers/PostContext";
 import { NavBarCard } from "./NavBarCard";
 import styles from "./style.module.scss";
@@ -24,10 +24,3 @@ export const NavBarSection = () => {
         </section>
     );
 };
-
-// {uniqueCategories.map((category) => {
-//     const filteredPosts = postList.filter(objeto => objeto.category === category);
-//     return(
-//         <NavBarCard key={category} category={category}  objects={filteredPosts}/> 
-//     );
-// })}
