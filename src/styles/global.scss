@@ -8,15 +8,16 @@
 
     --color-red: #ff0000;
     --color-white: #ffffff;
+    --color-gray: rgba(155, 153, 153, 0.744);
     --color-black: #000000;
 
-    --swiper-pagination-bottom: 125px;
-    --swiper-pagination-color: #ffffff;
-    --swiper-pagination-bullet-inactive-color:red;
-    --swiper-pagination-bullet-inactive-opacity: 0.5;
+    --swiper-pagination-bottom: 90px; 
+    --swiper-pagination-color: red;
+    --swiper-pagination-bullet-inactive-color: white;
+    --swiper-pagination-bullet-inactive-opacity: 10;
     
-    --swiper-navigation-size: 34px;
-    --swiper-navigation-top-offset: 65%;
-    --swiper-navigation-color: red;
+    // --swiper-navigation-size: 34px;
+    // --swiper-navigation-top-offset: 65%;
+    // --swiper-navigation-color: red;
 
 }

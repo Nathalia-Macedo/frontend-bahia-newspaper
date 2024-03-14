@@ -25,7 +25,7 @@ export const Header = () => {
                     </Link>
                     <form onSubmit={submit}>
                         <input
-                            className="paragraph" 
+                            className="input" 
                             type="text"
                             placeholder="BUSCAR NO SITE"
                             onChange={(e) => setValue(e.target.value)}
