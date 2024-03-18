@@ -15,29 +15,6 @@ export const PostProvider = ({children}) => {
     const navigate = useNavigate();
 
     const { id } = useParams();
-    // console.log(id);
-
-
-    // useEffect(() => {
-    //     scrollTo(0, 0);
-        
-    //     const getPost = async () => {
-    //         try {
-    //             setLoading(true);
-    //             // postList.forEach(async ob => {
-    //                 const { data } = await blogApi.get(`/news/${id}`);
-    //                 setCurrentPost(data)
-    //             // })
-    //         } catch (error) {
-    //             console.log(error);
-    //             navigate("/404");
-    //         }finally {
-    //             setLoading(false);
-    //         }
-    //     }
-    //     getPost();
-    // },[id]);
-
         
     useEffect(() => {
         scrollTo(0, 0);
@@ -47,7 +24,7 @@ export const PostProvider = ({children}) => {
                 const { data } = await blogApi.get("/news")
                 let newData = data.filter(post => post.id !== Number(id));
                 newData.reverse();
-                // newData.length = 2;
+                // newData.length = 1;
                 setPostList(newData);
             } catch (error) {
                 console.error(error);
@@ -59,10 +36,6 @@ export const PostProvider = ({children}) => {
         getPosts();
     }, [id])
 
-
-    // const searchResult = postList.filter((post) => (
-    //     post.title.toLowerCase().includes(value.toLowerCase())));
-    // const resultList = value ? searchResult : postList;
 
     return(
         <PostContext.Provider value={{loading, setPostList, postList, filteredPost, currentPost,  setFilteredPost, setValue, value}}>
