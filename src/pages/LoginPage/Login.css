@@ -1,0 +1,122 @@
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+    
+}
+
+.container_login{
+    box-shadow: 1px 3px 5px black;
+    padding: 2rem;
+    border-radius: 5px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+ 
+
+
+.container_login form{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 2rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+
+}
+/* Estilo do modal */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Estilo do modal */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botão de fechar (X) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+
+input::placeholder{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container_login input{
+    box-shadow: 1px 3px 5px;
+    padding: 0.6rem;
+    width: 350px;
+    border: none;
+    outline: none;
+    font-weight: 200;
+    border-radius: 5px;
+
+}
+
+.container_login button{
+    box-shadow: 1px 3px 5px ;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.div_image_login{
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.div_image_login img{
+    mix-blend-mode: multiply;
+        width: 200px;
+}
