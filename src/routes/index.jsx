@@ -11,7 +11,6 @@ export const RouteMain = () => {
             <Route path="/post/:id" element={<PostPage/>}/>
             <Route path="*" element={<ErrorPage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
-
         </Routes>
     );
 };
