@@ -11,6 +11,7 @@ export const NavBarCard = ({ category,  setCategory}) => {
   const { postList, setFilteredPost } = useContext(PostContext);
   const navigate = useNavigate();
 
+
   const update = () => {
     const filteredPosts = postList.filter(post => post.category === category);
     setFilteredPost(filteredPosts); // Define os posts filtrados como a lista fornecida
@@ -20,8 +21,8 @@ export const NavBarCard = ({ category,  setCategory}) => {
   };
 
   return (
-    <li className={styles.categories}>
-        <button className="btn" onClick={update}>{category.toUpperCase()}</button>
-    </li>
-  );
+      <li className={styles.categories}>
+          <button className="btn" onClick={update}>{category.toUpperCase()}</button>
+      </li>
+  )
 };

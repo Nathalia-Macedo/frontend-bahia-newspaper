@@ -1,7 +1,7 @@
 .flexBox{
     display: flex;
     align-items: center;
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: 20px 0 10px 0;
     gap: 20px;
@@ -23,7 +23,7 @@
         background: var(--color-white);
         border: 2px solid var(--color-black);
         @media (min-width: 980px) {
-            width: 50%;   
+            width: 60%;   
         }
         
         input{      

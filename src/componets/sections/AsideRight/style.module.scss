@@ -3,10 +3,12 @@
     flex-direction: column;
 
     ul{
-        & > li{
+        list-style: none;
+        padding: 0;
+        li{
             display: flex;
             flex-direction: column;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
             gap: 5px;
             width: 100%;
             background:  rgba(128, 128, 128, 0.085);
@@ -17,6 +19,7 @@
             }
             & > img {
                 width: 100%;
+                object-fit: cover;
             }
             & > a,
             & > p{
@@ -29,12 +32,11 @@
         }
     }
     
-    & > span > img{
+    span > img{
         width: 100%;
         height: 35vh;
 
         @media (min-width: 980px) {
-            width: 200px;
             height: 200px;
         }
     }
