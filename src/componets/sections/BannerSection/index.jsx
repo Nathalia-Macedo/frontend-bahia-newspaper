@@ -5,13 +5,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/scrollbar";
+import "swiper/css/effect-fade";
 import { imgList } from "../../../data";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, EffectFade } from "swiper/modules";
 import { AsideRight } from "../AsideRight";
 import { AsideLeft } from "../AsideLeft";
 import { PostContext } from "../../../providers/PostContext";
 import { useNavigate } from "react-router-dom";
-import img from "../../../assets/imgs/fake.png"
+import img from "../../../assets/imgs/fake.png";
 
 export const BannerSection = () => {
   const [slidePerView, setSlidePerView] = useState(1);
@@ -30,9 +31,9 @@ export const BannerSection = () => {
         <Swiper
           className={styles.customSwiper}
           pagination={{ clickable: true }}
-          // navigation={true}
           slidesPerView={slidePerView}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, EffectFade]}
+          effect="fade"
         >
           {imgList.map((item) => (
             <SwiperSlide className={styles.slideItem} key={item.id}>
