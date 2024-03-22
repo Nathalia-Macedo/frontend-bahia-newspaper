@@ -5,17 +5,19 @@
     gap: 10px;
 
     padding: 0 1.5rem;
-    height: 2.9375rem;
+    // height: 35px;
 
     font-family: var(--font-primary);
-    font-size: 1rem;
-    font-weight: 700;
-    background: var(--color-red);
-    color: var(--color-white);
+    font-size: clamp(10px, 2vw, 13px);
+    font-weight: 200;
+    color: var(--color-black);
 
     transition: .4s;
 
     &:hover{
+        color: var(--color-gray);
         filter: brightness(1.1);
     }
 }
+
+
