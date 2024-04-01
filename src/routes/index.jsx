@@ -11,8 +11,11 @@ export const RouteMain = () => {
             <Route path="/post/:id" element={<PostPage/>}/>
             <Route path="*" element={<ErrorPage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
+<<<<<<< HEAD
             <Route path="/admin" element={<Admin/>}/>
 
+=======
+>>>>>>> 152d0f679b37a15f7da0dcddf078f41fb09b0e67
         </Routes>
     );
 };
