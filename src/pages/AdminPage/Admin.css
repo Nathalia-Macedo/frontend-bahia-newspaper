@@ -1,0 +1,43 @@
+/* Estilização para o botão de cadastrar estagiário */
+.btn-admin {
+    font-family: 'Roboto', sans-serif; /* Define a fonte do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Arredonda as bordas do botão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+    transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição suave de cores */
+  }
+
+  #dataHoraFields{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+
+  #dataHoraFields input{
+    width: 90%;
+  }
+
+ .dive{
+    width: 50%;
+flex-direction: column;
+align-items: center;
+}
+
+
+  
+  /* Estilização para o efeito hover do botão */
+  .btn-admin:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+    color: #fff; /* Cor do texto do botão ao passar o mouse */
+  }
+  
+.more{
+    width: 50%;
+}
+  
