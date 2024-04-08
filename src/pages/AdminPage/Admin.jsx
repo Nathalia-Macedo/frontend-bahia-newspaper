@@ -1,23 +1,19 @@
 import './Admin.css';
 import ModalComponent from '../../componets/Modal/Modal';
-<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react';
 import LargeInput from '../../../../jornal/src/componets/Input/Input';
 import  ModalAddEstagiario  from '../../componets/Estagiario/Estagiario';
 import ModalAddPermissoes from '../../componets/Permissoes/Permissoes';
-=======
-import { useState, useEffect } from 'react';
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
-
+import ModalAddCategoria from '../../componets/Categoria/Categoria';
+import ModalAddPostagem from '../../componets/Postagem/Postagem';
+import VerEstagiarios from '../../componets/Estagiario/VerEstagiario';
 export function Admin() {
+  
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const [agendar, setAgendar] = useState(true);
-<<<<<<< HEAD
   const [modalContent, setModalContent] = useState(null);
   const [showErrorModal, setShowErrorModal] = useState(false); // Novo estado para controlar o modal de erro
-  const categoriaNome = useRef(null)
-  const categoriaDescricao = useRef(null)
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   const filesRef = useRef(null);
@@ -29,12 +25,14 @@ function renderModalContent(modalType) {
     case "estagiario":
       return <ModalAddEstagiario />;
     case "postagem":
-      return renderConteudoModalAddPostagem();
-    case "categoria":
-      return renderConteudoModalAddCategoria();
+      return <ModalAddPostagem/>;
     case "permissao":
       return <ModalAddPermissoes/>
-      default:
+    case "categoria":
+        return <ModalAddCategoria/>
+      case "ver estagiarios":
+        return <VerEstagiarios/>
+    default:
       return null;
   }
 }
@@ -81,16 +79,12 @@ function renderModalContent(modalType) {
     }
   };
   
-=======
-
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
   useEffect(() => {
     const dataHoraFields = document.getElementById('dataHoraFields');
     if (dataHoraFields) {
       dataHoraFields.style.display = agendar ? 'flex' : 'none';
     }
   }, [agendar]);
-<<<<<<< HEAD
   
   const handleOpenModal = (title, content, modalType) => {
     setModalData({ title, content });
@@ -102,24 +96,12 @@ function renderModalContent(modalType) {
     setShowModal(false);
   };
   
-=======
 
-  const handleOpenModal = (title, content) => {
-    setModalData({ title, content });
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
   const handleAgendarChange = (event) => {
     const value = event.target.value === 'agendar';
     setAgendar(value);
   };
 
-<<<<<<< HEAD
   const handleCategoriaNomeChange = (event) => {
     setCategoriaNome(e.target.value);
   };
@@ -129,8 +111,7 @@ function renderModalContent(modalType) {
   };
 
    
-=======
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -145,14 +126,8 @@ function renderModalContent(modalType) {
                   Funcionários
                 </a>
                 <ul className="dropdown-menu">
-<<<<<<< HEAD
                   <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Adicionar Estagiário",renderModalContent('estagiario'))}>Adicionar estagiário</a></li>
-=======
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Adicionar Estagiário", renderConteudoModalAddEstagiario())}>Adicionar estagiário</a></li>
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
-                  <li><a className="dropdown-item" href="#">Atualizar informações de estagiário</a></li>
-                  <li className="dropdown-divider"></li>
-                  <li><a className="dropdown-item" href="#" >Excluir estagiário</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Ver Estagiários",renderModalContent('ver estagiarios'))}>Ver todos os estagiários</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -160,20 +135,19 @@ function renderModalContent(modalType) {
                   Postagens
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Adicionar Postagem", renderConteudoModalAddPostagem())}>Agendar/Adicionar nova Postagem</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",<ModalAddPostagem/>)}>Agendar/Adicionar nova Postagem</a></li>
                   <li><a className="dropdown-item" href="#">Visualizar postagens agendadas</a></li>
                   <li><a className="dropdown-item" href="#">Procurar postagem</a></li>
                   <li className="dropdown-divider"></li>
                   <li><a className="dropdown-item" href="#">Excluir postagem</a></li>
                 </ul>
               </li>
-<<<<<<< HEAD
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Categorias
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Adicionar Categoria", renderConteudoModalAddCategoria)}>Adicionar Categoria</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Criar Categoria",renderModalContent('categoria'))}>Adicionar Categoria</a></li>
                   <li><a className="dropdown-item" href="#">Visualizar Categorias</a></li>
                 </ul>
               </li>
@@ -188,26 +162,22 @@ function renderModalContent(modalType) {
                   <li><a className="dropdown-item" href="#"> Deletar categoria</a></li>
                 </ul>
               </li>
-=======
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
+
             </ul>
           </div>
         </div>
       </nav>
-<<<<<<< HEAD
       <main className='principalAdmin'>
         <LargeInput/>
       </main>
-=======
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
-      <ModalComponent
+      
+        <ModalComponent
         show={showModal}
         handleClose={handleCloseModal}
         modalTitle={modalData.title}
         modalContent={modalData.content}
         scrollable={true}
       />
-<<<<<<< HEAD
       <ModalComponent
         show={showErrorModal} // Aqui use a lógica adequada para mostrar o modal de erro
         handleClose={() => setShowErrorModal(false)} // Aqui use a lógica adequada para fechar o modal de erro
@@ -215,7 +185,6 @@ function renderModalContent(modalType) {
         modalContent="Por favor, preencha todos os campos."
         error={true} // Esta propriedade indica que é um modal de erro
       />
-      <ModalAddEstagiario/>
       {/* <ModalComponent
         show={showModal}
         handleClose={() => setShowModal(false)}
@@ -227,151 +196,11 @@ function renderModalContent(modalType) {
     </>
   );
 
+
+
+ 
   
-=======
-    </>
-  );
 
-  function renderConteudoModalAddEstagiario() {
-    return (
-      <div className='containerModal'>
-        <div className="mb-3">
-          <label htmlFor="emailInput" className="form-label">Email</label>
-          <input type="email" className="form-control custom-input" id="emailInput" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="senhaInput" className="form-label">Senha</label>
-          <input type="password" className="form-control custom-input" id="senhaInput" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="confirmarSenhaInput" className="form-label">Confirmação de Senha</label>
-          <input type="password" className="form-control custom-input" id="confirmarSenhaInput" />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Permissões</label>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="permissao" id="somenteLeitura" value="Somente Leitura" />
-            <label className="form-check-label" htmlFor="somenteLeitura">Somente Leitura</label>
-          </div>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" name="permissao" id="permissaoTotal" value="Permissão Total" />
-            <label className="form-check-label" htmlFor="permissaoTotal">Permissão Total</label>
-          </div>
-        </div>
-        <button className="btn-admin">Cadastrar Estagiário</button>
-      </div>
-    );
-  }
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
-
-  function renderConteudoModalAddPostagem() {
-    return (
-      <div className='containerModal'>
-        <div className="mb-3">
-          <label htmlFor="agendarInput" className="form-label">Agendar ou Postar Agora?</label>
-          <select className="form-select" id="agendarInput" onChange={handleAgendarChange}>
-            <option value="agendar">Agendar</option>
-            <option value="postar-agora">Postar Agora</option>
-          </select>
-        </div>
-        <div id="dataHoraFields">
-          <div className="mb-3 dive" style={{ display: agendar ? 'flex' : 'none' }}>
-            <label htmlFor="dataInput" className="form-label">Data</label>
-            <input type="date" className="form-control custom-input" id="dataInput" key={agendar ? 'data' : 'none'} />
-          </div>
-          <div className="mb-3 dive" style={{ display: agendar ? 'flex' : 'none' }}>
-            <label htmlFor="horarioInput" className="form-label">Horário</label>
-            <input type="time" className="form-control custom-input" id="horarioInput" key={agendar ? 'horario' : 'none'} />
-          </div>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="tituloInput" className="form-label">Título da Postagem</label>
-<<<<<<< HEAD
-          <input ref={titleRef} type="text" className="form-control custom-input"  id="tituloInput" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="conteudoInput" className="form-label">Conteúdo da Postagem</label>
-          <textarea ref={contentRef} className="form-control custom-input"  id="conteudoInput" rows="2"></textarea>
-        </div>
-        <div className=' mb-3 d-flex justify-content-between'>
-          <div className="mb-3 more">
-            <label htmlFor="categoriaInput" className="form-label">Categoria</label>
-            <select className="form-select" id="categoriaInput">
-              <option value="politica">Política</option>
-              <option value="rapidinhas">Rapidinhas</option>
-              <option value="economia">Economia</option>
-              <option value="brasil">Brasil</option>
-              <option value="mundo">Mundo</option>
-              <option value="esportes">Esportes</option>
-              <option value="bahia">Bahia</option>
-              <option value="salvador">Salvador</option>
-              <option value="artigos">Artigos</option>
-              <option value="entreterimento">Entretenimento</option>
-              <option value="serviços">Serviços</option>
-            </select>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="imagemInput" className="form-label">Imagem</label>
-            <input ref={filesRef} type="file" className="form-control custom-input"  id="imagemInput" accept="image/*" multiple />
-          </div>
-        </div>
-        <div className="d-flex justify-content-between">
-          <button className="btn-admin">Visualizar</button>
-          <button className="btn-admin" onClick={handleSubmit}>{agendar ? 'Agendar' : 'Postar Agora'}</button>
-=======
-          <input type="text" className="form-control custom-input" id="tituloInput" />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="conteudoInput" className="form-label">Conteúdo da Postagem</label>
-          <textarea className="form-control custom-input" id="conteudoInput" rows="2"></textarea>
-        </div>
-        <div className=' mb-3 d-flex justify-content-between'>
-        <div className="mb-3 more">
-          <label htmlFor="categoriaInput" className="form-label">Categoria</label>
-          <select className="form-select" id="categoriaInput">
-            <option value="politica">Política</option>
-            <option value="rapidinhas">Rapidinhas</option>
-            <option value="economia">Economia</option>
-            <option value="brasil">Brasil</option>
-            <option value="mundo">Mundo</option>
-            <option value="esportes">Esportes</option>
-            <option value="bahia">Bahia</option>
-            <option value="salvador">Salvador</option>
-            <option value="artigos">Artigos</option>
-            <option value="entreterimento">Entretenimento</option>
-            <option value="serviços">Serviços</option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="imagemInput" className="form-label">Imagem</label>
-          <input type="file" className="form-control custom-input" id="imagemInput" accept="image/*" />
-        </div>
-        </div>
-        <div className="d-flex justify-content-between">
-          <button className="btn-admin">Visualizar</button>
-          <button className="btn-admin">{agendar ? 'Agendar' : 'Postar Agora'}</button>
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
-        </div>
-      </div>
-    );
-  }
-<<<<<<< HEAD
-
-  function renderConteudoModalAddCategoria() {
-    return (
-      <div className="containerModal">
-        <div className="mb-3">
-          <label htmlFor="categoriaNome" className="form-label">Nome da Categoria</label>
-          <input type="text" className="form-control custom-input" id="categoriaNome" ref={categoriaNome} onChange={handleCategoriaNomeChange} />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="categoriaDescricao" className="form-label">Descrição da Categoria</label>
-          <textarea className="form-control custom-input" id="categoriaDescricao" ref={categoriaDescricao}  onChange={handleCategoriaDescricaoChange} rows="3"></textarea>
-        </div>
-        <button className="btn-admin">Adicionar Categoria</button>
-      </div>
-    );
-  }
-=======
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
 }
+
+

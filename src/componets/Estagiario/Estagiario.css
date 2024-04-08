@@ -2,3 +2,26 @@
     max-width: 500px; /* Define a largura máxima do modal */
     margin: 0 auto; /* Centraliza o modal na tela */
 }
+/* Estilos CSS personalizados para o Toast */
+.toast-custom {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 300px;
+    background-color: #4caf50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.toast-custom .toast-header {
+    background-color: #357a38; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+    border-bottom: none; /* Remove a borda inferior */
+    border-radius: 8px 8px 0 0; /* Cantos arredondados apenas no topo */
+}
+
+.toast-custom .toast-body {
+    padding: 8px; /* Espaçamento interno */
+}

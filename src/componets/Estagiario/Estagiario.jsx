@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Toast from "react-bootstrap/Toast";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
@@ -7,49 +8,52 @@ function ModalAddEstagiario(props) {
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [email, setEmail] = useState('');
-    const [camposVazios, setCamposVazios] = useState(false); // Estado para controlar a exibição da mensagem de campos vazios
-    const [senhasDiferentes, setSenhasDiferentes] = useState(false); // Estado para controlar a exibição da mensagem de senhas diferentes
-    const [erroAPI, setErroAPI] = useState(''); // Estado para controlar a exibição de erros da API
+    const [camposVazios, setCamposVazios] = useState(false);
+    const [senhasDiferentes, setSenhasDiferentes] = useState(false);
+    const [erroAPI, setErroAPI] = useState('');
+    const [showToast, setShowToast] = useState(false); // Estado para controlar a exibição do toast
 
     const handleSubmitEstagiario = async () => {
-        console.log('ta entrando')
         if (!nome || !email || !confirmarSenha || !senha) {
-            // Define o estado para exibir a mensagem de campos vazios
             setCamposVazios(true);
-            setSenhasDiferentes(false); // Reseta o estado de senhas diferentes
-            setErroAPI(''); // Reseta o estado de erros da API
+            setSenhasDiferentes(false);
+            setErroAPI('');
             return;
         } else if (senha !== confirmarSenha) {
-            // Define o estado para exibir a mensagem de senhas diferentes
             setSenhasDiferentes(true);
-            setCamposVazios(false); // Reseta o estado de campos vazios
-            setErroAPI(''); // Reseta o estado de erros da API
+            setCamposVazios(false);
+            setErroAPI('');
             return;
         } else {
-            // Se todos os campos estiverem preenchidos e as senhas forem iguais, envie o formulário
             setCamposVazios(false);
             setSenhasDiferentes(false);
-            setErroAPI(''); // Reseta o estado de erros da API
+            setErroAPI('');
             
             try {
-                const response = await fetch('https://backend-bahia-newspaper.onrender.com/user', {
+                const token = localStorage.getItem('token');
+                const response = await fetch('http://34.125.197.110:3333/user', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
                         username: nome,
                         email: email,
                         password: senha
                     })
-                }).then(response => response.json())
-                .then(dados => {
-                    console.log(dados)
-                })
-                // Se o usuário for criado com sucesso, mostra uma mensagem de sucesso ou executa alguma ação necessária
-                console.log('Usuário criado com sucesso');
+                });
+
+                if (response.ok) {
+                    setShowToast(true); // Exibe o toast se o usuário for criado com sucesso
+                    setNome('');
+                    setEmail('');
+                    setSenha('');
+                    setConfirmarSenha('');
+                } else {
+                    setErroAPI('Erro ao criar usuário. Por favor, tente novamente mais tarde.');
+                }
             } catch (error) {
-                // Se houver algum erro durante a requisição, define o estado para exibir o erro
                 setErroAPI('Erro ao criar usuário. Por favor, tente novamente mais tarde.');
                 console.error('Erro ao criar usuário:', error);
             }
@@ -71,11 +75,8 @@ function ModalAddEstagiario(props) {
 
     return (
         <div className='containerModal'>
-            {/* Exibe a mensagem de campos vazios se o estado for verdadeiro */}
             {camposVazios && <p style={{ color: "red" }}>Preencha todos os campos antes de continuar.</p>}
-            {/* Exibe a mensagem de senhas diferentes se o estado for verdadeiro */}
             {senhasDiferentes && <p style={{ color: "red" }}>As senhas digitadas não coincidem.</p>}
-            {/* Exibe a mensagem de erro da API se houver */}
             {erroAPI && <p style={{ color: "red" }}>{erroAPI}</p>}
             <div className="mb-3">
                 <label htmlFor="emailInput" className="form-label">Nome</label>
@@ -93,18 +94,28 @@ function ModalAddEstagiario(props) {
                 <label htmlFor="confirmarSenhaInput" className="form-label">Confirmação de Senha</label>
                 <input type="password" className="form-control custom-input" value={confirmarSenha} onChange={handleChange} name="confirmarSenha" id="confirmarSenhaInput" />
             </div>
-            <div className="mb-3">
-                <label className="form-label">Permissões</label>
-                <div className="form-check">
-                    <input className="form-check-input" type="radio" name="permissao" id="somenteLeitura" value="Somente Leitura" />
-                    <label className="form-check-label" htmlFor="somenteLeitura">Somente Leitura</label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input" type="radio" name="permissao" id="permissaoTotal" value="Permissão Total" />
-                    <label className="form-check-label" htmlFor="permissaoTotal">Permissão Total</label>
-                </div>
-            </div>
+          
             <button className="btn-admin" onClick={handleSubmitEstagiario}>Cadastrar Estagiário</button>
+
+            {/* Toast para mostrar mensagem de sucesso */}
+            <Toast
+                onClose={() => setShowToast(false)}
+                show={showToast}
+                delay={3000}
+                autohide
+                
+                style={{
+                    position: 'fixed',
+                    top: 20,
+                    right: 20,
+                    zIndex: 1000
+                }}
+            >
+                <Toast.Header>
+                    <strong className="me-auto">Sucesso</strong>
+                </Toast.Header>
+                <Toast.Body>O usuário foi criado com sucesso!</Toast.Body>
+            </Toast>
         </div>
     );
 }

@@ -4,6 +4,7 @@ import { PostPage } from "../pages/PostPage";
 import { ErrorPage } from "../pages/ErrorPage";
 import { LoginPage } from "../pages/LoginPage";
 import { Admin } from "../pages/AdminPage/Admin";
+import{ RecuperarSenha } from "../pages/ForgetPassword/RecuperarSenha";
 export const RouteMain = () => {
     return(
         <Routes>
@@ -11,16 +12,9 @@ export const RouteMain = () => {
             <Route path="/post/:id" element={<PostPage/>}/>
             <Route path="*" element={<ErrorPage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
-<<<<<<< HEAD
+            <Route path="/forget_password" element={<RecuperarSenha/>}/>
             <Route path="/admin" element={<Admin/>}/>
 
-=======
-<<<<<<< HEAD
-            <Route path="/admin" element={<Admin/>}/>
->>>>>>> b61b034ebe26ce0b89dcbed2524e15d57867c77f
-
-=======
->>>>>>> 152d0f679b37a15f7da0dcddf078f41fb09b0e67
         </Routes>
     );
 };

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/imgs/Logo Jornal da Bahia.png';
 import './Login.css';
 
 export function LoginPage() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [autenticado, setAutenticado] = useState(false);
     const [erroAutenticacao, setErroAutenticacao] = useState(false);
-    const [carregando, setCarregando] = useState(false); // Estado para controlar a exibição da bolinha de carregamento
+    const [carregando, setCarregando] = useState(false); 
+
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -20,7 +21,14 @@ export function LoginPage() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setCarregando(true); // Ativa a bolinha de carregamento
+        setErroAutenticacao(false);
+
+        if (email.trim() === '' || senha.trim() === '') {
+            setErroAutenticacao(true);
+            console.error('Email ou senha vazios.');
+            return; 
+        }
+        setCarregando(true); 
 
         const dadosUsuario = {
             email: email,
@@ -28,7 +36,7 @@ export function LoginPage() {
         };
 
         try {
-            const response = await fetch('https://backend-bahia-newspaper.onrender.com/user/session', {
+            const response = await fetch('http://34.125.197.110:3333/user/session', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -39,11 +47,13 @@ export function LoginPage() {
             if (response.ok) {
                 const dados = await response.json();
                 console.log(dados);
-                setAutenticado(true);
                 console.log('Usuário autenticado com sucesso!');
-                
-                // Redefine o estado de erroAutenticacao para falso
-                setErroAutenticacao(false);
+
+                // Armazene o token no localStorage
+                localStorage.setItem('token', dados.token);
+
+                // Navegue para a página de admin ou faça outra ação necessária após autenticação bem-sucedida
+                navigate('/admin');
             } else {
                 const data = await response.json();
                 setErroAutenticacao(true);
@@ -53,7 +63,7 @@ export function LoginPage() {
             setErroAutenticacao(true);
             console.error('Erro ao fazer login:', error);
         } finally {
-            setCarregando(false); // Desativa a bolinha de carregamento após a resposta ser recebida
+            setCarregando(false); 
         }
     };
 
@@ -75,7 +85,7 @@ export function LoginPage() {
                     value={senha} 
                     onChange={handleSenhaChange}
                 />
-                {carregando && ( // Exibe a bolinha de carregamento se estiver carregando
+                {carregando && (
                     <div className="spinner-border" role="status">
                         <span className="visually-hidden">Carregando...</span>
                     </div>

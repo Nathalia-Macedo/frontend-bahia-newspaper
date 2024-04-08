@@ -1,0 +1,41 @@
+.table-container {
+    text-align: center; /* Centraliza a tabela */
+  }
+  
+  .table-wrapper {
+    max-height: 400px; /* Altura máxima da tabela com scroll */
+    overflow-y: auto; /* Adiciona scroll vertical caso necessário */
+  }
+  
+  .estagiarios-table {
+    border-collapse: collapse; /* Remove espaçamento entre as células */
+    width: 100%; /* Define largura da tabela */
+  }
+ .especial{
+    display: flex;
+    justify-content:space-between ;
+ }
+ .icon-pencil, .icon-trash {
+    cursor: pointer; /* Muda o cursor para pointer */
+  }
+  .icon-container {
+    display: flex;
+    justify-content: flex-end; /* Alinha os ícones no final da célula */
+    align-items: center; /* Alinha os ícones verticalmente */
+    width: 50px;
+    gap: 0.6rem; /* Define um tamanho para o container dos ícones */
+  }
+  
+
+  
+  .estagiarios-table th,
+  .estagiarios-table td {
+    border: 1px solid #ddd; /* Adiciona bordas às células */
+    padding: 8px; /* Adiciona espaçamento interno */
+    text-align: left; /* Alinha o texto à esquerda */
+  }
+  
+  .estagiarios-table th {
+    background-color: #f2f2f2; /* Cor de fundo das células do cabeçalho */
+  }
+  

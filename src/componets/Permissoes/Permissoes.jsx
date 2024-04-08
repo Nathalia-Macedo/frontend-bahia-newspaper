@@ -14,13 +14,15 @@ function ModalAddPermissoes({ handleSubmit }) {
     
         // Limpar a mensagem de erro
         setErrorMessage('');
-    
+        let token = localStorage.getItem('token')
         // Enviar os dados para a API
         try {
             const response = await fetch('https://backend-bahia-newspaper.onrender.com/permission/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Inclui o token no cabeçalho da requisição
+
                 },
                 body: JSON.stringify({
                     name: nome,

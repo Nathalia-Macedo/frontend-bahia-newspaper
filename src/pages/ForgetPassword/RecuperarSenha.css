@@ -1,0 +1,28 @@
+.btn-admin {
+    font-family: 'Roboto', sans-serif; /* Define a fonte do botão */
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Arredonda as bordas do botão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+    transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição suave de cores */
+}
+
+.error{
+    color: red;
+}
+
+.btn-admin:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+    color: #fff; /* Cor do texto do botão ao passar o mouse */
+}
+
+.contentForget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Para ocupar a altura total da tela */
+    
+}
