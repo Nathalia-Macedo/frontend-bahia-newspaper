@@ -14,8 +14,8 @@ function ConfirmDeleteModal({ show, onHide, entityName, onConfirmDelete }) {
             <p>Tem certeza de que deseja excluir o(a) <strong>{entityName}</strong>?</p>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={onHide}>Cancelar</button>
-            <button type="button" className="btn btn-danger" onClick={onConfirmDelete}>Excluir</button>
+            <button type="button" className=" btn-secondary" onClick={onHide}>Cancelar</button>
+            <button type="button" className=" btn-danger" onClick={onConfirmDelete}>Excluir</button>
           </div>
         </div>
       </div>

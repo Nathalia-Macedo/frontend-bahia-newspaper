@@ -1,12 +1,13 @@
 import './Admin.css';
 import ModalComponent from '../../componets/Modal/Modal';
 import React, { useState, useEffect, useRef } from 'react';
-import LargeInput from '../../../../jornal/src/componets/Input/Input';
+import LargeInput from '../../componets/Input/Input';
 import  ModalAddEstagiario  from '../../componets/Estagiario/Estagiario';
 import ModalAddPermissoes from '../../componets/Permissoes/Permissoes';
 import ModalAddCategoria from '../../componets/Categoria/Categoria';
 import ModalAddPostagem from '../../componets/Postagem/Postagem';
 import VerEstagiarios from '../../componets/Estagiario/VerEstagiario';
+import VerCategoriasModal from '../../componets/Categoria/VerCategoria';
 export function Admin() {
   
   const [showModal, setShowModal] = useState(false);
@@ -21,6 +22,7 @@ export function Admin() {
 
   // Função para renderizar o conteúdo do modal com base no tipo selecionado
 function renderModalContent(modalType) {
+  
   switch (modalType) {
     case "estagiario":
       return <ModalAddEstagiario />;
@@ -30,8 +32,11 @@ function renderModalContent(modalType) {
       return <ModalAddPermissoes/>
     case "categoria":
         return <ModalAddCategoria/>
-      case "ver estagiarios":
+    case "ver estagiarios":
         return <VerEstagiarios/>
+     case "ver categorias":
+      console.log(modalType)
+        return <VerCategoriasModal/>
     default:
       return null;
   }
@@ -135,8 +140,7 @@ function renderModalContent(modalType) {
                   Postagens
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",<ModalAddPostagem/>)}>Agendar/Adicionar nova Postagem</a></li>
-                  <li><a className="dropdown-item" href="#">Visualizar postagens agendadas</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}>Agendar/Adicionar nova Postagem</a></li>
                   <li><a className="dropdown-item" href="#">Procurar postagem</a></li>
                   <li className="dropdown-divider"></li>
                   <li><a className="dropdown-item" href="#">Excluir postagem</a></li>
@@ -148,7 +152,8 @@ function renderModalContent(modalType) {
                 </a>
                 <ul className="dropdown-menu">
                   <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Criar Categoria",renderModalContent('categoria'))}>Adicionar Categoria</a></li>
-                  <li><a className="dropdown-item" href="#">Visualizar Categorias</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Ver Categorias",renderModalContent('ver categorias'),<VerCategoriasModal/>)}
+>Visualizar Categorias</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -178,13 +183,15 @@ function renderModalContent(modalType) {
         modalContent={modalData.content}
         scrollable={true}
       />
+
+      
       <ModalComponent
         show={showErrorModal} // Aqui use a lógica adequada para mostrar o modal de erro
         handleClose={() => setShowErrorModal(false)} // Aqui use a lógica adequada para fechar o modal de erro
         modalTitle="Erro"
         modalContent="Por favor, preencha todos os campos."
         error={true} // Esta propriedade indica que é um modal de erro
-      />
+      />  
       {/* <ModalComponent
         show={showModal}
         handleClose={() => setShowModal(false)}

@@ -4,16 +4,19 @@ import { BsPencilSquare, BsTrash } from "react-icons/bs"; // Importa os ícones 
 import './VerEstagiario.css';
 import ConfirmDeleteModal from "../Confirmacao/Confirmacao";
 import UpdateModal from "../UpdateModal/UpdateModal";
+import Toast from "react-bootstrap/Toast";
 
 function VerEstagiarios() {
   const [estagiarios, setEstagiarios] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado para controlar o indicador de loading
+  const [loading, setLoading] = useState(true);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [estagiarioToDelete, setEstagiarioToDelete] = useState(null);
-  const [selectedEstagiarioId, setSelectedEstagiarioId] = useState(null); // Estado para armazenar o ID do estagiário selecionado
+  const [selectedEstagiarioId, setSelectedEstagiarioId] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [newEmail, setNewEmail] = useState(""); // Estado para armazenar o novo email digitado
-  const [newUsername, setNewUsername] = useState(""); // Estado para armazenar o novo nome de usuário digitado
+  const [newEmail, setNewEmail] = useState("");
+  const [newUsername, setNewUsername] = useState("");
+  const [showDeleteToast, setShowDeleteToast] = useState(false);
+  const [showUpdateToast, setShowUpdateToast] = useState(false);
 
   useEffect(() => {
     fetchEstagiarios();
@@ -21,11 +24,11 @@ function VerEstagiarios() {
 
   const fetchEstagiarios = async () => {
     try {
-      const token = localStorage.getItem("token"); // Obter token do localStorage
+      const token = localStorage.getItem("token");
       const response = await fetch("http://34.125.197.110:3333/user", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`, // Incluir token nas headers
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -38,7 +41,7 @@ function VerEstagiarios() {
     } catch (error) {
       console.error("Erro ao buscar estagiários:", error);
     } finally {
-      setLoading(false); // Define o estado de loading como false quando a requisição é concluída
+      setLoading(false);
     }
   };
 
@@ -48,33 +51,32 @@ function VerEstagiarios() {
   };
 
   const handleUpdateData = async (selectedOption, newValue) => {
-    setLoading(true); // Define o estado de loading como true antes de iniciar a atualização
-
+    setLoading(true);
+  
     try {
-      const token = localStorage.getItem("token"); // Obter token do localStorage
-      const id = selectedEstagiarioId; // Id do estagiário selecionado, certifique-se de ter esse valor disponível no escopo
-      const body = {}; // Objeto que conterá os dados a serem atualizados
-
-      // Verifique qual opção foi selecionada e defina os valores correspondentes no corpo da requisição
+      const token = localStorage.getItem("token");
+      const id = selectedEstagiarioId;
+      let body = {}; // Inicialize body como um objeto vazio
+  
       if (selectedOption === "Email") {
         body.email = newValue;
+        body.username = ""; // Defina o username como uma string vazia
       } else if (selectedOption === "Nome de usuário") {
         body.username = newValue;
+        body.email = ""; // Defina o email como uma string vazia
       }
-
-      // Faça a requisição PUT para atualizar os dados do estagiário
+  
       const response = await fetch(`http://34.125.197.110:3333/user/${id}`, {
         method: "PUT",
         headers: {
-          Authorization: `Bearer ${token}`, // Incluir token nas headers
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify(body)
       });
-
+  
       if (response.ok) {
-        console.log("Dados do estagiário atualizados com sucesso.");
-        // Atualize a lista de estagiários buscando novamente os dados
+        setShowUpdateToast(true);
         fetchEstagiarios();
       } else {
         console.error("Erro ao atualizar dados do estagiário:", response.statusText);
@@ -82,10 +84,10 @@ function VerEstagiarios() {
     } catch (error) {
       console.error("Erro ao atualizar dados do estagiário:", error);
     } finally {
-      // Feche o modal de atualização
       setShowUpdateModal(false);
     }
   };
+  
 
   const handleCloseModal = () => {
     setShowConfirmDeleteModal(false);
@@ -107,8 +109,7 @@ function VerEstagiarios() {
       })
 
       if (response.ok) {
-        console.log("Estagiário excluído com sucesso.");
-        // Atualize a lista de estagiários buscando novamente os dados
+        setShowDeleteToast(true);
         fetchEstagiarios();
       } else {
         console.error("Erro ao excluir estagiário:", response.statusText);
@@ -122,11 +123,10 @@ function VerEstagiarios() {
 
   return (
     <div className="table-container">
-      <h1>Estagiários</h1>
-      {loading ? ( // Renderiza o spinner de loading enquanto os dados estão sendo carregados
+      {loading ? (
         <div className="text-center">
           <Spinner animation="border" role="status">
-            <span className="visually-hidden">Carregando...</span>
+            <span className="visually-hidden"></span>
           </Spinner>
         </div>
       ) : (
@@ -150,8 +150,8 @@ function VerEstagiarios() {
                     <td className="especial">
                       {estagiario.email}
                       <span className="icon-container">
-                        <BsPencilSquare className="icon-pencil" onClick={() => {setSelectedEstagiarioId(estagiario.id); setShowUpdateModal(true);}} /> {/* Ícone de lápis */}
-                        <BsTrash className="icon-trash" onClick={() => handleDeleteIconClick(estagiario)} /> {/* Ícone de lixeira */}
+                        <BsPencilSquare className="icon-pencil" onClick={() => {setSelectedEstagiarioId(estagiario.id); setShowUpdateModal(true);}} />
+                        <BsTrash className="icon-trash" onClick={() => handleDeleteIconClick(estagiario)} />
                       </span>
                     </td>
                   </tr>
@@ -161,11 +161,51 @@ function VerEstagiarios() {
           )}
         </div>
       )}
+
+      {/* Toast de exclusão de estagiário */}
+      <Toast
+        onClose={() => setShowDeleteToast(false)}
+        show={showDeleteToast}
+        delay={3000}
+        autohide
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          backgroundColor: "green",
+          color:"white"
+        }}
+      >
+       
+      
+        <Toast.Body>Estagiário excluído com sucesso!</Toast.Body>
+      </Toast>
+
+      {/* Toast de atualização de dados */}
+      <Toast
+        onClose={() => setShowUpdateToast(false)}
+        show={showUpdateToast}
+        delay={3000}
+        autohide
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          backgroundColor: "green",
+          color:"white"
+        }}
+      >
+     
+        <Toast.Body>Dados atualizados com sucesso!</Toast.Body>
+      </Toast>
+
       <ConfirmDeleteModal
         show={showConfirmDeleteModal}
         onHide={handleCloseModal}
         entityName={estagiarioToDelete ? estagiarioToDelete.username : ""}
-        onConfirmDelete={() => handleDeleteEstagiario(estagiarioToDelete)} // Aqui você deve passar a função que lida com a exclusão do estagiário
+        onConfirmDelete={() => handleDeleteEstagiario(estagiarioToDelete)}
       />
 
       {showUpdateModal && (

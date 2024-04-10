@@ -53,7 +53,7 @@ function ModalAddPostagem() {
       <div className="mb-3">
         <label htmlFor="agendarInput" className="form-label">Agendar ou Postar Agora?</label>
         <select className="form-select" id="agendarInput" onChange={(e) => setAgendar(e.target.value === "agendar")}>
-          <option value="agendar" disabled>Agendar</option>
+          <option value="agendar"  >Agendar</option>
           <option value="postar-agora">Postar Agora</option>
         </select>
       </div>

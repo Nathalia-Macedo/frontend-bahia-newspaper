@@ -24,7 +24,13 @@ function ModalAddEstagiario(props) {
             setCamposVazios(false);
             setErroAPI('');
             return;
-        } else {
+        } else if (!email.includes('@') || !email.includes('.com')) {
+            // Verifica se o email contém pelo menos um "@" e ".com"
+            setErroAPI('O email deve conter "@" e ".com"');
+            setCamposVazios(false);
+            setSenhasDiferentes(false);
+            return;
+        }  else {
             setCamposVazios(false);
             setSenhasDiferentes(false);
             setErroAPI('');
@@ -51,11 +57,11 @@ function ModalAddEstagiario(props) {
                     setSenha('');
                     setConfirmarSenha('');
                 } else {
-                    setErroAPI('Erro ao criar usuário. Por favor, tente novamente mais tarde.');
+                    setErroAPI('Email já cadastrado.');
                 }
             } catch (error) {
-                setErroAPI('Erro ao criar usuário. Por favor, tente novamente mais tarde.');
-                console.error('Erro ao criar usuário:', error);
+                setErroAPI('Email já cadastrado.');
+                console.log('Erro ao criar usuário:', error);
             }
         }
     }
@@ -108,12 +114,12 @@ function ModalAddEstagiario(props) {
                     position: 'fixed',
                     top: 20,
                     right: 20,
-                    zIndex: 1000
+                    zIndex: 1000,
+                    backgroundColor:"green",
+                    color:"white"
                 }}
             >
-                <Toast.Header>
-                    <strong className="me-auto">Sucesso</strong>
-                </Toast.Header>
+               
                 <Toast.Body>O usuário foi criado com sucesso!</Toast.Body>
             </Toast>
         </div>
