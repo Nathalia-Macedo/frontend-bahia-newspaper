@@ -11,7 +11,7 @@ function VerEstagiarios() {
   const [loading, setLoading] = useState(true);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [estagiarioToDelete, setEstagiarioToDelete] = useState(null);
-  const [selectedEstagiarioId, setSelectedEstagiarioId] = useState(null);
+  const [selectedEstagiarioId, setSelectedEstagiarioId] = useState(null); // Inicializar como null
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [newUsername, setNewUsername] = useState("");
@@ -78,6 +78,9 @@ function VerEstagiarios() {
       if (response.ok) {
         setShowUpdateToast(true);
         fetchEstagiarios();
+      } else if (response.status === 400) {
+        setShowUpdateToast(true);
+        return;
       } else {
         console.error("Erro ao atualizar dados do estagiário:", response.statusText);
       }
@@ -85,6 +88,7 @@ function VerEstagiarios() {
       console.error("Erro ao atualizar dados do estagiário:", error);
     } finally {
       setShowUpdateModal(false);
+      setLoading(false); // Adicionamos isso aqui para garantir que o loading seja atualizado ao fechar o modal
     }
   };
   
@@ -92,6 +96,7 @@ function VerEstagiarios() {
   const handleCloseModal = () => {
     setShowConfirmDeleteModal(false);
     setShowUpdateModal(false);
+    setLoading(false); // Adicionamos isso aqui para garantir que o loading seja atualizado ao fechar o modal
   };
 
   const handleAddEstagiarioClick = () => {
@@ -177,8 +182,6 @@ function VerEstagiarios() {
           color:"white"
         }}
       >
-       
-      
         <Toast.Body>Estagiário excluído com sucesso!</Toast.Body>
       </Toast>
 
@@ -193,12 +196,11 @@ function VerEstagiarios() {
           top: 20,
           right: 20,
           zIndex: 1000,
-          backgroundColor: "green",
+          backgroundColor: "red",
           color:"white"
         }}
       >
-     
-        <Toast.Body>Dados atualizados com sucesso!</Toast.Body>
+        <Toast.Body>Email já cadastrado! Tente Novamente</Toast.Body>
       </Toast>
 
       <ConfirmDeleteModal

@@ -8,6 +8,9 @@ import ModalAddCategoria from '../../componets/Categoria/Categoria';
 import ModalAddPostagem from '../../componets/Postagem/Postagem';
 import VerEstagiarios from '../../componets/Estagiario/VerEstagiario';
 import VerCategoriasModal from '../../componets/Categoria/VerCategoria';
+import AdminDashboard from '../../componets/AdminSection/AdminSection';
+import PostagensModal from '../../componets/Postagem/VerPostagem';
+
 export function Admin() {
   
   const [showModal, setShowModal] = useState(false);
@@ -35,8 +38,9 @@ function renderModalContent(modalType) {
     case "ver estagiarios":
         return <VerEstagiarios/>
      case "ver categorias":
-      console.log(modalType)
         return <VerCategoriasModal/>
+      case "ver postagens":
+            return <PostagensModal/>
     default:
       return null;
   }
@@ -141,9 +145,8 @@ function renderModalContent(modalType) {
                 </a>
                 <ul className="dropdown-menu">
                   <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}>Agendar/Adicionar nova Postagem</a></li>
-                  <li><a className="dropdown-item" href="#">Procurar postagem</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Ver Postagens",renderModalContent('ver postagens'))}>Ver todas as postagens</a></li>
                   <li className="dropdown-divider"></li>
-                  <li><a className="dropdown-item" href="#">Excluir postagem</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -192,12 +195,9 @@ function renderModalContent(modalType) {
         modalContent="Por favor, preencha todos os campos."
         error={true} // Esta propriedade indica que é um modal de erro
       />  
-      {/* <ModalComponent
-        show={showModal}
-        handleClose={() => setShowModal(false)}
-        modalTitle="Criar Permissão"
-        modalContent={modalContent === 'permissao'? <ModalAddPermissoes /> : null}
-      /> */}
+      
+
+      <AdminDashboard/>
 
      
     </>

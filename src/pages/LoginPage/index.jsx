@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/imgs/Logo Jornal da Bahia.png';
+import logo from '../../assets/imgs/LogoBa.png';
 import './Login.css';
 
 export function LoginPage() {
@@ -69,6 +69,7 @@ export function LoginPage() {
 
     return (
         <main className="container_login">
+        <div className='container_main'>
             <div className="div_image_login">
                 <img src={logo} alt="#" />
             </div>
@@ -95,9 +96,11 @@ export function LoginPage() {
                         Email ou senha incorretos
                     </div>
                 )}
-                <Link to="/forget_password">Esqueceu a Senha?</Link>
-                <button type="submit">Entrar</button>
+                 <button type="submit">Entrar</button>
+                <Link className='forget' to="/forget_password">Esqueceu a Senha?</Link>
+               
             </form>
+            </div>
         </main>
     );
 }

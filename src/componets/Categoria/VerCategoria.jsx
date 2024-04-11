@@ -9,6 +9,7 @@ function VerCategoriasModal() {
   }, []);
 
   const fetchCategorias = async () => {
+    setLoading(true); // Atualiza o estado para indicar que a requisição está em andamento
     try {
       const token = localStorage.getItem("token");
       const response = await fetch("http://34.125.197.110:3333/category", {
@@ -26,8 +27,9 @@ function VerCategoriasModal() {
     } catch (error) {
       console.error("Erro ao buscar categorias:", error);
     } finally {
-      setLoading(false);
+      // Não é mais necessário atualizar o estado de loading aqui
     }
+    setLoading(false); // Atualiza o estado para indicar que a requisição terminou
   };
 
   return (

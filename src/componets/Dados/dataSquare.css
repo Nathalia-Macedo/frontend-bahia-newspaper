@@ -1,0 +1,20 @@
+.data-square {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .data-square:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .data-square h5 {
+    font-size: 1.2rem;
+  }
+  
+  .data-square p {
+    font-size: 1rem;
+  }
+  

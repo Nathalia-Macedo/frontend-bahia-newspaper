@@ -1,0 +1,19 @@
+/* Adicione este CSS ao seu arquivo de estilos */
+
+  
+  .btn-admin {
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  
+  .btn-admin:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-admin:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+  }
+  
