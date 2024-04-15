@@ -31,10 +31,10 @@ function PostagensModal() {
   };
 
   return (
-    <div className="modal fade" id="postagensModal" tabIndex="-1" aria-labelledby="postagensModalLabel" aria-hidden="true">
+    <div className="" id="postagensModal" tabIndex="-1" aria-labelledby="postagensModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-xl">
-        <div className="modal-content">
-          <div className="modal-header">
+        <div className="">
+          <div className="">
             <h5 className="modal-title" id="postagensModalLabel">Postagens</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
