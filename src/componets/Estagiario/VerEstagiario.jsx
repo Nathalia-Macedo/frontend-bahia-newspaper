@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { BsPencilSquare, BsTrash } from "react-icons/bs"; // Importa os ícones de lápis e lixeira
-import './VerEstagiario.css';
+import { BsPencilSquare, BsTrash } from "react-icons/bs";
 import ConfirmDeleteModal from "../Confirmacao/Confirmacao";
 import UpdateModal from "../UpdateModal/UpdateModal";
 import Toast from "react-bootstrap/Toast";
+import './VerEstagiario.css'
 
 function VerEstagiarios() {
   const [estagiarios, setEstagiarios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [estagiarioToDelete, setEstagiarioToDelete] = useState(null);
-  const [selectedEstagiarioId, setSelectedEstagiarioId] = useState(null); // Inicializar como null
+  const [selectedEstagiarioId, setSelectedEstagiarioId] = useState(null);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [newEmail, setNewEmail] = useState("");
-  const [newUsername, setNewUsername] = useState("");
   const [showDeleteToast, setShowDeleteToast] = useState(false);
   const [showUpdateToast, setShowUpdateToast] = useState(false);
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     fetchEstagiarios();
@@ -56,39 +56,64 @@ function VerEstagiarios() {
     try {
       const token = localStorage.getItem("token");
       const id = selectedEstagiarioId;
-      let body = {}; // Inicialize body como um objeto vazio
-  
+
+      // Verificar se a opção selecionada é "Nome de usuário"
+      if (selectedOption === "Nome de usuário") {
+        const response = await fetch(`http://34.125.197.110:3333/user/${id}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ username: newValue }) // Enviar apenas o novo nome de usuário
+        });
+
+        if (response.ok) {
+          setShowUpdateToast(true); // Mostrar toast de sucesso
+          fetchEstagiarios();
+          return; // Encerrar a função após a atualização do nome de usuário
+        } else if (response.status === 409) {
+          setShowUpdateToast(false); // Esconder o toast de sucesso
+          setErrorMessage("Nome de usuário já existe");
+          setShowErrorToast(true); // Mostrar toast de erro
+          return;
+        } else {
+          console.error("Erro ao atualizar nome de usuário:", response.statusText);
+          return;
+        }
+      }
+
+      // Se a opção selecionada for "Email" ou outra opção, continuar com o código existente
+      let body = {};
       if (selectedOption === "Email") {
         body.email = newValue;
-        body.username = ""; // Defina o username como uma string vazia
-      } else if (selectedOption === "Nome de usuário") {
-        body.username = newValue;
-        body.email = ""; // Defina o email como uma string vazia
       }
-  
+
       const response = await fetch(`http://34.125.197.110:3333/user/${id}`, {
         method: "PUT",
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
+          
         },
         body: JSON.stringify(body)
-      });
-  
+      })
+
+        console.log(response)
       if (response.ok) {
         setShowUpdateToast(true);
         fetchEstagiarios();
-      } else if (response.status === 400) {
-        setShowUpdateToast(true);
-        return;
       } else {
-        console.error("Erro ao atualizar dados do estagiário:", response.statusText);
+        setShowUpdateToast(false); // Esconder o toast de sucesso
+        setErrorMessage("Email já cadastrado");
+        setShowErrorToast(true); // Mostrar toast de erro
+        return;
       }
     } catch (error) {
       console.error("Erro ao atualizar dados do estagiário:", error);
     } finally {
       setShowUpdateModal(false);
-      setLoading(false); // Adicionamos isso aqui para garantir que o loading seja atualizado ao fechar o modal
+      setLoading(false);
     }
   };
   
@@ -96,7 +121,7 @@ function VerEstagiarios() {
   const handleCloseModal = () => {
     setShowConfirmDeleteModal(false);
     setShowUpdateModal(false);
-    setLoading(false); // Adicionamos isso aqui para garantir que o loading seja atualizado ao fechar o modal
+    setLoading(false);
   };
 
   const handleAddEstagiarioClick = () => {
@@ -196,11 +221,29 @@ function VerEstagiarios() {
           top: 20,
           right: 20,
           zIndex: 1000,
+          backgroundColor: "green",
+          color:"white"
+        }}
+      >
+        <Toast.Body>Nome de usuário atualizado com sucesso!</Toast.Body>
+      </Toast>
+
+      {/* Toast de erro */}
+      <Toast
+        onClose={() => setShowErrorToast(false)}
+        show={showErrorToast}
+        delay={3000}
+        autohide
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
           backgroundColor: "red",
           color:"white"
         }}
       >
-        <Toast.Body>Email já cadastrado! Tente Novamente</Toast.Body>
+        <Toast.Body>{errorMessage}</Toast.Body>
       </Toast>
 
       <ConfirmDeleteModal

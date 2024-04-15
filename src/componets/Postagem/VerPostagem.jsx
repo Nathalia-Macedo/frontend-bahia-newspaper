@@ -14,7 +14,7 @@ function PostagensModal() {
       const response = await fetch("http://34.125.197.110:3333/posts", {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       });
 
       if (response.ok) {

@@ -8,11 +8,15 @@ import ModalAddCategoria from '../../componets/Categoria/Categoria';
 import ModalAddPostagem from '../../componets/Postagem/Postagem';
 import VerEstagiarios from '../../componets/Estagiario/VerEstagiario';
 import VerCategoriasModal from '../../componets/Categoria/VerCategoria';
-import AdminDashboard from '../../componets/AdminSection/AdminSection';
+import AdminSession from '../../../../frontend-bahia-newspaper copy/src/componets/AdminSection/AdminSection';
 import PostagensModal from '../../componets/Postagem/VerPostagem';
+import {useNavigate } from 'react-router-dom'
+import DataSquare from '../../componets/Dados/dataSquare';
 
-export function Admin() {
-  
+
+
+ export  function Admin() {
+  const navigate = useNavigate()
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState({});
   const [agendar, setAgendar] = useState(true);
@@ -21,6 +25,131 @@ export function Admin() {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   const filesRef = useRef(null);
+
+  const dataSquare = [
+    {
+      title: 'Quantidade de Funcionários',
+      endpoint: 'http://34.125.197.110:3333/user',
+      buttonText: 'Ver Detalhes',
+      onClick: () =>fetchEmployeeData ,
+    },
+    {
+      title: 'Quantidade de Categorias',
+      endpoint: 'http://34.125.197.110:3333/category',
+      buttonText: 'Ver Detalhes',
+      onClick: () => fetchCategoryData,
+    },
+    
+    //   {
+    //     title: 'Quantidade de Postagens',
+    //     endpoint: 'http://34.125.197.110:3333/post',
+    //     buttonText: 'Ver Detalhes',
+    //     onClick: async () => {
+    //       const token = localStorage.getItem('token');
+    //       const numPostagens = await fetchPostagens(token); // Adicione os parênteses para chamar a função
+    //       console.log('Número de postagens:', numPostagens); // Apenas para depuração
+    //       setNumberOfPostagens(numPostagens); // Defina o estado com o número de postagens
+    //     },
+    // }
+
+  ]
+
+  const [numberOfEmployees, setNumberOfEmployees] = useState(0);
+  const [numberOfCategories, setNumberOfCategories] = useState(0);
+  const username = localStorage.getItem('user')
+
+
+  const fetchPostagens = async (token) => {
+    try {
+      const response = await fetch("http://34.125.197.110:3333/post", {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch postagens');
+      }
+  
+      const data = await response.json();
+      return data.length; // Retorna a quantidade de postagens
+    } catch (error) {
+      console.error('Error fetching postagens:', error);
+      throw error;
+    }
+  };
+  
+
+  const fetchCategoryData = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      fetch('http://34.125.197.110:3333/category', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch category data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setNumberOfCategories(data.length);
+      })
+      .catch(error => {
+        console.error('Error fetching category data:', error);
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchEmployeeData();
+    fetchCategoryData();
+    const intervalId = setInterval(() => {
+      fetchEmployeeData();
+      fetchCategoryData();
+    }, 300000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+
+
+  const fetchEmployeeData = () => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      fetch('http://34.125.197.110:3333/user', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch employee data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setNumberOfEmployees(data.length);
+      })
+      .catch(error => {
+        console.error('Error fetching employee data:', error);
+      });
+    }
+  };
+
+
+  const handleLogout = () => {
+    // Apague a chave token do localStorage
+    localStorage.removeItem('token');
+    // Redirecione para a tela de login
+    navigate('/login');
+  };
+
 
 
   // Função para renderizar o conteúdo do modal com base no tipo selecionado
@@ -144,9 +273,8 @@ function renderModalContent(modalType) {
                   Postagens
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}>Agendar/Adicionar nova Postagem</a></li>
+                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}>Adicionar nova Postagem</a></li>
                   <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Ver Postagens",renderModalContent('ver postagens'))}>Ver todas as postagens</a></li>
-                  <li className="dropdown-divider"></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -159,19 +287,27 @@ function renderModalContent(modalType) {
 >Visualizar Categorias</a></li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Permissões
                 </a>
                 <ul className="dropdown-menu">
                   <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Criar Permissão",renderModalContent('permissao'), <ModalAddPermissoes/>)}> Criar permissão</a></li>
-                  <li><a className="dropdown-item" href="#">Listar categorias</a></li>
-                  <li><a className="dropdown-item" href="#"> Atualizar categoria</a></li>
-                  <li><a className="dropdown-item" href="#"> Deletar categoria</a></li>
+                  <li><a className="dropdown-item" href="#">Listar Permissões</a></li>
                 </ul>
-              </li>
+              </li> */}
 
             </ul>
+<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+  {/* Outros itens da barra de navegação */}
+  <li className="nav-item">
+    <button className="nav-link" onClick={handleLogout} >Sair</button>
+  </li>
+  <li className="nav-item align-items-center d-flex">
+    {/* Seja Bem vindo {username} */}
+  </li>
+</ul>
+
           </div>
         </div>
       </nav>
@@ -196,9 +332,8 @@ function renderModalContent(modalType) {
         error={true} // Esta propriedade indica que é um modal de erro
       />  
       
-
-      <AdminDashboard/>
-
+      
+              <AdminSession dataSquares={dataSquare}/>
      
     </>
   );
