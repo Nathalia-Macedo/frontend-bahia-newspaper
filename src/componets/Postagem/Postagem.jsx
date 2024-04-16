@@ -103,7 +103,6 @@ function ModalAddPostagem() {
     }
   };
 
-  // Função para obter o ID das tags digitadas pelo usuário
   const obterIdTags = async (tagsDigitadas) => {
     try {
       const token = localStorage.getItem('token');
@@ -113,33 +112,32 @@ function ModalAddPostagem() {
           Authorization: `Bearer ${token}`,
         },
       });
-
+  
       if (!response.ok) {
         throw new Error("Erro ao obter as tags");
       }
-
+  
       const data = await response.json();
-
-      // Filtrar as tags digitadas pelo usuário e obter o ID de cada uma
+  
+      // Mapear todas as tags digitadas para seus IDs correspondentes
       const tagsIds = tagsDigitadas.map((tagDigitada) => {
         const tag = data.find((tag) => tag.name === tagDigitada);
         return tag ? tag.id : null;
       });
-
-
-      return tagsIds.filter((id) => id !== null); // Remover IDs nulos
+  
+      // Remover IDs nulos e retornar array de IDs
+      return tagsIds.filter((id) => id !== null);
     } catch (error) {
       console.error("Erro ao obter IDs das tags:", error);
       throw error;
     }
   };
-
+  
   const handleSubmit = async () => {
     try {
       // Enviar postagem
       const postId = await enviarPostagem();
-
-
+  
       // Enviar categoria para a API de vinculação de categoria
       const token = localStorage.getItem('token');
       const categoryId = categorias.find(cat => cat.name === categoria)?.id;
@@ -154,47 +152,141 @@ function ModalAddPostagem() {
         body: JSON.stringify({ category_id: categoryId }),
       }).then(responseCategoria => responseCategoria.json())
       .then(dados => {
-        
-      
         if (!dados) {
           throw new Error('Erro ao vincular categoria ao post');
         }
-      
-      })
-      
-      
-
+      });
+  
       // Obter IDs das tags digitadas pelo usuário
       const tagsIds = await obterIdTags([...tags, ...tagsCriadas]);
-      console.log(tagsIds)
-
-      // Vincular tags à postagem
-      const tagRequests = tagsIds.map(tagId =>
-        fetch(`http://34.125.197.110:3333/post/tag/${postId}/`, {
+      console.log(tagsIds);
+  
+      // Vincular todas as tags à postagem
+      await Promise.all(tagsIds.map(async (tagId) => {
+        const response = await fetch(`http://34.125.197.110:3333/post/tag/${postId}/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
           },
           body: JSON.stringify({ tag_id: tagId }),
-        }).then(response => response.json())
-        .then(dados => console.log(dados))
-      )
-      
+        });
+        const data = await response.json();
+        console.log(data);
+      }));
+  
       setShowToast(true); // Exibe o Toast de sucesso
+  
+      // Limpar todos os campos após o envio da postagem
       setTitulo("");
       setConteudo("");
       setCategoria("");
       setImagens([]);
       setTagInput("");
       setTags([]);
-    
-
+  
       setErro('');
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
     }
   };
+  
+
+  // Função para obter o ID das tags digitadas pelo usuário
+  // const obterIdTags = async (tagsDigitadas) => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     const response = await fetch("http://34.125.197.110:3333/tag", {
+  //       method: 'GET',
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("Erro ao obter as tags");
+  //     }
+
+  //     const data = await response.json();
+
+  //     // Filtrar as tags digitadas pelo usuário e obter o ID de cada uma
+  //     const tagsIds = tagsDigitadas.map((tagDigitada) => {
+  //       const tag = data.find((tag) => tag.name === tagDigitada);
+  //       return tag ? tag.id : null;
+  //     });
+
+
+  //     return tagsIds.filter((id) => id !== null); // Remover IDs nulos
+  //   } catch (error) {
+  //     console.error("Erro ao obter IDs das tags:", error);
+  //     throw error;
+  //   }
+  // };
+
+
+  
+
+  // const handleSubmit = async () => {
+  //   try {
+  //     // Enviar postagem
+  //     const postId = await enviarPostagem();
+
+
+  //     // Enviar categoria para a API de vinculação de categoria
+  //     const token = localStorage.getItem('token');
+  //     const categoryId = categorias.find(cat => cat.name === categoria)?.id;
+  //     console.log(postId)
+  //     console.log(categoryId)
+  //     const responseCategoria = await fetch(`http://34.125.197.110:3333/post/category/${postId}`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({ category_id: categoryId }),
+  //     }).then(responseCategoria => responseCategoria.json())
+  //     .then(dados => {
+        
+      
+  //       if (!dados) {
+  //         throw new Error('Erro ao vincular categoria ao post');
+  //       }
+      
+  //     })
+      
+      
+
+  //     // Obter IDs das tags digitadas pelo usuário
+  //     const tagsIds = await obterIdTags([...tags, ...tagsCriadas]);
+  //     console.log(tagsIds)
+
+  //     // Vincular tags à postagem
+  //     const tagRequests = tagsIds.map(tagId =>
+  //       fetch(`http://34.125.197.110:3333/post/tag/${postId}/`, {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Bearer ${token}`,
+  //         },
+  //         body: JSON.stringify({ tag_id: tagId }),
+  //       }).then(response => response.json())
+  //       .then(dados => console.log(dados))
+  //     )
+      
+  //     setShowToast(true); // Exibe o Toast de sucesso
+  //     setTitulo("");
+  //     setConteudo("");
+  //     setCategoria("");
+  //     setImagens([]);
+  //     setTagInput("");
+  //     setTags([]);
+    
+
+  //     setErro('');
+  //   } catch (error) {
+  //     console.error("Erro ao enviar formulário:", error);
+  //   }
+  // };
 
   // Função para adicionar tag à lista de tags
   const handleKeyPress = async (event) => {
