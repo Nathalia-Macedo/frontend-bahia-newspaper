@@ -59,6 +59,7 @@ function ModalAddPostagem() {
     try {
         //os unicos campos que não podem ir vazios são titulo, conteudo e categoria
         //caso estejam vazios, mandamos a mensagem de erro e saimos da função
+
       if(!titulo||!conteudo||!categoria){
         setErro('Preencha todos os campos')
         return
@@ -67,15 +68,16 @@ function ModalAddPostagem() {
       //caso não caia no if, pegamos o token no localStorage
       const token = localStorage.getItem('token');
       //criamos um formData
-      const formData = new FormData();
       //adicionamos nele objetos, com pares chave valor, sendo que as chaves
       //precisam ser passadas da mesma forma que esta na documentação
+      const formData = new FormData();
       formData.append('title', titulo);
       formData.append('content', conteudo);
       formData.append('category_id', categoria);
 
       //apesar de não ser obrigatório enviar imagens, caso elas estejam presentes, precisamos percorrer as imagens
       //e adicioná-las ao formData, novamente com a chave com o mesmo nome requerido no parâmetro
+
       for (let i = 0; i < imagens.length; i++) {
         formData.append('files', imagens[i], imagens[i].name);
       }
@@ -123,7 +125,8 @@ function ModalAddPostagem() {
         const tag = data.find((tag) => tag.name === tagDigitada);
         return tag ? tag.id : null;
       });
-     
+
+
       return tagsIds.filter((id) => id !== null); // Remover IDs nulos
     } catch (error) {
       console.error("Erro ao obter IDs das tags:", error);
@@ -135,7 +138,7 @@ function ModalAddPostagem() {
     try {
       // Enviar postagem
       const postId = await enviarPostagem();
-     
+
 
       // Enviar categoria para a API de vinculação de categoria
       const token = localStorage.getItem('token');
@@ -164,6 +167,7 @@ function ModalAddPostagem() {
       // Obter IDs das tags digitadas pelo usuário
       const tagsIds = await obterIdTags([...tags, ...tagsCriadas]);
       console.log(tagsIds)
+
       // Vincular tags à postagem
       const tagRequests = tagsIds.map(tagId =>
         fetch(`http://34.125.197.110:3333/post/tag/${postId}/`, {
@@ -185,6 +189,7 @@ function ModalAddPostagem() {
       setTagInput("");
       setTags([]);
     
+
       setErro('');
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);

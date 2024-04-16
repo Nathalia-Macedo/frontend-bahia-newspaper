@@ -19,6 +19,7 @@ function VerEstagiarios() {
   const [errorMessage, setErrorMessage] = useState("");
   const [Message,setMessage] = useState('')
 
+
   useEffect(() => {
     fetchEstagiarios();
   }, []);

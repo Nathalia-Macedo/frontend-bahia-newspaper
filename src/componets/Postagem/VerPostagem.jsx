@@ -24,7 +24,7 @@ function PostagensModal() {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
-        },
+        }
       });
   
       if (response.ok) {
