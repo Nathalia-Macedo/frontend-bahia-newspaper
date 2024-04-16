@@ -6,11 +6,15 @@ export function RecuperarSenha() {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
 
+    let token = localStorage.getItem('token')
+
+
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        console.log(email);
         event.preventDefault();
         if (!email) {
             setError('Campo de email obrigatório.');
@@ -21,27 +25,27 @@ export function RecuperarSenha() {
             return;
         }
     
-        fetch('https://backend-bahia-newspaper.onrender.com/user/password', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: email }),
-        })
-        .then(response => {
-            
-          response.json();
-          console.log(response)
-        })
-        .then(dados => {
-            console.log('Dados da resposta:', dados);
+        try {
+            const response = await fetch('http://34.125.197.110:3333/user/password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email }),
+            })
+    
+            // if (!response.ok) {
+            //     throw new Error('Failed to retrieve data');
+            // }
+            const data = await response.json();
+            console.log('Dados da resposta:', data);
             // Aqui você pode fazer o que quiser com os dados da resposta
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Erro:', error);
             setError(error.message || 'Erro ao enviar solicitação de recuperação de senha.');
-        });
-    }
+        }
+    };
+    
     
     
     
@@ -49,13 +53,11 @@ export function RecuperarSenha() {
     return (
         <main className="contentForget">
              {error && <span className="error">{error}</span>}
-            <Form className="w-75" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control type="email" placeholder="name@example.com" value={email} onChange={handleEmailChange} />
-                </Form.Group>
-                <button className="btn-admin" type="submit">Enviar</button>
-            </Form>
+                <div className="mb-3" controlId="exampleForm.ControlInput1">
+                    <label>Email:</label>
+                    <input type="email" placeholder="name@example.com" value={email} onChange={handleEmailChange} />
+                </div>
+                <button className="btn-admin" onClick={handleSubmit} type="button">Enviar</button>
         </main>
     );
 }

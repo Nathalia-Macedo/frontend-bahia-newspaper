@@ -51,6 +51,7 @@ export function LoginPage() {
 
                 // Armazene o token no localStorage
                 localStorage.setItem('token', dados.token);
+                localStorage.setItem('user',dados.username)
 
                 // Navegue para a página de admin ou faça outra ação necessária após autenticação bem-sucedida
                 navigate('/admin');

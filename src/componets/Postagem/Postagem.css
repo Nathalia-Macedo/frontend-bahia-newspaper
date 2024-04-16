@@ -1,0 +1,38 @@
+/* .containerModal {
+    background-color: #f2f2f2;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+  } */
+
+  .sidePost{
+    display: flex;
+  }
+  
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+  
+  .tag-item {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tag-item span {
+    margin-right: 5px;
+  }
+  
+  .tag-item button {
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
