@@ -10,8 +10,8 @@ export const Footer = () => {
     return(
         <footer>
             <div className="container">
-                <div className={styles.flexBox}>
                     <NavBarSection/>
+                <div className={styles.flexBox}>
                     <span>
                         <Link to="/">
                             <img src={Logo} 
@@ -50,6 +50,3 @@ export const Footer = () => {
         </footer>
     );
 };
-
-
-

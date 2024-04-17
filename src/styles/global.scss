@@ -1,23 +1,14 @@
-@font-face {
-    font-family: "beton";
-    src: url("../assets/fonts/beton.otf");
-}
-
 :root{
-    --font-primary: "beton";
+    --font-primary:  "Ubuntu", sans-serif;
 
     --color-red: #ff0000;
     --color-white: #ffffff;
     --color-gray: rgba(155, 153, 153, 0.744);
     --color-black: #000000;
 
-    --swiper-pagination-bottom: 155px;  
+    --swiper-pagination-bottom: 110px;  
     --swiper-pagination-color: red;
     --swiper-pagination-bullet-inactive-color: white;
     --swiper-pagination-bullet-inactive-opacity: 10;
-    
-    // --swiper-navigation-size: 34px;
-    // --swiper-navigation-top-offset: 65%;
-    // --swiper-navigation-color: red;
 
 }
