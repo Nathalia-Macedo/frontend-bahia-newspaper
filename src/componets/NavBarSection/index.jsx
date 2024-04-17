@@ -32,7 +32,6 @@ export const NavBarSection = () => {
 
     const uniqueCategories = [...new Set(categoryList.map(category => category.name))];
 
-
     return (
         <section className={styles.flexBox}>
                 <span 
@@ -44,9 +43,9 @@ export const NavBarSection = () => {
                     <ul className={styles.menu}>
                         {uniqueCategories.map((category, index) => (
                             <NavBarCard key={index}  
-                            category={category} 
+                                category={category} 
                             />
-                            ))}    
+                        ))}    
                     </ul>
                     }
         </section>

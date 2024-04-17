@@ -52,7 +52,7 @@ export const PostProvider = ({ children }) => {
             }
         };
         getPosts();
-    }, [id]);
+    }, [id, setLoading]);
 
 
     return (
