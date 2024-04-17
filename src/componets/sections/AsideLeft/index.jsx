@@ -7,11 +7,12 @@ import { PostContext } from "../../../providers/PostContext";
 export const AsideLeft = () => {
     const {  postList, setFilteredPost} = useContext(PostContext);
     const navigate = useNavigate()
-    // const [visible, setVisible] = useState(true); 
-
+    // Ordenar os posts por data de criação
     const sortedPosts = postList.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-    const handleClick = (postId) => {
+    // Manipulador de evento para lidar com o clique em uma imagem de post
+    const handleClick = (postId, e) => {
+        e.preventDefault();
         const post = sortedPosts.find(post => post.id === postId);
         if (post) {
             setFilteredPost([post]);
@@ -24,36 +25,37 @@ export const AsideLeft = () => {
         <aside className={styles.leftAside}>
             <ul>
                 <h1 className="title center">RAPIDINHAS</h1>
-                {sortedPosts.slice(0,2).map((post, index) => (
+                {sortedPosts.slice(0,2).map((post) => (
                 <li 
-                    key={index}>
+                    key={post.id}>
+                    {/* Renderização condicional da imagem do post */}
                     {post.photoUrls && post.photoUrls.map((photoUrl,index) => (
                         <img 
                             key={index} 
                             src={photoUrl}  
                             alt={`Imagem ${index}` } 
+                            onClick={(e) => handleClick(post.id, e)}
                         />
                     ))}
-                    <Link  
-                        to={`/post/${post.id}`}
-                        className="link"
-                        onClick={handleClick}
-                    >
+                    <div > 
+                        {/* Renderização condicional das categorias do post */}                
                         {post.categories && post.categories.map((category) => (
-                        <div key={category.id}>
-                            <h1 className="title two">{category.name}</h1>
-                        </div>
+                            <h1
+                                key={category.id}
+                                className="title two"
+                            >
+                                {category.name}
+                            </h1>
                         ))}
-                    </Link>
-                    <p
-                        className="paragraph small"
-                        onClick={() => handleClick(post.id)}
-                    >
+                        </div>
+                        {/* Título do post */}
+                        <p  className="paragraph small">
                         {post.title}
                     </p>
                 </li>
                 ))}
             </ul>
+            {/*  imagem estática */}
             <span >
                 <img src={img} alt="" />
             </span>

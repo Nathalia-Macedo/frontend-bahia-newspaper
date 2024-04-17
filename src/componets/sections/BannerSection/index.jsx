@@ -21,7 +21,8 @@ export const BannerSection = () => {
   // Ordena os posts pelas mais recentes
   const sortedPosts = postList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  const handleCategoryClick = (postId) => {
+  const handleCategoryClick = (postId, e) => {
+    e.preventDefault();
     const post = sortedPosts.find(post => post.id === postId);
     if (post) {
       setFilteredPost([post]);
@@ -53,7 +54,7 @@ export const BannerSection = () => {
                     key={index} 
                     src={photoUrl} 
                     alt="Slider" 
-                    onClick={() => handleCategoryClick(item.id)} 
+                    onClick={(e) => handleCategoryClick(item.id, e)} 
                   />                  
                   ))}
                 <div className={styles.overlay}>
@@ -64,7 +65,10 @@ export const BannerSection = () => {
                       >{category.name}
                     </h1>
                     ))}
-                  <p className="title three">{item.title}</p>
+                    <p 
+                      className="title three"
+                      >{item.title}
+                    </p>
                 </div>
               </div>
             </SwiperSlide>
