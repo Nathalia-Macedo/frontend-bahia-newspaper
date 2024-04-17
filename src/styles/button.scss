@@ -1,18 +1,18 @@
 .btn{
     display: flex;
     align-items: center;
-    justify-content: center;
     font-family: var(--font-primary);
-    font-size: clamp(10px, 2vw, 13px);
-    font-weight: 200;
+    font-size: clamp(7px, 2vw, 17px);
+    font-weight: 400;
     color: var(--color-black);
-    padding: 6px;
-    transition: .4s;
+    transition: .2s;
+    border: none;
 
     &:hover{
         color: var(--color-gray);
         filter: brightness(1.1);
     }
 }
+
 
 

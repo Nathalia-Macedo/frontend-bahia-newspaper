@@ -1,28 +1,29 @@
-import { useAtom } from "jotai";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { categoryAtom } from "../../../state/dataAtomo";
-
-import styles from "./style.module.scss";
 import { PostContext } from "../../../providers/PostContext";
 
-export const NavBarCard = ({ category,  setCategory}) => {
-  const [updateCategory, setUpdateCategory] = useAtom(categoryAtom);
-  const { postList, setFilteredPost } = useContext(PostContext);
-  const navigate = useNavigate();
 
+export const NavBarCard = ({ category}) => {
+  const { categoryList, setFilteredPost , postList} = useContext(PostContext);
+  const navigate = useNavigate();
+  const [updateCategory, setUpdateCategory] = useState('');
 
   const update = () => {
-    const filteredPosts = postList.filter(post => post.category === category);
-    setFilteredPost(filteredPosts); // Define os posts filtrados como a lista fornecida
-    setUpdateCategory(category); // Atualiza a categoria selecionada
-    setCategory(category);
-    navigate(`/post/${filteredPosts[0].id}`); // Navega para o primeiro post na lista
+    const filteredPosts = postList.filter(post => post.categories && post.categories.length > 0 && post.categories[0].name === category );
+    console.log(filteredPosts)
+    setFilteredPost(filteredPosts); 
+    setUpdateCategory(category); 
+    if(filteredPosts.length > 0) {
+      navigate(`/post/${filteredPosts[0].id}`); // Navega para o primeiro post na lista
+    }else {
+      // Se não houver posts filtrados, faz algo (por exemplo, exibir uma mensagem)
+      console.log("Nenhum post encontrado para esta categoria.");
+    }
   };
 
   return (
-      <li className={styles.categories}>
-          <button className="btn" onClick={update}>{category.toUpperCase()}</button>
+      <li>
+          <button className="btn" onClick={() => update()}>{category}</button>
       </li>
   )
 };

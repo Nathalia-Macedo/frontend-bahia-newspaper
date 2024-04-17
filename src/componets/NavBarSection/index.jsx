@@ -7,8 +7,8 @@ import { FaBars } from "react-icons/fa";
 
 
 export const NavBarSection = () => {
-    const [category, setCategory] = useState('');
-    const {  postList } = useContext(PostContext);
+
+    const {  categoryList } = useContext(PostContext);
     const [menuOpen, setMenuOpen] = useState(false); 
     const [ size, setSize ] = useState({ width: undefined, height: undefined });
 
@@ -30,25 +30,25 @@ export const NavBarSection = () => {
         }
     }, [size.width]);
 
-    const uniqueCategories = [...new Set(postList.map(object => object.category))];
+    const uniqueCategories = [...new Set(categoryList.map(category => category.name))];
+
 
     return (
         <section className={styles.flexBox}>
                 <span 
-                    className={styles.hamburguer}
                     onClick={() => setMenuOpen(!menuOpen)}>
+                    <h2 className="paragraph bold">Categorias</h2>
                     {!menuOpen ? <FaBars size={20} /> : <IoMdClose size={20}/>}  
                 </span>
-                {menuOpen && 
-                <ul className={styles.menu}>
-                    {uniqueCategories.map((category) => (
-                        <NavBarCard key={category}  
-                        category={category} 
-                        setCategory={setCategory} 
-                        />
-                    ))}    
-                </ul>
-                }
+                    {menuOpen && 
+                    <ul className={styles.menu}>
+                        {uniqueCategories.map((category, index) => (
+                            <NavBarCard key={index}  
+                            category={category} 
+                            />
+                            ))}    
+                    </ul>
+                    }
         </section>
     );
 };

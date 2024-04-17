@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import 'swiper/css/pagination';
 import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
-import { imgList } from "../../../data";
 import { Pagination, Navigation, EffectFade } from "swiper/modules";
 import { AsideRight } from "../AsideRight";
 import { AsideLeft } from "../AsideLeft";
@@ -16,13 +15,21 @@ import img from "../../../assets/imgs/fake.png";
 
 export const BannerSection = () => {
   const [slidePerView, setSlidePerView] = useState(1);
+  const { setFilteredPost, postList} = useContext(PostContext);
 
-  const { setFilteredPost, postList } = useContext(PostContext);
-  // console.log(postList)
-  // tirar o mock usar a requizicao 
-  // verificar quebra 
+  const navigate = useNavigate()
+  // Ordena os posts pelas mais recentes
+  const sortedPosts = postList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  const navigate = useNavigate();
+  const handleCategoryClick = (postId) => {
+    const post = sortedPosts.find(post => post.id === postId);
+    if (post) {
+      setFilteredPost([post]);
+      navigate(`/post/${postId}`); 
+    } else {
+      console.log("Post não encontrado.");
+    }
+  };
 
   return (
     <section className="container">
@@ -35,15 +42,28 @@ export const BannerSection = () => {
           modules={[Pagination, Navigation, EffectFade]}
           effect="fade"
         >
-          {imgList.map((item) => (
-            <SwiperSlide className={styles.slideItem} key={item.id}>
+          {sortedPosts.map((item) => (
+            <SwiperSlide 
+              className={styles.slideItem} 
+              key={item.id}>
               <div className={styles.imageContainer}>
-                <img src={item.image} alt="Slider" />
+                {item.photoUrls && item.photoUrls.map(
+                  (photoUrl, index) =>(
+                  <img 
+                    key={index} 
+                    src={photoUrl} 
+                    alt="Slider" 
+                    onClick={() => handleCategoryClick(item.id)} 
+                  />                  
+                  ))}
                 <div className={styles.overlay}>
-                  <h1 className="title two">
-                    {item.category.charAt(0).toUpperCase() +
-                      item.category.slice(1)}
-                  </h1>
+                    {item.categories && item.categories.map((category) =>(
+                    <h1 
+                        key={category.id} 
+                        className="title two"
+                      >{category.name}
+                    </h1>
+                    ))}
                   <p className="title three">{item.title}</p>
                 </div>
               </div>
