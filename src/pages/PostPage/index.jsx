@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 import { Api } from "../../../services/api";
 
 export const PostPage = () => {
-    const { loading, setLoading, } = useContext(PostContext);
+    const { loading, setLoading, filteredPost } = useContext(PostContext);
+    console.log(filteredPost)
 
     const { id } = useParams();
     //   Requizisao para trazer  as postagens por id
@@ -31,15 +32,24 @@ export const PostPage = () => {
 
     return (
         <DefaultTemplate>
+        <main className="container">
             <div className={styles.postPage}>
                 {loading ? (
                     <p className="title one">Carregando...</p>
+                    
                 ) : (
                     <>
-                        <PostSection/>
+                    {filteredPost && filteredPost.length> 0 ? (
+                        <PostSection post={filteredPost[0]} />
+
+                    ) : (
+                        <p className="title three">Escolha uma Notícia .</p>
+                    )}
                     </>
                 )}
             </div>
+
+        </main>
         </DefaultTemplate>
     );
 };

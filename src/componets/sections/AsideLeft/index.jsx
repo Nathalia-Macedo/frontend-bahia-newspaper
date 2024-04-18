@@ -37,7 +37,7 @@ export const AsideLeft = () => {
                             onClick={(e) => handleClick(post.id, e)}
                         />
                     ))}
-                    <div > 
+                    <div className={styles.titles}> 
                         {/* Renderização condicional das categorias do post */}                
                         {post.categories && post.categories.map((category) => (
                             <h1
@@ -47,11 +47,11 @@ export const AsideLeft = () => {
                                 {category.name}
                             </h1>
                         ))}
-                        </div>
                         {/* Título do post */}
                         <p  className="paragraph small">
-                        {post.title}
-                    </p>
+                            {post.title}
+                        </p>
+                    </div>
                 </li>
                 ))}
             </ul>
