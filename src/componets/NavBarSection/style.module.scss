@@ -12,14 +12,21 @@
     border-left: 2px solid var(--color-gray);
     & >span{
         display: none;
-    }    
+    }
+
 }
 
 .flexBox ul{
-display: flex;
-// flex-direction: row;
-gap: 12px;
-padding: 0;
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    max-width: 300px;
+
+
+    li {
+        width: 100%;
+        max-width: 180px;
+    }
 }
 
 @media (max-width: 800px) {
@@ -40,11 +47,11 @@ padding: 0;
         width: 100%;
         background-color: whitesmoke;
     }
-    .flexBox ul li {
+    .flexBox ul > li {
         display: flex; 
         align-items: center; 
         justify-content: center;
-        // padding: 10px;
+        
     }
     .flexBox > span{
         display: flex;
