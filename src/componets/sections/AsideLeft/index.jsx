@@ -26,9 +26,8 @@ export const AsideLeft = () => {
             <ul>
                 <h1 className="title center">RAPIDINHAS</h1>
                 {sortedPosts.slice(0,2).map((post) => (
-                    <li 
+                <li 
                     key={post.id}>
-                        
                     {/* Renderização condicional da imagem do post */}
                     {post.photoUrls && post.photoUrls.map((photoUrl,index) => (
                         <img 
