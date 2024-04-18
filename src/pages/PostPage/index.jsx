@@ -5,6 +5,7 @@ import { PostContext } from "../../providers/PostContext";
 import { DefaultTemplate } from "../../componets/DefaultTemplate";
 import { useParams } from "react-router-dom";
 import { Api } from "../../../services/api";
+import Loading from "../../assets/spinner/Loading.svg";
 
 export const PostPage = () => {
     const { loading, setLoading, filteredPost } = useContext(PostContext);
@@ -35,7 +36,8 @@ export const PostPage = () => {
         <main className="container">
             <div className={styles.postPage}>
                 {loading ? (
-                    <p className="title one">Carregando...</p>
+                    // <p className="title one"></p>
+                    <img src={Loading} alt="Carregando..." />
                     
                 ) : (
                     <>
