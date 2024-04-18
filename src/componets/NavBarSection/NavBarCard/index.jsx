@@ -10,11 +10,12 @@ export const NavBarCard = ({ category}) => {
 
   const update = () => {
     const filteredPosts = postList.filter(post => post.categories && post.categories.length > 0 && post.categories[0].name === category );
-    console.log(filteredPosts)
-    setFilteredPost(filteredPosts); 
+
     setUpdateCategory(category); 
     if(filteredPosts.length > 0) {
+      setFilteredPost(filteredPosts); 
       navigate(`/post/${filteredPosts[0].id}`); // Navega para o primeiro post na lista
+      setUpdateCategory(category); 
     }else {
       // Se não houver posts filtrados, faz algo (por exemplo, exibir uma mensagem)
       console.log("Nenhum post encontrado para esta categoria.");
