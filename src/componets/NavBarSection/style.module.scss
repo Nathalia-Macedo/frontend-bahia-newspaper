@@ -1,60 +1,66 @@
 .flexBox {
-        display: flex;
-        inset: 0px 0px auto;
-        z-index: 50;
-        width: 100%;
-        height: 40px;
-        background: var(--color-white);
-        border-bottom: 2px solid var(--color-red);
-        border-top: 2px solid var(--color-gray);
-        border-right: 2px solid var(--color-gray);
-        border-left: 2px solid var(--color-gray);
+    display: flex;
+    inset: 0px 0px auto;
+    z-index: 50;
+    width: 100%;
+    height: 40px;
+    // justify-content: space-between;
+    background: var(--color-white);
+    border-bottom: 2px solid var(--color-red);
+    border-top: 2px solid var(--color-gray);
+    border-right: 2px solid var(--color-gray);
+    border-left: 2px solid var(--color-gray);
+    & >span{
+        display: none;
+    }
 
-        & >span{
-            display: none;
-        }
-    
 }
 
 .flexBox ul{
     display: flex;
-    flex-direction: row;
-    position: absolute;
-    padding: 0 ;
+    gap: 12px;
+    padding: 0;
+    max-width: 300px;
+
+
+    li {
+        width: 100%;
+        max-width: 180px;
+    }
 }
 
-
 @media (max-width: 800px) {
-        .flexBox{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            background-color: #0d0d0d16;
-            width: 100%;
-            margin-bottom: 70px;
-        }
-        .flexBox ul {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            margin-top: 40px;
-            align-items: center;
-            background-color: #0d0d0d16;
-        }
-        .flexBox > span{
-            display: flex;
-            align-items: center;
-            padding: 6px;
-            cursor: pointer;
-                svg{
-                    color: var(--color-black);
-                }
-                    
-            }
+    .flexBox{
+        display: flex;
+        flex-direction:column;
+        position: relative;
+        background-color: #0d0d0d16;
+        
     }
-
-
-
-
-
-
+    .flexBox ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 38px;
+        max-width: 100%;
+        width: 100%;
+        background-color: whitesmoke;
+    }
+    .flexBox ul > li {
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        
+    }
+    .flexBox > span{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 6px;
+        cursor: pointer;
+        svg{
+            color: var(--color-black);
+        }    
+    }
+}

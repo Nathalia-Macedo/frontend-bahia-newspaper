@@ -8,9 +8,9 @@ import ModalAddCategoria from '../../componets/Categoria/Categoria';
 import ModalAddPostagem from '../../componets/Postagem/Postagem';
 import VerEstagiarios from '../../componets/Estagiario/VerEstagiario';
 import VerCategoriasModal from '../../componets/Categoria/VerCategoria';
-import AdminSession from '../../../../frontend-bahia-newspaper copy/src/componets/AdminSection/AdminSection';
 import PostagensModal from '../../componets/Postagem/VerPostagem';
 import {useNavigate } from 'react-router-dom'
+import AdminSection from "../../componets/AdminSection/AdminSection"
 import DataSquare from '../../componets/Dados/dataSquare';
 import PostagemAll from '../../componets/Postagem/PostagemAll';
 
@@ -335,7 +335,7 @@ function renderModalContent(modalType) {
         error={true} // Esta propriedade indica que é um modal de erro
       />  
       
-      
+  
               <AdminSession dataSquares={dataSquare}/>
               <PostagemAll/>
       
@@ -348,6 +348,9 @@ function renderModalContent(modalType) {
       <p className="unauthorized-message">Faça login para ter acesso à tela de administrador</p>
       <button className="unauthorized-button" onClick={() => navigate('/login')}>Ir para tela de login</button>
       </div>
+
+              <AdminSection dataSquares={dataSquare}/>
+
      
     </div>
   );
