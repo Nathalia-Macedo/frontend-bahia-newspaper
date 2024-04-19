@@ -43,8 +43,39 @@ body{
 
 }
 
+.login_button:hover{
+    background-color:  rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1)); 
+    color: white;
+}
+
 .forget{
     padding: 0.9rem;
+    margin-bottom: 10px;
+}
+.container_login input {
+    box-shadow: 1px 3px 5px;
+    padding: 0.6rem;
+    background-color: rgba(255, 255, 255, 0.536);
+    width: 100%; /* Alteração aqui */
+    border: none;
+    outline: none;
+    font-weight: 300;
+    border-radius: 5px;
+}
+
+.container_login button {
+    box-shadow: 1px 3px 5px;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 5px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.forget:hover{
+    background-color: rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));
+    color: white;
+    border-radius: 5px;
 }
 /* Estilo do modal */
 .modal {
@@ -105,25 +136,13 @@ input::placeholder{
     color: black;
 }
 
-.container_login input{
-    box-shadow: 1px 3px 5px;
-    padding: 0.6rem;
-    background-color: rgba(255, 255, 255, 0.536);
-    width: 350px;
-    border: none;
-    outline: none;
-    font-weight: 300;
-    border-radius: 5px;
+
+@media screen and (min-width: 768px) {
+    .container_login input {
+        width: 60%; /* Quando a tela for maior que 768 pixels, ocupa 50% da largura */
+    }
 }
 
-.container_login button{
-    box-shadow: 1px 3px 5px ;
-    padding: 0.4rem;
-    border: none;
-    border-radius: 5px;
-    width: 70px;
-    cursor: pointer;
-}
 
 .div_image_login{
     display: flex;

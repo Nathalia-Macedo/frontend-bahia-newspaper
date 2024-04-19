@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toast from "react-bootstrap/Toast";
 import './Postagem.css';
 
 function ModalAddPostagem() {
-  //definindo as variáveis que serão necessa´rias para armazenar valores digitados pelo usuário
+  //definindo as variáveis que serão necessarias para armazenar valores digitados pelo usuário
   const [agendar, setAgendar] = useState(false);
   const [titulo, setTitulo] = useState("");
   const [conteudo, setConteudo] = useState("");
@@ -16,6 +16,8 @@ function ModalAddPostagem() {
   const [erro, setErro] = useState("");
   const [categorias, setCategorias] = useState([]);
   const [token, setToken] = useState("");
+  const inputFileRef = useRef(null);
+  const [loading, setLoading] = useState(false); // Estado para controlar o carregamento
   const [showToast, setShowToast] = useState(false); // Estado para controlar a exibição do Toast
 
   useEffect(() => {
@@ -27,6 +29,10 @@ function ModalAddPostagem() {
     // Carregar categorias ao montar o componente e passando o token
     fetchCategories(authToken);
   }, []);//sem dependencias ja que isso é pra ser feito somente uma vez ao abrir o modal de postagens
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
 
   //A função fetchCategories faz o consumo da api, e recebe o token como parâmetro
@@ -132,9 +138,25 @@ function ModalAddPostagem() {
       throw error;
     }
   };
+
+
+  // Função para limpar o campo de seleção de arquivos
+const clearImageInput = () => {
+  const input = document.getElementById("imagensInput");
+  if (input) {
+    input.value = null;
+  }
+};
   
   const handleSubmit = async () => {
     try {
+
+      if (!categoria) {
+        setErro('Selecione uma categoria');
+        return;
+      }
+
+      setLoading(true);
       // Enviar postagem
       const postId = await enviarPostagem();
   
@@ -184,110 +206,17 @@ function ModalAddPostagem() {
       setImagens([]);
       setTagInput("");
       setTags([]);
-  
       setErro('');
+      clearImageInput();
+      setLoading(false)
+  
+     
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
     }
   };
-  
 
-  // Função para obter o ID das tags digitadas pelo usuário
-  // const obterIdTags = async (tagsDigitadas) => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const response = await fetch("http://34.125.197.110:3333/tag", {
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("Erro ao obter as tags");
-  //     }
-
-  //     const data = await response.json();
-
-  //     // Filtrar as tags digitadas pelo usuário e obter o ID de cada uma
-  //     const tagsIds = tagsDigitadas.map((tagDigitada) => {
-  //       const tag = data.find((tag) => tag.name === tagDigitada);
-  //       return tag ? tag.id : null;
-  //     });
-
-
-  //     return tagsIds.filter((id) => id !== null); // Remover IDs nulos
-  //   } catch (error) {
-  //     console.error("Erro ao obter IDs das tags:", error);
-  //     throw error;
-  //   }
-  // };
-
-
-  
-
-  // const handleSubmit = async () => {
-  //   try {
-  //     // Enviar postagem
-  //     const postId = await enviarPostagem();
-
-
-  //     // Enviar categoria para a API de vinculação de categoria
-  //     const token = localStorage.getItem('token');
-  //     const categoryId = categorias.find(cat => cat.name === categoria)?.id;
-  //     console.log(postId)
-  //     console.log(categoryId)
-  //     const responseCategoria = await fetch(`http://34.125.197.110:3333/post/category/${postId}`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({ category_id: categoryId }),
-  //     }).then(responseCategoria => responseCategoria.json())
-  //     .then(dados => {
-        
-      
-  //       if (!dados) {
-  //         throw new Error('Erro ao vincular categoria ao post');
-  //       }
-      
-  //     })
-      
-      
-
-  //     // Obter IDs das tags digitadas pelo usuário
-  //     const tagsIds = await obterIdTags([...tags, ...tagsCriadas]);
-  //     console.log(tagsIds)
-
-  //     // Vincular tags à postagem
-  //     const tagRequests = tagsIds.map(tagId =>
-  //       fetch(`http://34.125.197.110:3333/post/tag/${postId}/`, {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': `Bearer ${token}`,
-  //         },
-  //         body: JSON.stringify({ tag_id: tagId }),
-  //       }).then(response => response.json())
-  //       .then(dados => console.log(dados))
-  //     )
-      
-  //     setShowToast(true); // Exibe o Toast de sucesso
-  //     setTitulo("");
-  //     setConteudo("");
-  //     setCategoria("");
-  //     setImagens([]);
-  //     setTagInput("");
-  //     setTags([]);
-    
-
-  //     setErro('');
-  //   } catch (error) {
-  //     console.error("Erro ao enviar formulário:", error);
-  //   }
-  // };
-
+ 
   // Função para adicionar tag à lista de tags
   const handleKeyPress = async (event) => {
     if (event.key === 'Enter') {
@@ -352,6 +281,9 @@ function ModalAddPostagem() {
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
     setImagens(files);
+
+      // Limpar o campo de seleção de arquivos
+  inputFileRef.current.value = null;
   };
 
  // Função para abrir uma nova aba e exibir os detalhes da postagem
@@ -484,7 +416,7 @@ function ModalAddPostagem() {
           className="form-control custom-input"
           id="tituloInput"
           value={titulo}
-          onChange={(e) => setTitulo(e.target.value)}
+          onChange={(e) => setTitulo(capitalizeFirstLetter(e.target.value))}
         />
       </div>
       <div className="mb-3">
@@ -496,7 +428,7 @@ function ModalAddPostagem() {
           id="conteudoInput"
           rows="2"
           value={conteudo}
-          onChange={(e) => setConteudo(e.target.value)}
+          onChange={(e) => setConteudo(capitalizeFirstLetter(e.target.value))}
         ></textarea>
         <div className="mb-3">
           <label htmlFor="tagsInput" className="form-label">
@@ -558,7 +490,13 @@ function ModalAddPostagem() {
       <div className="d-flex justify-content-between">
         <button className="btn-admin" onClick={abrirVisualizacao}>Visualizar</button>
         <button className="btn-admin" onClick={handleSubmit} >
-          {agendar ? "Agendar" : "Postar Agora"}
+        {loading ? (
+            <div className="spinner-border text-light" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          ) : (
+            agendar ? "Agendar" : "Postar Agora"
+          )}
         </button>
       </div>
       

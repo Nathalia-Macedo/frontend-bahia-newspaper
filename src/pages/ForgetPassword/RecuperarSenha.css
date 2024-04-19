@@ -9,6 +9,109 @@
     transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição suave de cores */
 }
 
+/* RecuperarSenha.css */
+
+.contentForget {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.error {
+    color: red;
+}
+
+.mb-3 {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-admin {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-admin:hover {
+    background-color: #0056b3;
+}
+
+.code-input {
+    margin-top: 20px;
+}
+
+/* RecuperarSenha.css */
+
+/* Estilização para inputs */
+.input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-wrapper label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #777;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: #007bff;
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+    font-size: 12px;
+    top: 0;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #007bff;
+}
+
+
+.code-input label,
+.code-input input {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+
 .error{
     color: red;
 }
