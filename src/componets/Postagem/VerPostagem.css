@@ -8,5 +8,18 @@
  .center{
   text-align: center;
  }
+
+ .justify{
+  display: flex ;
   
+ }
   
+ .content-cell {
+  max-width: 500px; /* Defina o valor desejado para a largura máxima */
+  text-overflow: ellipsis; /* Adiciona reticências (...) ao final do conteúdo se ele ultrapassar a largura máxima */
+  /* Impede que o conteúdo seja quebrado em várias linhas */
+}
+
+.content-cell-title{
+  max-width: 200px;
+}

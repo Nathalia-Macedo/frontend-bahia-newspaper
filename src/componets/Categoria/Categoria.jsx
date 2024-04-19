@@ -8,17 +8,22 @@ function ModalAddCategoria() {
     const [showToast, setShowToast] = useState(false);
 
     const handleCategoriaNomeChange = (event) => {
-        setCategoriaNome(event.target.value);
+        // Transforma a primeira letra para maiúscula e atualiza o estado
+        setCategoriaNome(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
     };
 
     const handleCategoriaDescricaoChange = (event) => {
-        setCategoriaDescricao(event.target.value);
+        // Transforma a primeira letra para maiúscula e atualiza o estado
+        setCategoriaDescricao(event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1));
     };
 
     const handleSubmit = async () => {
         if (!categoriaNome || !categoriaDescricao) {
             setErro("Por favor, preencha todos os campos.");
             return;
+        }else if(!categoriaNome && !categoriaDescricao){
+            setErro('Todos os campos devem ser preenchidos')
+            return
         }
 
         // Reset error message
@@ -48,7 +53,7 @@ function ModalAddCategoria() {
             setCategoriaDescricao("");
         } catch (error) {
             console.error('Erro:', error);
-            setErro("Categoria ja cadastrada");
+            setErro("Categoria já cadastrada");
         }
     };
 

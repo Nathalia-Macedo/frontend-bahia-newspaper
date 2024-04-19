@@ -39,7 +39,7 @@ function UpdateModal({ show, onClose, phrase, options, placeholder, onUpdate }) 
         <span className="close" onClick={onClose}>&times;</span>
         <h2>{phrase}</h2>
         <select value={selectedOption} onChange={handleOptionChange}>
-          <option value="">Selecione...</option>
+          <option disabled selected value="">Selecione...</option>
           {options.map((option, index) => (
             <option key={index} value={option}>{option}</option>
           ))}
