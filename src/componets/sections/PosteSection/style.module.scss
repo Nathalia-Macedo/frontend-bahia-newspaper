@@ -2,27 +2,29 @@
     display: flex;
     flex-direction: column;
     margin-top: 10px;
-    width: 100%;
+    width: 100%;    
     height: 100%;
     gap: 30px;
-    
 
 
     @media (min-width: 980px) {
         justify-content: center;   
         flex-direction:row;
+        
     } 
 
-    ul{
+    & >ul{
         display: flex;
         flex-direction: column;
         margin-top: 10px;
-        padding: 0 10px;
+        justify-content: center;
+        padding: 0;      
+        width: 760px;
+        
 
         & > img{
             width: 100%;
             height: 80px;
-            cursor: pointer;
         }
     }
 

@@ -46,14 +46,16 @@ export const AsideRight = () => {
                 <h1 className="title center">MAIS LIDAS</h1>
                 {mostViewedPosts.map((post) => (
                 <li 
-                key={post.id}>
+                key={post.id}
+                onClick={(e) => handleClick(post.id, e)}
+                >
                 {/* Renderização condicional da imagem do post */}
                 {post.photoUrls && post.photoUrls.map((index) => ( 
                     <img 
                         key={index} 
                         src={post.photoUrls[0] ? post.photoUrls[0] : ""}  
                         alt={`Imagem ${index}`}
-                        onClick={(e) => handleClick(post.id, e)}
+                        
                     />
                 ))}
                     <div className={styles.titles}> 

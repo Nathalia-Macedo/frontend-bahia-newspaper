@@ -15,7 +15,10 @@ export const Header = () => {
     const submit = (e) => {
         e.preventDefault();
     
-        const filteredPost = postList.filter(post => post.content.toLowerCase().includes(value.toLowerCase()));
+        const filteredPost = postList.filter(post =>
+            post.content.toLowerCase().includes(value.toLowerCase()) ||
+            post.title.toLowerCase().includes(value.toLowerCase())
+        );
 
         if (filteredPost.length > 0) {
             navigate(`/post/${filteredPost[0].id}`);

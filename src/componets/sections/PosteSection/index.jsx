@@ -15,7 +15,7 @@ export const PostSection = () => {
     <section className="container">
       <div className={styles.flexBox}>
           <AsideAds/>         
-        <ul>
+        <ul >
           <img src={img} alt="img fixa" />
             {postsToRender.map(post => (
               <PostCard key={post.id} post={post} />

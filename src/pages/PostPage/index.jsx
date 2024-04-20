@@ -9,7 +9,7 @@ import Loading from "../../assets/spinner/Loading.svg";
 
 export const PostPage = () => {
     const { loading, setLoading, filteredPost } = useContext(PostContext);
-    console.log(filteredPost)
+    
 
     const { id } = useParams();
     //   Requizisao para trazer  as postagens por id
@@ -33,7 +33,6 @@ export const PostPage = () => {
 
     return (
         <DefaultTemplate>
-        <main className="container">
             <div className={styles.postPage}>
                 {loading ? (
                     // <p className="title one"></p>
@@ -50,8 +49,6 @@ export const PostPage = () => {
                     </>
                 )}
             </div>
-
-        </main>
         </DefaultTemplate>
     );
 };
