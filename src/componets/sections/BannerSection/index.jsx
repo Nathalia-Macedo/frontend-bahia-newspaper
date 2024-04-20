@@ -44,34 +44,21 @@ export const BannerSection = () => {
           effect="fade"
         >
           {sortedPosts.map((item) => (
-            <SwiperSlide 
-              className={styles.slideItem} 
-              key={item.id}>
-              <div className={styles.imageContainer}>
-                {item.photoUrls && item.photoUrls.map(
-                  (photoUrl, index) =>(
-                  <img 
-                    key={index} 
-                    src={photoUrl} 
-                    alt="Slider" 
-                    onClick={(e) => handleCategoryClick(item.id, e)} 
-                  />                  
-                  ))}
-                <div className={styles.overlay}>
-                    {item.categories && item.categories.map((category) =>(
-                    <h1 
-                        key={category.id} 
-                        className="title two"
-                      >{category.name}
-                    </h1>
+            <SwiperSlide className={styles.slideItem} key={item.id}>
+              <div className={styles.imageContainer} onClick={(e) => handleCategoryClick(item.id, e)}>
+              {item.photoUrls && item.photoUrls.map((photoUrl, index) => (
+                <div key={index}>
+                  <img src={photoUrl} alt="Slider" />
+                  <div className={styles.overlay}>
+                    {item.categories && item.categories.map((category) => (
+                      <h1 key={category.id} className="title two">{category.name}</h1>
                     ))}
-                    <p 
-                      className="title three"
-                      >{item.title}
-                    </p>
+                    <p className="title three">{item.title}</p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
+              ))}
+            </div>
+          </SwiperSlide>
           ))}
             <strong>
               <img src={img} alt="" />

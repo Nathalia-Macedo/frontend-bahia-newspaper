@@ -27,14 +27,16 @@ export const AsideLeft = () => {
                 <h1 className="title center">RAPIDINHAS</h1>
                 {sortedPosts.slice(0,2).map((post) => (
                 <li 
-                    key={post.id}>
+                    key={post.id}
+                    onClick={(e) => handleClick(post.id, e)}
+                    >
                     {/* Renderização condicional da imagem do post */}
                     {post.photoUrls && post.photoUrls.map((photoUrl,index) => (
                         <img 
                             key={index} 
                             src={photoUrl}  
                             alt={`Imagem ${index}` } 
-                            onClick={(e) => handleClick(post.id, e)}
+                            
                         />
                     ))}
                     <div className={styles.titles}> 
