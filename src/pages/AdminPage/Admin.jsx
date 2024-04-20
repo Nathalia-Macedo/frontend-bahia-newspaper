@@ -12,6 +12,7 @@ import PostagensModal from '../../componets/Postagem/VerPostagem';
 import {useNavigate } from 'react-router-dom'
 import AdminSection from "../../componets/AdminSection/AdminSection"
 import DataSquare from '../../componets/Dados/dataSquare';
+import PostagemAll from '../../componets/Postagem/PostagemAll';
 
 
 
@@ -248,9 +249,10 @@ function renderModalContent(modalType) {
     setCategoriaDescricao(event.target.value);
   };
 
+    let token = localStorage.getItem('token')
    
 
-  return (
+  return token?  (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -311,7 +313,7 @@ function renderModalContent(modalType) {
           </div>
         </div>
       </nav>
-      <main className='principalAdmin'>
+      <main className=''>
         <LargeInput/>
       </main>
       
@@ -333,11 +335,27 @@ function renderModalContent(modalType) {
         error={true} // Esta propriedade indica que é um modal de erro
       />  
       
+  
+              <AdminSession dataSquares={dataSquare}/>
+              <PostagemAll/>
       
-              <AdminSection dataSquares={dataSquare}/>
      
-    </>
+    </> ) :   (
+    <div className="unauthorized-container">
+      <div className='person_error'>
+      <h1>401</h1>
+      <h1 className="unauthorized-heading">Não autorizado</h1>
+      <p className="unauthorized-message">Faça login para ter acesso à tela de administrador</p>
+      <button className="unauthorized-button" onClick={() => navigate('/login')}>Ir para tela de login</button>
+      </div>
+
+              <AdminSection dataSquares={dataSquare}/>
+
+     
+    </div>
   );
+    
+  ;
 
 
 
