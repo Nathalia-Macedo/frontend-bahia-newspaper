@@ -4,7 +4,7 @@
     line-height: 1.6;
 
     &.one{
-        font-size: clamp(2rem, 6vw, 40px);
+        font-size: clamp(20px, 6vw, 17px);
     }
 
     &.two{
@@ -12,10 +12,10 @@
     }
 
     &.three{
-        font-size: clamp(1.125rem, 3vw, 20px);
+        font-size: clamp(18px, 3vw, 15px);
     } 
     &.post{
-        font-size: clamp(30px, 5vw, 20px);
+        font-size: clamp(1.875rem, 5vw, 20px);
     }
     &.center{
         text-align: center;
@@ -23,7 +23,7 @@
     }
 }
 .input{
-    // font-family: var(--font-primary);
+    font-family: var(--font-primary);
     font-weight: 200;
     line-height: 1.2;
     font-size: clamp(12px, 2vw, 8px);

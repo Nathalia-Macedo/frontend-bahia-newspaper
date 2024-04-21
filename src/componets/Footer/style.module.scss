@@ -26,10 +26,12 @@
             padding: 0 10px;
             color: var(--color-black);
             transition: color 0.3s ease;
-    
-            }
+        &:hover{
+            color: var(--color-red);
+        }
         }
     }
+}
 
     footer > div > section{ 
         margin-top: 30px;

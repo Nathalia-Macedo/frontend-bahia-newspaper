@@ -16,7 +16,7 @@ export const PostPage = () => {
 
     useEffect(() => {
         scrollTo(0, 0);
-        const getPosts = async () => {
+        const getPostById = async () => {
             try {
                 setLoading(true);
                 await Api.get(`/post/${id}`, 
@@ -27,7 +27,7 @@ export const PostPage = () => {
                 setLoading(false);
             }
         };
-        getPosts();
+        getPostById();
     }, [id, setLoading]);
 
 
@@ -44,7 +44,7 @@ export const PostPage = () => {
                         <PostSection post={filteredPost[0]} />
 
                     ) : (
-                        <p className="title three">Escolha uma Notícia .</p>
+                        <p className="title three">Escolha uma Notícia.</p>
                     )}
                     </>
                 )}
