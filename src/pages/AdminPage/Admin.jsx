@@ -1,7 +1,8 @@
 import './Admin.css';
 import ModalComponent from '../../componets/Modal/Modal';
 import React, { useState, useEffect, useRef } from 'react';
-import LargeInput from '../../componets/Input/Input';
+import { AiOutlineUnorderedList } from 'react-icons/ai';
+
 import  ModalAddEstagiario  from '../../componets/Estagiario/Estagiario';
 import ModalAddPermissoes from '../../componets/Permissoes/Permissoes';
 import ModalAddCategoria from '../../componets/Categoria/Categoria';
@@ -10,9 +11,17 @@ import VerEstagiarios from '../../componets/Estagiario/VerEstagiario';
 import VerCategoriasModal from '../../componets/Categoria/VerCategoria';
 import PostagensModal from '../../componets/Postagem/VerPostagem';
 import {useNavigate } from 'react-router-dom'
-import AdminSection from "../../componets/AdminSection/AdminSection"
-import DataSquare from '../../componets/Dados/dataSquare';
+import AdminSession from '../../componets/AdminSection/AdminSection';
 import PostagemAll from '../../componets/Postagem/PostagemAll';
+import { FaUsers } from 'react-icons/fa';
+import { FaFolder } from 'react-icons/fa';
+import { FaNewspaper, FaRegNewspaper, FaFileAlt, FaBookOpen } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { AiOutlinePlusCircle } from 'react-icons/ai';
+import { FaEye } from 'react-icons/fa';
+
+
+
 
 
 
@@ -41,17 +50,17 @@ import PostagemAll from '../../componets/Postagem/PostagemAll';
       onClick: () => fetchCategoryData,
     },
     
-    //   {
-    //     title: 'Quantidade de Postagens',
-    //     endpoint: 'http://34.125.197.110:3333/post',
-    //     buttonText: 'Ver Detalhes',
-    //     onClick: async () => {
-    //       const token = localStorage.getItem('token');
-    //       const numPostagens = await fetchPostagens(token); // Adicione os parênteses para chamar a função
-    //       console.log('Número de postagens:', numPostagens); // Apenas para depuração
-    //       setNumberOfPostagens(numPostagens); // Defina o estado com o número de postagens
-    //     },
-    // }
+      {
+        title: 'Quantidade de Postagens',
+        endpoint: 'http://34.125.197.110:3333/post',
+        buttonText: 'Ver Detalhes',
+        onClick: async () => {
+          const token = localStorage.getItem('token');
+          const numPostagens = await fetchPostagens(token); // Adicione os parênteses para chamar a função
+          console.log('Número de postagens:', numPostagens); // Apenas para depuração
+          setNumberOfPostagens(numPostagens); // Defina o estado com o número de postagens
+        },
+    }
 
   ]
 
@@ -254,39 +263,50 @@ function renderModalContent(modalType) {
 
   return token?  (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
+      <nav className="navbar navbar-expand-lg bg-dark">
+        <div className="container-fluid ">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown">
+                
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Funcionários
+                <span className="icone-azul">   <FaUsers/> </span>  Funcionários
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Adicionar Estagiário",renderModalContent('estagiario'))}>Adicionar estagiário</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Ver Estagiários",renderModalContent('ver estagiarios'))}>Ver todos os estagiários</a></li>
+                  <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() => handleOpenModal("Adicionar Estagiário",renderModalContent('estagiario'))}><span style={{marginRight:'10px'}} className='icone-azul'>
+                    <AiOutlinePlusCircle/>
+                    </span>Adicionar estagiário</a></li>
+                  <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() => handleOpenModal("Ver Estagiários",renderModalContent('ver estagiarios'))}><span style={{marginRight:'10px'}} className='icone-azul'><FaEye/></span>Ver todos os estagiários</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Postagens
+                <span className="icone-azul">
+  <FaNewspaper />
+</span>  Postagens
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}>Adicionar nova Postagem</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() =>  handleOpenModal("Ver Postagens",renderModalContent('ver postagens'))}>Ver todas as postagens</a></li>
+                  <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}> <span style={{marginRight:'10px'}} className='icone-azul'>
+                    <AiOutlinePlusCircle/>
+                    </span>Adicionar nova Postagem</a></li>
+                  <li><a className="dropdown-item"  href="#" id='dropdown-item' onClick={() =>  handleOpenModal("Ver Postagens",renderModalContent('ver postagens'))}><span style={{marginRight:'10px'}} className='icone-azul'><FaEye/></span>Ver todas as postagens</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categorias
+                 <span className='icone-azul'>
+                 <AiOutlineUnorderedList/>
+                  </span> Categorias
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Criar Categoria",renderModalContent('categoria'))}>Adicionar Categoria</a></li>
-                  <li><a className="dropdown-item" href="#" onClick={() => handleOpenModal("Ver Categorias",renderModalContent('ver categorias'),<VerCategoriasModal/>)}
->Visualizar Categorias</a></li>
+                  <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() => handleOpenModal("Criar Categoria",renderModalContent('categoria'))}><span style={{marginRight:'10px'}} className='icone-azul'>
+                    <AiOutlinePlusCircle/>
+                    </span>Adicionar Categoria</a></li>
+                  <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() => handleOpenModal("Ver Categorias",renderModalContent('ver categorias'),<VerCategoriasModal/>)}
+><span style={{marginRight:'10px'}} className='icone-azul'><FaEye/></span>Visualizar Categorias</a></li>
                 </ul>
               </li>
               {/* <li className="nav-item dropdown">
@@ -303,7 +323,9 @@ function renderModalContent(modalType) {
 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
   {/* Outros itens da barra de navegação */}
   <li className="nav-item">
-    <button className="nav-link" onClick={handleLogout} >Sair</button>
+    <button className="nav-link" onClick={handleLogout} > Sair <span className='icone-vermelho'>
+      <FaSignOutAlt/>
+      </span></button>
   </li>
   <li className="nav-item align-items-center d-flex">
     {/* Seja Bem vindo {username} */}
@@ -314,7 +336,8 @@ function renderModalContent(modalType) {
         </div>
       </nav>
       <main className=''>
-        <LargeInput/>
+
+      <AdminSession dataSquares={dataSquare}/>
       </main>
       
         <ModalComponent
@@ -336,7 +359,6 @@ function renderModalContent(modalType) {
       />  
       
   
-              <AdminSession dataSquares={dataSquare}/>
               <PostagemAll/>
       
      
@@ -349,7 +371,6 @@ function renderModalContent(modalType) {
       <button className="unauthorized-button" onClick={() => navigate('/login')}>Ir para tela de login</button>
       </div>
 
-              <AdminSection dataSquares={dataSquare}/>
 
      
     </div>
@@ -363,5 +384,6 @@ function renderModalContent(modalType) {
   
 
 }
+
 
 

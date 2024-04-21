@@ -18,20 +18,30 @@
     width: 100%;
     display:flex ;
     justify-content: space-between;
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 
-.init_post_table input{
+.init_post_table .search_post{
     box-shadow: 1px 3px 5px black;
     border-radius: 5px;
-    width: 50%;
+    width: 40%;
     outline: none;
 }
 
-.init_post_table input::placeholder{
+/* input{
+    outline: none;
+    box-shadow: 1px 3px 5px black;
+    border-radius: 5px;
+
+} */
+
+.init_post_table .search_post::placeholder{
     font-family: Arial, sans-serif;
 
 }
+
+
+
 .custom-select {
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -76,4 +86,10 @@
 }
   #title_post{
     width: 200px;
+  }
+
+
+  .table{
+    font-family: var(--font-primary);
+
   }
