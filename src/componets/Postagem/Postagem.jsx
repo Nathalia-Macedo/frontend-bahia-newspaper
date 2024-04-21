@@ -100,6 +100,7 @@ function ModalAddPostagem() {
       //convertendo a resposta para objeto javascript novamente e guardando isso dentro de data
       const data = await response.json();
       console.log("Postagem enviada com sucesso!");
+      console.log(data)
       //retornamos o id do post caso dê tudo certo
       return data.id;
       //se der erro,lançamos o erro
@@ -163,7 +164,6 @@ const clearImageInput = () => {
       // Enviar categoria para a API de vinculação de categoria
       const token = localStorage.getItem('token');
       const categoryId = categorias.find(cat => cat.name === categoria)?.id;
-      console.log(postId)
       console.log(categoryId)
       const responseCategoria = await fetch(`http://34.125.197.110:3333/post/category/${postId}`, {
         method: 'POST',
