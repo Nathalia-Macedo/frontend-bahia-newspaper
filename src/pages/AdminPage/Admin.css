@@ -9,6 +9,11 @@
     cursor: pointer; /* Altera o cursor ao passar sobre o botão */
     transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição suave de cores */
   }
+
+  #dropdown-item {
+    color: black;
+  }
+  
   
 
   #dataHoraFields{
@@ -50,6 +55,19 @@ align-items: center;
   box-shadow: 1px 3px 5px black;
 }
 
+.icone-vermelho{
+  color: red;
+}
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-item,
+.navbar-toggler-icon {
+  color: white;
+}
+
+
+.icone-azul{
+  color: #007bff;
+}
 .person_error{
   display: flex ;
   flex-direction: column;

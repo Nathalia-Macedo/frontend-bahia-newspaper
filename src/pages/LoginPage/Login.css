@@ -16,7 +16,7 @@ body{
     
 }
 
-.container_login{
+.container_login {
     background-image: url('../../assets/imgs/backgorund-login.jpg');
     background-size: cover;
     box-shadow: 1px 3px 5px black;
@@ -153,4 +153,22 @@ input::placeholder{
 .div_image_login img{
     mix-blend-mode: multiply;
         width: 200px;
+}
+
+
+@media screen and (min-width: 320px) {
+    .container_main{
+        width: 80%;
+    }
+}
+@media screen and (min-width: 280px) {
+    .container_main{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:1024px){
+    .container_main{
+        width: 50%;
+    }
 }

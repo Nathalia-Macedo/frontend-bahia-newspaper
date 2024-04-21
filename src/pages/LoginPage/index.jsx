@@ -68,7 +68,7 @@ export function LoginPage() {
                 navigate('/admin');
             } else {
                 const data = await response.json();
-                setErroMensagem(data.message || response.statusText); // Defina a mensagem de erro recebida do servidor
+                setErroMensagem("Email ou senha incorretos"); // Defina a mensagem de erro recebida do servidor
                 setShowErroToast(true); // Exiba o toast de erro
                 console.error('Falha ao autenticar usuário:', data.message || response.statusText);
             }

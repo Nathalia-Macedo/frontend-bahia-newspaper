@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Toast } from "react-bootstrap";
 import './RecuperarSenha.css';
+import { useNavigate } from 'react-router-dom';
 
 export function RecuperarSenha() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
     const [userId, setUserId] = useState(null);
     const [code, setCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [showCodeInput, setShowCodeInput] = useState(false);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
+
+    function handleBackLogin(){
+        navigate('/login')
+    }
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -24,7 +31,7 @@ export function RecuperarSenha() {
             setError('Email inválido.');
             return;
         }
-    
+
         try {
             const response = await fetch('http://34.125.197.110:3333/user/password', {
                 method: 'POST',
@@ -33,18 +40,18 @@ export function RecuperarSenha() {
                 },
                 body: JSON.stringify({ email: email }),
             });
-    
+
+            const data = await response.json();
             if (response.ok) {
-                const data = await response.json();
-                console.log(data)
                 setUserId(data.userId);
-                setShowCodeInput(true); // Exibir a entrada para o código após enviar o email
+                setShowCodeInput(true);
+                setSuccess("Email enviado com sucesso!"); // Define a mensagem de sucesso da API
             } else {
-                throw new Error('Failed to retrieve user ID');
+                setError('Usuário não encontrado. Tente novamente'); // Define a mensagem de erro da API
             }
         } catch (error) {
             console.error('Erro:', error);
-            setError(error.message || 'Erro ao enviar solicitação de recuperação de senha.');
+            setError('Erro ao enviar solicitação de recuperação de senha.');
         }
     };
 
@@ -56,17 +63,19 @@ export function RecuperarSenha() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ get_codePassword: code, password: newPassword }),
-            }).then(response => response.json())
-            .then(dados => console.log(dados))
-            console.log(userId)
-            // if (!response.ok) {
-            //     throw new Error('Failed to send new password');
-            // }
+            });
 
-            // A senha foi atualizada com sucesso
+            const data = await response.json();
+            console.log(data)
+            if (response.ok) {
+                setSuccess("Senha redefinida com sucesso"); // Define a mensagem de sucesso da API
+                navigate('/login')
+            } else {
+                setError("Algo está errado. Tente novamente"); // Define a mensagem de erro da API
+            }
         } catch (error) {
             console.error('Erro ao enviar nova senha:', error);
-            setError(error.message || 'Erro ao enviar nova senha.');
+            setError('Erro ao enviar nova senha.');
         }
     };
 
@@ -76,16 +85,15 @@ export function RecuperarSenha() {
             <p>Esqueceu sua senha? Digite o email cadastrado abaixo. Um código será enviado para seu email.</p>
 
             <form onSubmit={handleSubmit}>
-                {error && <span className="error">{error}</span>}
-                <div className="mb-3">
-                    <label>Email:</label>
+                <div className="input-wrapper">
                     <input type="email" placeholder="name@example.com" value={email} onChange={handleEmailChange} />
                 </div>
-                <button className="btn-admin" type="submit">Enviar</button>
+                <button className="btn-admin-forget" type="submit">Enviar</button>
             </form>
+            <button className="back_button" onClick={handleBackLogin}>Voltar</button>
 
             {showCodeInput && (
-                <div className="code-input">
+                <div className="input-wrapper">
                     <label>Código:</label>
                     <input type="text" value={code} onChange={(e) => setCode(e.target.value)} />
 
@@ -95,6 +103,26 @@ export function RecuperarSenha() {
                     <button className="btn-admin" onClick={handleSendNewPassword}>Enviar Nova Senha</button>
                 </div>
             )}
+
+            <Toast 
+                show={error !== null} 
+                onClose={() => setError(null)} 
+                style={{ position: 'fixed', top: 20, right: 20, backgroundColor: 'red', color: 'white' }}
+                delay={3000}
+                autohide
+            >
+                <Toast.Body>{error}</Toast.Body>
+            </Toast>
+
+            <Toast 
+                show={success !== null} 
+                onClose={() => setSuccess(null)} 
+                style={{ position: 'fixed', top: 20, right: 20, backgroundColor: 'green', color: 'white' }}
+                delay={3000}
+                autohide
+            >
+                <Toast.Body>{success}</Toast.Body>
+            </Toast>
         </main>
     );
 }
