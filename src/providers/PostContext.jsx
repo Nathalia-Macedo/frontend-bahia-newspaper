@@ -42,8 +42,8 @@ export const PostProvider = ({ children }) => {
                 setLoading(true);
                 const { data } = await Api.get(`/post/`
                 );
-                // Extrai os últimos 5 posts                
-                const lastTenPosts = data.slice(0, 11);
+                // Extrai os últimos 10 posts                
+                const lastTenPosts = data.slice(0, 10);
                 setPostList(lastTenPosts)
             } catch (error) {
                 console.error(error);
