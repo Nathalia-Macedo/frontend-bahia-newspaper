@@ -5,6 +5,7 @@ import { ErrorPage } from "../pages/ErrorPage";
 import { LoginPage } from "../pages/LoginPage";
 import { Admin } from "../pages/AdminPage/Admin";
 import{ RecuperarSenha } from "../pages/ForgetPassword/RecuperarSenha";
+
 export const RouteMain = () => {
     return(
         <Routes>
@@ -14,7 +15,6 @@ export const RouteMain = () => {
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/forget_password" element={<RecuperarSenha/>}/>
             <Route path="/admin" element={<Admin/>}/>
-
         </Routes>
     );
 };
