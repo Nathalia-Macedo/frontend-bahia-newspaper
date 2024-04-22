@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/imgs/Logo Jornal da Bahia2.png";
 import styles from "./style.module.scss";
-
 import { MdFacebook} from "react-icons/md";
 import { FaInstagram, FaWhatsapp, FaSquareXTwitter} from "react-icons/fa6";
 import { NavBarSection } from "../NavBarSection";

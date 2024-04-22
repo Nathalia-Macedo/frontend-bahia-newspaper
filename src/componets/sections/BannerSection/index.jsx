@@ -15,12 +15,12 @@ import img from "../../../assets/imgs/fake.png";
 import noImage from "../../../assets/imgs/noImage.jpg";
 
 export const BannerSection = () => {
-  const [slidePerView, setSlidePerView] = useState(1);
+  const [slidePerView] = useState(1);
   const { setFilteredPost, postList} = useContext(PostContext);
 
   const navigate = useNavigate()
   // Ordena os posts pelas noticias mais recentes
-  const sortedPosts = postList.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  const sortedPosts = postList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   const handleCategoryClick = (postId, e) => {
     e.preventDefault();
