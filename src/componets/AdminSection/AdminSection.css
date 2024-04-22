@@ -1,6 +1,11 @@
 /* Adicione este CSS ao seu arquivo de estilos */
 
-  
+.container_section_admin{
+  width: 90%;
+  display:flex ;
+  justify-content: center;
+
+}
   .btn-admin {
     margin-top: 10px;
     border-radius: 5px;
