@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import orderBy from 'lodash/orderBy';
-import './PostagemAll.css'
+import './PostagemAll.css';
 import { MdDateRange } from 'react-icons/md';
 import { MdLabel } from 'react-icons/md';
 import { FaSearchPlus, FaFilter } from 'react-icons/fa';
@@ -100,37 +100,28 @@ function PostagemAll() {
   }
 
   return (
-    <div style={{ width: "95%", margin: "0 auto", padding:"2rem", borderRadius:'5px', border: "1px solid #ccc", maxHeight: "500px", overflowY: "auto" }}>
-      <div className="init_post_table">
-        <input className="search_post" type="text" placeholder="O que está procurando?" />
-        <div style={{ position: 'relative', display: 'inline-block' }}>
-          <div
-            onClick={() => setShowFiltroOpcoes(!showFiltroOpcoes)}
-            style={{ cursor: 'pointer' }}
-          >
+    <div className="container_post">
+      <div className="init-post-table">
+        <input className="search-post" type="text" placeholder="O que está procurando?" />
+        <div className="filter-options">
+          <div onClick={() => setShowFiltroOpcoes(!showFiltroOpcoes)} className="filter-icon">
             <FaFilter />
           </div>
           {showFiltroOpcoes && (
-            <div style={{ width:"150px", borderRadius:"10px",display:'flex',flexDirection:'column', gap:"0.6rem", padding:'0.5rem', position: 'absolute', top: '20px', left: '10px', backgroundColor: 'white',boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)' }}>
-                <span style={{fontSize:'15px'}}>Adicionar Filtro</span>
-              <div style={{display:'flex', gap:'1rem'}}>
-                <div style={{ fontSize:'15px', display:'flex',alignItems:'center', width:'50%',flexDirection:'column', padding: '13px',boxShadow:'1px 3px 5px black', borderRadius:'5px' }} onClick={handleFiltrarClick}>
-                  <span>      <MdDateRange /></span><span >Data</span>
-                </div>
-                <div style={{ fontSize:'15px', display:'flex',alignItems:'center',flexDirection:'column', padding: '10px',boxShadow:'1px 3px 5px black', width:'50%',borderRadius:'5px' }}onClick={handleFiltrarClick}>  
-                 <span>
-                 <MdLabel />
-                  </span>
-
-                  <span>
-                    Tags
-                  </span>
-</div>
+            <div className="options-menu">
+              <span>Adicionar Filtro</span>
+              <div className="filter-option" onClick={handleFiltrarClick}>
+                <MdDateRange />
+                <span>Data</span>
+              </div>
+              <div className="filter-option" onClick={handleFiltrarClick}>  
+                <MdLabel />
+                <span>Tags</span>
               </div>
             </div>
           )}
         </div>
-        <select className="custom-select" value={ordenacao} onChange={handleOrdenacaoChange}>
+        <select className="order-select" value={ordenacao} onChange={handleOrdenacaoChange}>
           <option value="">Selecione uma opção de ordenação</option>
           <option value="MaisRecentes">Mais recentes</option>
           <option value="MaisAntigas">Mais antigas</option>
@@ -139,15 +130,15 @@ function PostagemAll() {
         </select>
       </div>
 
-      <table className="table " id="table_post">
+      <table className="post-table">
         <thead>
           <tr>
-            <th style={{ width: "50px" }}>Título</th>
-            <th style={{ width: "200px" }}>Conteúdo</th>
-            <th style={{ width: "10px" }}>Categorias</th>
-            <th style={{ width: "50px" }}>Visualizações</th>
-            <th style={{ width: "100px" }}>Data de publicação</th> 
-            <th style={{ width: "10px" }}>Mais Detalhes</th> 
+            <th>Título</th>
+            <th>Conteúdo</th>
+            <th>Categorias</th>
+            <th>Visualizações</th>
+            <th>Data de publicação</th> 
+            <th>Mais Detalhes</th> 
           </tr>
         </thead>
         <tbody>

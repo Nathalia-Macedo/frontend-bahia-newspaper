@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import DataSquare from '../Dados/dataSquare';
+import './AdminSection.css'
 
 const AdminSession = ({ dataSquares }) => {
   const [values, setValues] = useState([]);
@@ -35,7 +36,7 @@ const AdminSession = ({ dataSquares }) => {
   }, [dataSquares]);
 
   return (
-    <Container className="my-5">
+    <div className="my-5 container_section_admin">
       <Row className="justify-content-center">
         {dataSquares.map((square, index) => (
           <DataSquare
@@ -47,7 +48,7 @@ const AdminSession = ({ dataSquares }) => {
           />
         ))}
       </Row>
-    </Container>
+    </div>
   );
 };
 
