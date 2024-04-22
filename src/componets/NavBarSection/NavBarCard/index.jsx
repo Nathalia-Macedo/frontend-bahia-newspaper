@@ -4,9 +4,9 @@ import { PostContext } from "../../../providers/PostContext";
 
 
 export const NavBarCard = ({ category}) => {
-  const { categoryList, setFilteredPost , postList} = useContext(PostContext);
+  const { setFilteredPost , postList} = useContext(PostContext);
   const navigate = useNavigate();
-  const [updateCategory, setUpdateCategory] = useState('');
+  const [setUpdateCategory] = useState('');
 
   const update = () => {
     const filteredPosts = postList.filter(post => post.categories && post.categories.length > 0 && post.categories[0].name === category );

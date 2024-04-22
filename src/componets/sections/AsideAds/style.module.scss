@@ -4,6 +4,15 @@
     
     
 }
+.hidden {
+    display: none;
+}
+
+@media (min-width: 980px) {
+    .asideAds {
+    width: 200px;
+    }
+}
 
 .asideAds > div {
     display: flex;
