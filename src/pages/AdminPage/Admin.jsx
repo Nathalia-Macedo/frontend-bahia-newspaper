@@ -13,13 +13,9 @@ import PostagensModal from '../../componets/Postagem/VerPostagem';
 import {useNavigate } from 'react-router-dom'
 import AdminSession from '../../componets/AdminSection/AdminSection';
 import PostagemAll from '../../componets/Postagem/PostagemAll';
-import { FaUsers } from 'react-icons/fa';
-import { FaFolder } from 'react-icons/fa';
-import { FaNewspaper, FaRegNewspaper, FaFileAlt, FaBookOpen } from 'react-icons/fa';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaUsers,FaNewspaper,FaSignOutAlt,FaEye} from 'react-icons/fa';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
-import { FaEye } from 'react-icons/fa';
-
+import { SessionData } from '../../componets/SectionData/SectionData';
 
 
 
@@ -37,21 +33,16 @@ import { FaEye } from 'react-icons/fa';
   const filesRef = useRef(null);
 
   const dataSquare = [
+    
     {
-      title: 'Quantidade de Funcionários',
-      endpoint: 'http://34.125.197.110:3333/user',
-      buttonText: 'Ver Detalhes',
-      onClick: () =>fetchEmployeeData ,
-    },
-    {
-      title: 'Quantidade de Categorias',
+      title: 'Qtd de Categorias',
       endpoint: 'http://34.125.197.110:3333/category',
       buttonText: 'Ver Detalhes',
       onClick: () => fetchCategoryData,
     },
     
       {
-        title: 'Quantidade de Postagens',
+        title: 'Qtd de Postagens',
         endpoint: 'http://34.125.197.110:3333/post',
         buttonText: 'Ver Detalhes',
         onClick: async () => {
@@ -59,7 +50,13 @@ import { FaEye } from 'react-icons/fa';
           const numPostagens = await fetchPostagens(token); // Adicione os parênteses para chamar a função
           console.log('Número de postagens:', numPostagens); // Apenas para depuração
           setNumberOfPostagens(numPostagens); // Defina o estado com o número de postagens
-        },
+        }
+        
+    },{
+      title: 'Qtde. de Funcionários',
+      endpoint: 'http://34.125.197.110:3333/user',
+      buttonText: 'Ver Detalhes',
+      onClick: () =>fetchEmployeeData 
     }
 
   ]
@@ -263,7 +260,7 @@ function renderModalContent(modalType) {
 
   return token?  (
     <>
-      <nav className="navbar navbar-expand-lg bg-dark">
+      <nav className="navbar navbar-expand-lg bg-dark " >
         <div className="container-fluid ">
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -272,18 +269,18 @@ function renderModalContent(modalType) {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item dropdown">
                 
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span className="icone-azul">   <FaUsers/> </span>  Funcionários
+                <a className="nav-link dropdown-toggle" id='font' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span className="icone-azul" >   <FaUsers/> </span>  Funcionários
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() => handleOpenModal("Adicionar Estagiário",renderModalContent('estagiario'))}><span style={{marginRight:'10px'}} className='icone-azul'>
+                  <li><a className="dropdown-item" id='dropdown-item ' href="#" onClick={() => handleOpenModal("Adicionar Estagiário",renderModalContent('estagiario'))}><span style={{marginRight:'10px'}} className='icone-azul'>
                     <AiOutlinePlusCircle/>
                     </span>Adicionar estagiário</a></li>
                   <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() => handleOpenModal("Ver Estagiários",renderModalContent('ver estagiarios'))}><span style={{marginRight:'10px'}} className='icone-azul'><FaEye/></span>Ver todos os estagiários</a></li>
                 </ul>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" id='font' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span className="icone-azul">
   <FaNewspaper />
 </span>  Postagens
@@ -296,7 +293,7 @@ function renderModalContent(modalType) {
                 </ul>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" id='font' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                  <span className='icone-azul'>
                  <AiOutlineUnorderedList/>
                   </span> Categorias
@@ -323,7 +320,7 @@ function renderModalContent(modalType) {
 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
   {/* Outros itens da barra de navegação */}
   <li className="nav-item">
-    <button className="nav-link" onClick={handleLogout} > Sair <span className='icone-vermelho'>
+    <button className="nav-link" id='font' onClick={handleLogout} > Sair <span className='icone-vermelho'>
       <FaSignOutAlt/>
       </span></button>
   </li>
@@ -335,7 +332,7 @@ function renderModalContent(modalType) {
           </div>
         </div>
       </nav>
-      <main className=''>
+      <main className='main_admin'>
 
       <AdminSession dataSquares={dataSquare}/>
       </main>
@@ -358,7 +355,7 @@ function renderModalContent(modalType) {
         error={true} // Esta propriedade indica que é um modal de erro
       />  
       
-  
+              <SessionData/>
               <PostagemAll/>
       
      
