@@ -12,6 +12,7 @@ import { AsideLeft } from "../AsideLeft";
 import { PostContext } from "../../../providers/PostContext";
 import { useNavigate } from "react-router-dom";
 import img from "../../../assets/imgs/fake.png";
+import noImage from "../../../assets/imgs/noImage.jpg";
 
 export const BannerSection = () => {
   const [slidePerView, setSlidePerView] = useState(1);
@@ -19,7 +20,7 @@ export const BannerSection = () => {
 
   const navigate = useNavigate()
   // Ordena os posts pelas noticias mais recentes
-  const sortedPosts = postList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const sortedPosts = postList.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
   const handleCategoryClick = (postId, e) => {
     e.preventDefault();
@@ -52,20 +53,26 @@ export const BannerSection = () => {
             <div 
               onClick={(e) => handleCategoryClick(item.id, e)}  
               className={styles.imageContainer}
-            >
-              {item.photoUrls && item.photoUrls.length > 0 && (
+            >             
                 <img 
-                  src={item.photoUrls[0]} // Renderiza apenas a primeira foto
+                  src={item.photoUrls.length !== 0 ? item.photoUrls[0] : noImage} 
                   alt="Slider"                   
                 />                  
-              )}
-              <div className={styles.overlay}>
-                {item.categories && item.categories.length > 0 && (
-                  <h1 className="title one">
-                    {item.categories[0].name} {/* Renderiza apenas a primeira categoria */}
-                  </h1>
-                )}
-                <p className="title three">{item.title}</p>
+                <div className={styles.overlay}>
+                  {item.categories.length !== 0 ? (
+                    <h1 className="title one">
+                      {item.categories[0].name}
+                    </h1>
+                  ) : (
+                    <h1 className="title one">
+                      Sem categoria
+                    </h1>
+                  )}
+                  {item.title && (
+                  <p className="title three">
+                    {item.title}
+                  </p>
+                  )}
               </div>
             </div>
           </SwiperSlide>
