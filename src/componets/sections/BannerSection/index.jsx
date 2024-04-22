@@ -27,7 +27,6 @@ export const BannerSection = () => {
     const post = sortedPosts.find(post => post.id === postId);
     if (post) {
       setFilteredPost([post]);
-      console.log(post)
       navigate(`/post/${postId}`); 
     } else {
       console.log("Post não encontrado.");
