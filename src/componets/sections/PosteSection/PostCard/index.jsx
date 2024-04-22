@@ -4,7 +4,6 @@ import { ptBR } from 'date-fns/locale';
 
 export const PostCard = ({post}) => {
 
-     // Verifica se a postagem está definida
     if (!post) {
         return null;
     }
