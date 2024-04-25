@@ -1,0 +1,25 @@
+.detalhes-postagem p{
+    font-family: var(--font-primary);
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .edit-icon,
+  .delete-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .edit-icon:hover
+   {
+    color: #007bff; /* Altere a cor conforme desejado */
+  }
+
+  .delete-icon:hover{
+    color: red;
+  }

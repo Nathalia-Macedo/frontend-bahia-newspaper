@@ -1,10 +1,10 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Toast from "react-bootstrap/Toast";
 import './Postagem.css';
 
 function ModalAddPostagem() {
-  //definindo as variáveis que serão necessarias para armazenar valores digitados pelo usuário
+  // Definindo as variáveis que serão necessárias para armazenar valores digitados pelo usuário
   const [agendar, setAgendar] = useState(false);
   const [titulo, setTitulo] = useState("");
   const [conteudo, setConteudo] = useState("");
@@ -19,6 +19,8 @@ function ModalAddPostagem() {
   const inputFileRef = useRef(null);
   const [loading, setLoading] = useState(false); // Estado para controlar o carregamento
   const [showToast, setShowToast] = useState(false); // Estado para controlar a exibição do Toast
+  const [toastMessage, setToastMessage] = useState(""); // Estado para armazenar a mensagem do Toast
+  const [toastVariant, setToastVariant] = useState(""); // Estado para controlar a cor do Toast
 
   useEffect(() => {
     // Buscar token do localStorage, precisaremos dele para cada uma das nossas requisições
@@ -57,6 +59,10 @@ function ModalAddPostagem() {
     } catch (error) {
       console.error("Erro ao carregar categorias:", error);
       setErro("Erro ao carregar categorias");
+      // Mostrar mensagem de erro em um Toast vermelho
+      setToastVariant("danger");
+      setToastMessage("Erro ao carregar categorias");
+      setShowToast(true);
     }
   };
 
@@ -68,6 +74,10 @@ function ModalAddPostagem() {
 
       if(!titulo||!conteudo||!categoria){
         setErro('Preencha todos os campos')
+        // Mostrar mensagem de erro em um Toast vermelho
+        setToastVariant("danger");
+        setToastMessage("Preencha todos os campos");
+        setShowToast(true);
         return
       }
 
@@ -154,6 +164,10 @@ const clearImageInput = () => {
 
       if (!categoria) {
         setErro('Selecione uma categoria');
+        // Mostrar mensagem de erro em um Toast vermelho
+        setToastVariant("danger");
+        setToastMessage("Selecione uma categoria");
+        setShowToast(true);
         return;
       }
 
@@ -196,7 +210,9 @@ const clearImageInput = () => {
         const data = await response.json();
         console.log(data);
       }));
-  
+
+      setToastVariant('success')
+      setToastMessage("Postagem enviada com sucesso!")
       setShowToast(true); // Exibe o Toast de sucesso
   
       // Limpar todos os campos após o envio da postagem
@@ -239,6 +255,10 @@ const clearImageInput = () => {
           } else {
             console.error("Erro ao criar tag:", error);
             setErro("Erro ao criar tag");
+            // Mostrar mensagem de erro em um Toast vermelho
+            setToastVariant("danger");
+            setToastMessage("Erro ao criar tag");
+            setShowToast(true);
           }
         }
       }
@@ -363,7 +383,24 @@ const clearImageInput = () => {
 
   return (
     <div className="containerModal">
-      {erro && <p style={{ color: "red", marginBottom: "10px" }}>{erro}</p>}
+      <div id="toastContainer">
+        {/* Toast para exibir mensagem de erro */}
+        <Toast
+          show={showToast}
+          onClose={() => setShowToast(false)}
+          style={{
+            position: 'fixed',
+            top: 20,
+            right: 20,
+            backgroundColor: toastVariant === "danger" ? 'red' : 'green',
+            color: 'white'
+          }}
+          delay={3000}
+          autohide
+        >
+          <Toast.Body>{toastMessage}</Toast.Body>
+        </Toast>
+      </div>
       <div className="mb-3">
         <label htmlFor="agendarInput" className="form-label">
           Agendar ou Postar Agora?
@@ -495,29 +532,13 @@ const clearImageInput = () => {
               <span className="visually-hidden">Loading...</span>
             </div>
           ) : (
-            agendar ? "Agendar" : "Postar Agora"
+            'Enviar'
           )}
         </button>
       </div>
-      
-      {/* Toast para exibir mensagem de sucesso */}
-      <Toast
-        show={showToast}
-        onClose={() => setShowToast(false)}
-        style={{
-          position: 'fixed',
-          top: 20,
-          right: 20,
-          backgroundColor: 'green',
-          color: 'white'
-        }}
-        delay={3000}
-        autohide
-      >
-        <Toast.Body>Sua postagem foi enviada com sucesso.</Toast.Body>
-      </Toast>
     </div>
   );
 }
 
 export default ModalAddPostagem;
+

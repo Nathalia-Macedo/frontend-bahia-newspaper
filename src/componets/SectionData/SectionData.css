@@ -2,8 +2,8 @@
   width: 90%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
 }
 
@@ -14,30 +14,87 @@
   margin-bottom: 50px;
 }
 
-.tags {
+.advertisement {
   flex: 1;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
   max-width: 400px;
-  max-height: 300px; /* Defina a altura máxima desejada */
+  height: 400px; /* Defina a altura fixa desejada */
   overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
 }
 
-.tags h3 {
+.advertisement h3 {
   font-size: 24px;
   color: #333;
   margin-bottom: 15px;
 }
 
-.tag-list {
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ad-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.ad-input:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.ad-input::placeholder {
+  color: #888;
+}
+
+.add-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #0056b3;
+}
+
+.tags,
+.top-news {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  max-width: 400px;
+  height: 400px; /* Defina a altura fixa desejada */
+  overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
+}
+
+.tags h3,
+.top-news h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.tag-list,
+.news-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-.tag-item {
+.tag-item,
+.news-item {
   display: inline-block;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -49,52 +106,20 @@
   font-weight: 500;
 }
 
-.top-news {
-  flex: 1;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #f8f9fa;
-  max-width: 400px;
-}
-
-.top-news h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.news-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-.news-item {
-  background-color: #555;
-  color: #fff;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
 /* Estilização da barra de rolagem */
-.news-list::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 10px;
 }
 
-.news-list::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-.news-list::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 5px;
 }
 
-.news-list::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

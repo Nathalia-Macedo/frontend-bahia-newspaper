@@ -93,10 +93,27 @@
   background-color: #f5f5f5;
 }
 
-.post-table tbody tr:hover {
+.pagination button {
+  padding: 10px 20px;
   background-color: #007bff;
-  color: white;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+
 
 .scrollable-content {
   max-height: 100px;
