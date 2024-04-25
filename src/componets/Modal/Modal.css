@@ -3,15 +3,33 @@
 .custom-modal {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* fundo semi-transparente */
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+  /* Tamanho Pequeno */
+.custom-modal.modal-sm {
+  max-width: 300px;
+}
+
+/* Tamanho Médio */
+.custom-modal.modal-md {
+  max-width: 500px;
+}
+
+/* Tamanho Grande */
+.custom-modal.modal-lg {
+  max-width: 800px;
+}
+
+/* Tamanho Extra Grande */
+.custom-modal.modal-xl {
+  max-width: 1000px;
+}
+
   .custom-modal-content {
     background-color: #fff;
     border-radius: 8px;

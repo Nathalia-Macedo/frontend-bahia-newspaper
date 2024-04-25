@@ -37,7 +37,7 @@ const AdminSession = ({ dataSquares }) => {
 
   return (
     <div className="my-5 container_section_admin">
-      <Row className="justify-content-center">
+      <Row className="line">
         {dataSquares.map((square, index) => (
           <DataSquare
             key={index}

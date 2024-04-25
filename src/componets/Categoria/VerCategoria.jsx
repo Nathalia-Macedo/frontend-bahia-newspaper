@@ -79,30 +79,43 @@ function VerCategoriasModal() {
     setShowUpdateModal(true);
   };
 
-  const handleUpdateCategoria = async (nome, descricao) => {
-    // Verifica se tanto o nome quanto a descrição foram fornecidos
-    if (!nome || !descricao) {
-      setUpdateError("Ambos nome e descrição são obrigatórios.");
+  const handleUpdateCategoria = async (nome, descricao, campoAtualizado,categoriaToUpdate) => {
+    // Verifica se foi fornecido tanto o nome quanto a descrição
+    if (!nome && !descricao) {
+      setUpdateError("É necessário fornecer um valor para atualização.");
       return;
     }
-
+  
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/category/${categoriaToUpdate}`, {
+      const endpoint = `http://34.125.197.110:3333/category/${categoriaToUpdate}`;
+      const body = {};
+  
+      // Adiciona o campo atualizado ao corpo da requisição
+      if (campoAtualizado === "nome") {
+        body.name = nome;
+        body.description = categorias.find(cat => cat.id === categoriaToUpdate)?.description;
+      } else if (campoAtualizado === "descricao") {
+        body.name = categorias.find(cat => cat.id === categoriaToUpdate)?.name;
+        body.description = descricao;
+      }
+  
+      const response = await fetch(endpoint, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify({ name: nome, description: descricao })
+        body: JSON.stringify(body)
       });
-
+  
       if (response.ok) {
         // Atualizar a lista de categorias após a atualização
         fetchCategorias();
         setShowToast(true); // Exibir o Toast quando a categoria for atualizada com sucesso
       } else {
         console.error("Erro ao atualizar categoria:", response.statusText);
+        console.log(categoriaToUpdate)
       }
     } catch (error) {
       console.error("Erro ao atualizar categoria:", error);
@@ -111,6 +124,7 @@ function VerCategoriasModal() {
       setShowUpdateModal(false);
     }
   };
+  
 
   return (
     <>

@@ -72,7 +72,18 @@ export function SessionData() {
             ))}
           </ul>
         </div>
-        <div className="top-news">
+        <div className="other-content">
+          <div className="advertisement">
+            <h3>Inserir Anúncio:</h3>
+            <div className="input-container">
+              <input type="text" placeholder="Link do site" className="ad-input" />
+              <input type="file" accept="image/*, video/*" className="ad-input" />
+              <button className="add-button">Adicionar Anúncio</button>
+            </div>
+          </div>
+        </div>
+     
+      <div className="top-news">
           <h3>Notícias Mais Lidas:</h3>
           <ul className="news-list">
             {topNews.map((title, index) => (
@@ -80,10 +91,7 @@ export function SessionData() {
             ))}
           </ul>
         </div>
-        <div className="other-content">
-          {/* Div para outros conteúdos */}
-        </div>
-      </div>
+    </div>
     </div>
   );
 }

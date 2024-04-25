@@ -53,7 +53,12 @@ import { SessionData } from '../../componets/SectionData/SectionData';
         }
         
     },{
-      title: 'Qtde. de Funcionários',
+      title: 'Qtd de Funcionários',
+      endpoint: 'http://34.125.197.110:3333/user',
+      buttonText: 'Ver Detalhes',
+      onClick: () =>fetchEmployeeData 
+    },{
+      title: 'Qtd de Anúncios',
       endpoint: 'http://34.125.197.110:3333/user',
       buttonText: 'Ver Detalhes',
       onClick: () =>fetchEmployeeData 
@@ -333,7 +338,6 @@ function renderModalContent(modalType) {
         </div>
       </nav>
       <main className='main_admin'>
-
       <AdminSession dataSquares={dataSquare}/>
       </main>
       
@@ -343,7 +347,7 @@ function renderModalContent(modalType) {
         modalTitle={modalData.title}
         modalContent={modalData.content}
         scrollable={true}
-        modalSize='small'
+        modalSize='lg'
       />
 
       
