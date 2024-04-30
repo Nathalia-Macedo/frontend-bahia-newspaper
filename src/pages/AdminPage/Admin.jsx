@@ -2,6 +2,7 @@ import './Admin.css';
 import ModalComponent from '../../componets/Modal/Modal';
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
+import logo from "../../assets/imgs/logoFinal.png"
 import AnunciosCarousel from '../../componets/Anuncios/Anuncios';
 import  ModalAddEstagiario  from '../../componets/Estagiario/Estagiario';
 import ModalAddPermissoes from '../../componets/Permissoes/Permissoes';
@@ -360,6 +361,7 @@ function renderModalContent(modalType) {
         </div>
       </nav>
       <main className='main_admin'>
+      {/* <img src={logo} className='img_admin_logo' alt="" /> */}
       <AdminSession dataSquares={dataSquare}/>
       </main>
       
@@ -380,7 +382,8 @@ function renderModalContent(modalType) {
         modalContent="Por favor, preencha todos os campos."
         error={true} // Esta propriedade indica que é um modal de erro
       />  
-      
+              
+
               <SessionData/>
               <AnunciosCarousel/>
               <PostagemAll/>
