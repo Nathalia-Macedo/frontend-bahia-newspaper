@@ -16,11 +16,15 @@ import noImage from "../../../assets/imgs/noImage.jpg";
 
 export const BannerSection = () => {
   const [slidePerView] = useState(1);
-  const { setFilteredPost, postList} = useContext(PostContext);
+  const { setFilteredPost, postList, ads} = useContext(PostContext);
 
   const navigate = useNavigate()
   // Ordena os posts pelas noticias mais recentes
   const sortedPosts = postList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  const handleAds = (link) => {
+    window.open(link, '_blank');
+  }
 
   const handleCategoryClick = (postId, e) => {
     e.preventDefault();
@@ -29,7 +33,7 @@ export const BannerSection = () => {
       setFilteredPost([post]);
       navigate(`/post/${postId}`); 
     } else {
-      console.log("Post não encontrado.");
+      console.error("Post não encontrado.", error);
     }
   };
 
@@ -52,11 +56,17 @@ export const BannerSection = () => {
             <div 
               onClick={(e) => handleCategoryClick(item.id, e)}  
               className={styles.imageContainer}
-            >             
+            >
+              {item.videoUrls.length !== 0 ? (
+                <video controls>
+                  <source src={item.videoUrls[0]} type="video/mp4"/>
+                </video>                                
+              ) : (
                 <img 
                   src={item.photoUrls.length !== 0 ? item.photoUrls[0] : noImage} 
                   alt="Slider"                   
                 />                  
+              )}            
                 <div className={styles.overlay}>
                   {item.categories.length !== 0 ? (
                     <h1 className="title one">
@@ -76,9 +86,18 @@ export const BannerSection = () => {
             </div>
           </SwiperSlide>
         ))}
-          <strong>
-            <img src={img} alt="" />
-          </strong>
+            {ads.slice(0,1).map((ad, index) => (
+                <strong key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
+                    {ad.videoUrl.length > 0 && (
+                    <video controls>
+                        <source src={ad.videoUrl} type="video/mp4" />
+                    </video>
+                    )}
+                    {ad.imageUrl.length > 0 && (
+                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                    )}
+                </strong>
+            ))}  
       </Swiper>
       <AsideLeft />
     </div>

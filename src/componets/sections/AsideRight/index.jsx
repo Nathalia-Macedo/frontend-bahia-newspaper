@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import img from "../../../assets/imgs/publicidade-1.jpg"
+import img from "../../../assets/imgs/fake.png"
 import styles from "./style.module.scss";
 import { PostContext } from "../../../providers/PostContext";
 import { Api } from "../../../../services/api";
@@ -7,9 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 export const AsideRight = () => {
 
-    const {  mostViewedPosts, setLoading, setMostViewedPosts, setFilteredPost} = useContext(PostContext);
+    const {  mostViewedPosts, ads, setLoading, setMostViewedPosts, setFilteredPost} = useContext(PostContext);
 
     const navigate = useNavigate();
+
+    const handleAds = (link) => {
+        window.open(link, '_blank');
+    }
 
     useEffect(() => {
         scrollTo(0, 0);
@@ -36,7 +40,7 @@ export const AsideRight = () => {
             setFilteredPost([post]);
             navigate(`/post/${postId}`);
         } else {
-            console.log("Post não encontrado.");
+            console.error("Post não encontrado.", error);
         }
     };
 
@@ -76,10 +80,18 @@ export const AsideRight = () => {
                 </li>
                 ))}
             </ul>
-            {/*  imagem estática */}
-            <span>
-                <img src={img} alt="" />
-            </span>
+            {ads.slice(0,1).map((ad, index) => (
+                <span key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
+                    {ad.videoUrl.length > 0 && (
+                    <video controls>
+                        <source src={ad.videoUrl} type="video/mp4" />
+                    </video>
+                    )}
+                    {ad.imageUrl.length > 0 && (
+                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                    )}
+                </span>
+            ))}
         </aside>
     );
 };
