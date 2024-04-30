@@ -7,7 +7,11 @@ import { PostContext } from "../../../providers/PostContext";
 import img from "../../../assets/imgs/fake.png"
 
 export const PostSection = () => {
-  const {  postList, filteredPost } = useContext(PostContext);
+  const {  postList, filteredPost, ads } = useContext(PostContext);
+
+  const handleAds = (link) => {
+    window.open(link, '_blank');
+}
 
   const postsToRender = filteredPost && filteredPost.length > 0 ? filteredPost : postList;
 
@@ -16,7 +20,18 @@ export const PostSection = () => {
       <div className={styles.flexBox}>
           <AsideAds/>         
         <ul >
-          <img src={img} alt="img fixa" />
+        {ads.slice(0,1).map((ad, index) => (
+                <span key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
+                    {ad.videoUrl.length > 0 && (
+                    <video controls>
+                        <source src={ad.videoUrl} type="video/mp4" />
+                    </video>
+                    )}
+                    {ad.imageUrl.length > 0 && (
+                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                    )}
+                </span>
+            ))}  
             {postsToRender.map(post => (
               <PostCard key={post.id} post={post} />
           ))}

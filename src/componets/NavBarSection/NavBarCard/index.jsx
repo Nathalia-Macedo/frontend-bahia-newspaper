@@ -6,12 +6,11 @@ import { PostContext } from "../../../providers/PostContext";
 export const NavBarCard = ({ category}) => {
   const { setFilteredPost , postList} = useContext(PostContext);
   const navigate = useNavigate();
-  const [setUpdateCategory] = useState('');
+  const [updateCategory,setUpdateCategory] = useState('');
 
   const update = () => {
     const filteredPosts = postList.filter(post => post.categories && post.categories.length > 0 && post.categories[0].name === category );
 
-    setUpdateCategory(category); 
     if(filteredPosts.length > 0) {
       setFilteredPost(filteredPosts); 
       navigate(`/post/${filteredPosts[0].id}`); // Navega para o primeiro post na lista

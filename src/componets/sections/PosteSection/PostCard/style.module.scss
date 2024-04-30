@@ -9,11 +9,15 @@
         max-width: 900px; 
     }
 
-
+    span > video{
+        width: 100%;
+        height: 250px;
+        margin-bottom: 30px;
+        // object-fit: cover;
+    }
     img{
         width: 100%;
         height: 250px;
-        // object-fit: cover;
         margin-bottom: 30px;
     }
 }
