@@ -1,7 +1,7 @@
 // Importe useState e useEffect do React
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../assets/imgs/logoFinal.png';
+import logo from '../../assets/imgs/Logo.png';
 import { Toast } from 'react-bootstrap'; // Importe o Toast do react-bootstrap
 import './Login.css';
 

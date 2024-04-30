@@ -18,6 +18,15 @@ export const PostCard = ({post}) => {
             )}
             <h3 className="title post">{post.title}</h3>
             <p className="created-at">{capitalizedDate}</p>
+            {post.videoUrls && post.videoUrls.length > 0 && (
+                <span>
+                    {post.videoUrls.map((url, index) => (
+                    <video key={index} controls>
+                        <source src={url} type="video/mp4" />
+                    </video> 
+                    ))}
+                </span>
+            )}
             {post.photoUrls && post.photoUrls.length > 0 && (
                 <div >
                     {post.photoUrls.map((url, index) => (
@@ -25,7 +34,7 @@ export const PostCard = ({post}) => {
                     ))}
                 </div>
             )}
-            <p className="paragraph">{post.content}</p>
+            <p className="paragraph text">{post.content}</p>
         </li>
     );
 };

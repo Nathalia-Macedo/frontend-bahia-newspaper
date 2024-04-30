@@ -1,7 +1,7 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import {  MdSearch } from "react-icons/md";
 import { NavBarSection } from "../NavBarSection";
-import Logo from "../../assets/imgs/LogoBa.png";
+import Logo from "../../assets/imgs/Logo.png";
 import styles from "./style.module.scss";
 import { PostContext } from "../../providers/PostContext";
 import { useContext, useState } from "react";

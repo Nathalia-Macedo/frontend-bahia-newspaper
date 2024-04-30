@@ -11,6 +11,7 @@ export const PostProvider = ({ children }) => {
     const [filteredPost, setFilteredPost] = useState(null);
     const [mostViewedPosts, setMostViewedPosts] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
+    const [ads, setAds] = useState([]);
 
 
     const { id } = useParams();
@@ -54,6 +55,23 @@ export const PostProvider = ({ children }) => {
         getPosts();
     }, [id, setLoading]);
 
+    useEffect(() => {
+        const advertisement = async () => {
+        try {
+            setLoading(true); 
+            const response = await Api.get("/ad");
+            const adsData = response.data;
+            const sortedAds = adsData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setAds(sortedAds.slice(0, 3));
+        } catch (error) {
+            console.error('Erro ao obter os anúncios:', error);
+        } finally {
+            setLoading(false); 
+            }
+        }
+        advertisement();
+    }, []);
+    
 
     return (
     <PostContext.Provider
@@ -70,6 +88,8 @@ export const PostProvider = ({ children }) => {
             setValue,
             value,
             setMostViewedPosts,
+            ads,
+            setAds
         }}
         >
             {children}

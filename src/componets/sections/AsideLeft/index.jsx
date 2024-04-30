@@ -1,16 +1,20 @@
 import styles from "./style.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import img from "../../../assets/imgs/publicidade-1.jpg"
+import img from "../../../assets/imgs/fake.png"
 import React, { useContext, useState } from "react";
 import { PostContext } from "../../../providers/PostContext";
 
 export const AsideLeft = () => {
-    const {  postList, setFilteredPost} = useContext(PostContext);
+    const {  postList, setFilteredPost, loading, ads, setAds} = useContext(PostContext);
     const navigate = useNavigate()
-    // Ordenar os posts por data de criação
+
+
     const sortedPosts = postList.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-    // Manipulador de evento para lidar com o clique em uma imagem de post
+    const handleAds = (link) => {
+        window.open(link, '_blank');
+    }
+
     const handleClick = (postId, e) => {
         e.preventDefault();
         const post = sortedPosts.find(post => post.id === postId);
@@ -18,7 +22,7 @@ export const AsideLeft = () => {
             setFilteredPost([post]);
             navigate(`/post/${postId}`); 
         } else {
-            console.log("Post não encontrado.");
+            console.error("Post não encontrado.", error);
         }
     };
     return (
@@ -57,10 +61,18 @@ export const AsideLeft = () => {
                 </li>
                 ))}
             </ul>
-            {/*  imagem estática */}
-            <span >
-                <img src={img} alt="" />
-            </span>
+            {ads.slice(0,1).map((ad, index) => (
+                <span key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
+                    {ad.videoUrl.length > 0 && (
+                    <video controls>
+                        <source src={ad.videoUrl} type="video/mp4" />
+                    </video>
+                    )}
+                    {ad.imageUrl.length > 0 && (
+                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                    )}
+                </span>
+            ))}  
         </aside>
     );
 };
