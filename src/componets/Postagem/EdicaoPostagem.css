@@ -1,0 +1,36 @@
+.tag-list-edition {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tag-list-edition li {
+    display: inline-block;
+    background-color: #444;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 20px;
+  }
+
+  /* EdicaoPostagem.css */
+.modal-content-edition {
+    max-height: 80vh; /* Definindo a altura máxima em 80% da altura da viewport */
+    overflow-y: auto; /* Permitindo rolagem vertical quando o conteúdo excede a altura máxima */
+  }
+
+
+  .modal-footer-edition{
+display: flex;
+justify-content: space-between;    
+  }
+  
+  
+#btn-admin-edition{
+    background-color: #444;
+    color: white;
+}
+
+#btn-admin-save{
+    background-color: #007bff;
+    color: white;
+}

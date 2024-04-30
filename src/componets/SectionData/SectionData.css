@@ -7,6 +7,11 @@
   gap: 20px;
 }
 
+.loading-spinner-section{
+  display: flex;
+  justify-content: center;
+}
+
 .content {
   display: flex;
   flex-wrap: wrap;
@@ -17,6 +22,9 @@
 .advertisement {
   flex: 1;
   padding: 20px;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #f8f9fa;
@@ -34,7 +42,7 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 }
 
 .ad-input {
@@ -123,3 +131,58 @@
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+@media only screen and (max-width: 576px) {
+  .container_section {
+    width: 100%; /* Define a largura total para ocupar toda a largura da tela */
+    padding: 0 10px; /* Adiciona um pequeno espaço de preenchimento nas laterais */
+  }
+
+  .content {
+    flex-direction: column; /* Altera a direção do flex para coluna */
+  }
+
+  .advertisement,
+  .tags,
+  .top-news {
+    max-width: none; /* Remove a largura máxima */
+    width: 100%; /* Define a largura para ocupar toda a largura disponível */
+    height: auto; /* Define a altura como automática */
+    margin-bottom: 20px; /* Adiciona espaço entre as seções */
+  }
+
+  .ad-input {
+    width: 100%; /* Define a largura dos inputs como 100% */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .content {
+    flex-direction: column; /* Altera a direção do flex para coluna */
+  }
+
+  .advertisement,
+  .tags,
+  .top-news {
+    max-width: none; /* Remove a largura máxima */
+    width: 95%; /* Define a largura para ocupar toda a largura disponível */
+    height: auto; /* Define a altura como automática */
+    margin-bottom: 20px; /* Adiciona espaço entre as seções */
+  }
+}
+
+
+@media  screen and (min-width: 1024px) {
+  .content {
+    justify-content: space-between; /* Distribui o espaço igualmente entre as divs */
+  }
+
+  .advertisement,
+  .tags,
+  .top-news {
+    flex: 1; /* Faz com que as divs ocupem o mesmo espaço disponível */
+    max-width: none; /* Remove a largura máxima */
+    width: auto; /* Define a largura como automática */
+  }
+}
+

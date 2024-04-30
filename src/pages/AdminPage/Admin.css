@@ -10,9 +10,14 @@
     transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição suave de cores */
   }
 
+
+
+
   #dropdown-item {
     color: black;
   }
+
+ 
   
   
 

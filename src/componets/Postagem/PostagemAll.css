@@ -102,11 +102,18 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
+.pagination{
+  margin-top: 20px;
+}
 
 .pagination button:hover {
   background-color: #0056b3;
 }
 
+
+.cursor_all:hover{
+  cursor: pointer;
+}
 .pagination button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
@@ -119,3 +126,17 @@
   max-height: 100px;
   overflow-y: auto;
 }
+
+
+@media only screen and (max-width: 768px) {
+  /* Altere para exibir apenas duas colunas em telas menores que 768px */
+  .post-table th:nth-child(2), .post-table td:nth-child(2),
+  .post-table th:nth-child(3), .post-table td:nth-child(3),
+  .post-table th:nth-child(4), .post-table td:nth-child(4),
+  .post-table th:nth-child(5), .post-table td:nth-child(5) {
+    display: none;
+  }
+}
+
+/* Restante do CSS permanece o mesmo */
+

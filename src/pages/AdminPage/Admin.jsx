@@ -2,7 +2,8 @@ import './Admin.css';
 import ModalComponent from '../../componets/Modal/Modal';
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
-
+import logo from "../../assets/imgs/logoFinal.png"
+import AnunciosCarousel from '../../componets/Anuncios/Anuncios';
 import  ModalAddEstagiario  from '../../componets/Estagiario/Estagiario';
 import ModalAddPermissoes from '../../componets/Permissoes/Permissoes';
 import ModalAddCategoria from '../../componets/Categoria/Categoria';
@@ -59,9 +60,9 @@ import { SessionData } from '../../componets/SectionData/SectionData';
       onClick: () =>fetchEmployeeData 
     },{
       title: 'Qtd de Anúncios',
-      endpoint: 'http://34.125.197.110:3333/user',
+      endpoint: 'http://34.125.197.110:3333/ad/',
       buttonText: 'Ver Detalhes',
-      onClick: () =>fetchEmployeeData 
+      onClick: () => fetchNumberOfAds
     }
 
   ]
@@ -70,7 +71,28 @@ import { SessionData } from '../../componets/SectionData/SectionData';
   const [numberOfCategories, setNumberOfCategories] = useState(0);
   const username = localStorage.getItem('user')
 
-
+  const fetchNumberOfAds = async (token) => {
+    try {
+      const response = await fetch("http://34.125.197.110:3333/ad/", {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch ads');
+      }
+  
+      const data = await response.json();
+      console.log(data)
+      return data.length; // Retorna o tamanho da lista de anúncios
+    } catch (error) {
+      console.error('Error fetching ads:', error);
+      throw error;
+    }
+  };
+  
   const fetchPostagens = async (token) => {
     try {
       const response = await fetch("http://34.125.197.110:3333/post", {
@@ -120,6 +142,7 @@ import { SessionData } from '../../componets/SectionData/SectionData';
   useEffect(() => {
     fetchEmployeeData();
     fetchCategoryData();
+    fetchNumberOfAds();
     const intervalId = setInterval(() => {
       fetchEmployeeData();
       fetchCategoryData();
@@ -275,7 +298,7 @@ function renderModalContent(modalType) {
               <li className="nav-item dropdown">
                 
                 <a className="nav-link dropdown-toggle" id='font' href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span className="icone-azul" >   <FaUsers/> </span>  Funcionários
+                <span className="icone-azul" >   <FaUsers/> </span >  Funcionários
                 </a>
                 <ul className="dropdown-menu">
                   <li><a className="dropdown-item" id='dropdown-item ' href="#" onClick={() => handleOpenModal("Adicionar Estagiário",renderModalContent('estagiario'))}><span style={{marginRight:'10px'}} className='icone-azul'>
@@ -338,6 +361,7 @@ function renderModalContent(modalType) {
         </div>
       </nav>
       <main className='main_admin'>
+      {/* <img src={logo} className='img_admin_logo' alt="" /> */}
       <AdminSession dataSquares={dataSquare}/>
       </main>
       
@@ -358,8 +382,10 @@ function renderModalContent(modalType) {
         modalContent="Por favor, preencha todos os campos."
         error={true} // Esta propriedade indica que é um modal de erro
       />  
-      
+              
+
               <SessionData/>
+              <AnunciosCarousel/>
               <PostagemAll/>
       
      

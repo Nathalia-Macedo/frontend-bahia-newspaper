@@ -15,7 +15,10 @@
     align-items: center; /* Centraliza verticalmente */
     height: 100vh; /* Para ocupar toda a altura da página */
 }
-
+.label_different{
+    padding: 0.9rem;
+    
+}
 .contentForget h1 {
     margin-bottom: 20px;
     font-size: 24px;
