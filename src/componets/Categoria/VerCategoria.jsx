@@ -79,7 +79,7 @@ function VerCategoriasModal() {
     setShowUpdateModal(true);
   };
 
-  const handleUpdateCategoria = async (nome, descricao, campoAtualizado,categoriaToUpdate) => {
+  const handleUpdateCategoria = async (nome, descricao, campoAtualizado) => {
     // Verifica se foi fornecido tanto o nome quanto a descrição
     if (!nome && !descricao) {
       setUpdateError("É necessário fornecer um valor para atualização.");
@@ -90,15 +90,20 @@ function VerCategoriasModal() {
       const token = localStorage.getItem("token");
       const endpoint = `http://34.125.197.110:3333/category/${categoriaToUpdate}`;
       const body = {};
-  
+  console.log(campoAtualizado)
       // Adiciona o campo atualizado ao corpo da requisição
-      if (campoAtualizado === "nome") {
+      if (campoAtualizado === "Nome") {
         body.name = nome;
         body.description = categorias.find(cat => cat.id === categoriaToUpdate)?.description;
-      } else if (campoAtualizado === "descricao") {
+      
+      } else if (campoAtualizado === "Descrição") {
         body.name = categorias.find(cat => cat.id === categoriaToUpdate)?.name;
         body.description = descricao;
+
+
       }
+
+      
   
       const response = await fetch(endpoint, {
         method: 'PUT',
@@ -108,7 +113,6 @@ function VerCategoriasModal() {
         },
         body: JSON.stringify(body)
       });
-  
       if (response.ok) {
         // Atualizar a lista de categorias após a atualização
         fetchCategorias();
@@ -148,7 +152,7 @@ function VerCategoriasModal() {
                   <td>{categoria.name}</td>
                   <td>{categoria.description}</td>
                   <td>
-                    <BsPencilSquare style={{ marginRight: '5px'  }} onClick={() => handleUpdateClick(categoria.id)} />
+                    {/* <BsPencilSquare style={{ marginRight: '5px' }} onClick={() => handleUpdateClick(categoria.id)} /> */}
                     <BsTrash style={{cursor: 'pointer'}} onClick={() => handleDeleteClick(categoria.id)} />
                   </td>
                 </tr>

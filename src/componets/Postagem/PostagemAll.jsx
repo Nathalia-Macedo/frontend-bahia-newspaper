@@ -248,7 +248,7 @@ function PostagemAll() {
               </td>
               <td>{postagem.post_view_count}</td>
               <td>{new Date(postagem.publishedAt).toLocaleDateString("pt-BR")}</td>
-              <td className="center" onClick={() => handleDetalhesClick(postagem.id)}><FaSearchPlus /></td>
+              <td className="center cursor_all" onClick={() => handleDetalhesClick(postagem.id)}><FaSearchPlus /></td>
             </tr>
           ))}
         </tbody>
@@ -268,6 +268,8 @@ function PostagemAll() {
   modalTitle="Detalhes da Postagem"
   modalContent={<DetalhesPostagem postId={postIdSelecionado} updatePostagens={updatePostagens} />} // Adicione updatePostagens aqui
   modalSize="md"
+  position="right" // Defina a posição do modal (opcional)
+
 />
 
     </div>

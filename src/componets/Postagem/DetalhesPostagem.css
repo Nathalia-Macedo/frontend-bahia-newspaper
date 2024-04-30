@@ -7,6 +7,11 @@
     justify-content: center;
     margin-top: 20px;
   }
+
+  .modal-content-edition {
+    padding: 10px;
+  }
+  
   
   .edit-icon,
   .delete-icon {
@@ -23,3 +28,41 @@
   .delete-icon:hover{
     color: red;
   }
+
+  /* Adicione uma classe para o contêiner do conteúdo que deseja fazer rolar */
+.content-container {
+  max-height: 80vh; /* Defina uma altura máxima para o contêiner */
+  overflow-y: auto; /* Adicione rolagem vertical quando o conteúdo exceder a altura máxima */
+}
+
+/* Adicione um media query para aplicar estilos apenas em tablets e celulares */
+@media (max-width: 991px) {
+  .detalhes-postagem p {
+      font-family: var(--font-primary);
+  }
+
+  .icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+  }
+
+  .modal-content-edition {
+      padding: 10px;
+  }
+
+  .edit-icon,
+  .delete-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+
+  .edit-icon:hover {
+      color: #007bff; /* Altere a cor conforme desejado */
+  }
+
+  .delete-icon:hover {
+      color: red;
+  }
+}

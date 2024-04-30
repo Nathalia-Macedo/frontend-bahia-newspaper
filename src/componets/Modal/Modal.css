@@ -1,83 +1,101 @@
 /* Adicione este estilo ao seu arquivo CSS */
 
 .custom-modal {
-    position: fixed;
-    top: 0;
-    left: 50;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  /* Tamanho Pequeno */
+  position: fixed;
+  top: 0;
+  left: 50;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Tamanho Pequeno */
 .custom-modal.modal-sm {
-  max-width: 300px;
+max-width: 300px;
 }
 
 /* Tamanho Médio */
 .custom-modal.modal-md {
-  max-width: 500px;
+max-width: 500px;
 }
 
 /* Tamanho Grande */
 .custom-modal.modal-lg {
-  max-width: 800px;
+max-width: 800px;
 }
 
 /* Tamanho Extra Grande */
 .custom-modal.modal-xl {
-  max-width: 1000px;
+max-width: 1000px;
 }
 
-  .custom-modal-content {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* sombra suave */
-    padding: 20px;
-    width: 90%;
+.custom-modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* sombra suave */
+  padding: 20px;
+  width: 90%;
 }
-  
-  .custom-modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+
+.custom-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.custom-modal-body {
+  margin-bottom: 20px;
+}
+
+.custom-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Estilos para o botão de fechar */
+.btn-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+}
+
+.btn-close:hover {
+  color: #555;
+}
+
+/* Estilos para o botão */
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #495057;
+}
+
+
+/* Modal.css */
+.custom-modal.modal-right {
+  animation: slideRight 0.5s forwards;
+  right: 0; /* Definindo o modal no canto direito */
+}
+
+
+@keyframes slideRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
   }
-  
-  .custom-modal-body {
-    margin-bottom: 20px;
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
-  
-  .custom-modal-footer {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  /* Estilos para o botão de fechar */
-  .btn-close {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .btn-close:hover {
-    color: #555;
-  }
-  
-  /* Estilos para o botão */
-  .btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    cursor: pointer;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #495057;
-  }
-  
+}
