@@ -64,7 +64,8 @@ export function RecuperarSenha() {
                 },
                 body: JSON.stringify({ get_codePassword: code, password: newPassword }),
             });
-
+            console.log(code)
+            console.log(newPassword)
             const data = await response.json();
             console.log(data)
             if (response.ok) {
@@ -94,6 +95,7 @@ export function RecuperarSenha() {
 
             {showCodeInput && (
                 <div className="input-wrapper">
+                    <label className="label_different" htmlFor="">Digite o código da mesma forma que foi enviado, respeitando letras maiúsculas e minúsculas!</label>
                     <label>Código:</label>
                     <input type="text" value={code} onChange={(e) => setCode(e.target.value)} />
 

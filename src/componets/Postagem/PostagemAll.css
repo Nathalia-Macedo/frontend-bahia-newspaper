@@ -102,11 +102,18 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
+.pagination{
+  margin-top: 20px;
+}
 
 .pagination button:hover {
   background-color: #0056b3;
 }
 
+
+.cursor_all:hover{
+  cursor: pointer;
+}
 .pagination button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
