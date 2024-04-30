@@ -1,7 +1,7 @@
 .flexBox{
     display: flex;
     flex-direction: column;
-    height: 57vh;
+    height: 40vh;
     margin-top: 20px; 
 
     @media (min-width: 980px) {
@@ -20,9 +20,9 @@
         align-items: center;
         flex-wrap: wrap;
         gap : 15px;    
-        // justify-content: space-between;  
+        justify-content: space-between;  
         @media (min-width: 980px) {
-            gap: 155px;
+            // gap: 155px;
         } 
     }
 
@@ -56,11 +56,10 @@
         a{
             color: var(--color-black);
             &:hover{
-                color: rgba(0, 0, 255, 0.896);
+                color: var(--color-red);
             }
         }
         @media (min-width: 980px) {            
-            flex-direction: column;
             align-items:flex-start;
         } 
     }
