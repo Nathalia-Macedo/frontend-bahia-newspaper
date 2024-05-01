@@ -6,6 +6,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { Admin } from "../pages/AdminPage/Admin";
 import{ RecuperarSenha } from "../pages/ForgetPassword/RecuperarSenha";
 import { HelpPage } from "../pages/HelpPage/HelpPage";
+import { CollaboratorsPage } from "../pages/CollaboratorsPage";
 export const RouteMain = () => {
     return(
         <Routes>
@@ -16,6 +17,7 @@ export const RouteMain = () => {
             <Route path="/forget_password" element={<RecuperarSenha/>}/>
             <Route path="/admin" element={<Admin/>}/>
             <Route path="/help" element={<HelpPage/>}/>
+            <Route path="/collaborators" element={<CollaboratorsPage/>}/>
         </Routes>
     );
 };

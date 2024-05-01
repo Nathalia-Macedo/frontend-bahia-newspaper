@@ -15,7 +15,7 @@ export const PostSection = () => {
   const postsToRender = filteredPost && filteredPost.length > 0 ? filteredPost : postList;
 
   return (
-    <section className="container">
+    <section className="container1">
       <div className={styles.flexBox}>
           <AsideAds/>         
         <ul >

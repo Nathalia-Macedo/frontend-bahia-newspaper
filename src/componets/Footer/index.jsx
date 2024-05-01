@@ -8,7 +8,7 @@ import { NavBarSection } from "../NavBarSection";
 export const Footer = () => {
     return(
         <footer>
-            <div className="container">
+            <div className="container1">
                     <NavBarSection/>
                 <div className={styles.flexBox}>
                     <section>
@@ -18,14 +18,20 @@ export const Footer = () => {
                             />
                         </Link>
                         <span>
+                        <Link 
+                                to="https://wa.me/557193485952"
+                                target="_blank" 
+                                rel="noopener noreferrer">
+                                <FaWhatsapp size={25}/>
+                            </Link>
                             <Link 
-                                to=""
+                                to="https://www.instagram.com/jornaldabahia.ba?utm_source=qr&igsh=MWxmd3p2dG12dnM4YQ%3D%3D"
                                 target="_blank"
                                 rel="noopener noreferrer">
                                 <FaInstagram size={25}/>
                             </Link>
                             <Link 
-                                to=""
+                                to="https://twitter.com/jornaldabahia01?t=ywFx66CkQyp5JaJSdIISqA&s=08"
                                 target="_blank" 
                                 rel="noopener noreferrer">
                                 <FaSquareXTwitter size={25}/>
@@ -36,19 +42,13 @@ export const Footer = () => {
                                 rel="noopener noreferrer">
                                 <MdFacebook size={25}/>
                             </Link>
-                            <Link 
-                                to=""
-                                target="_blank" 
-                                rel="noopener noreferrer">
-                                <FaWhatsapp size={25}/>
-                            </Link>
                         </span>
                         <strong >
-                            <h3 className="title two">Equipe:</h3>
                             <Link
                                 className="title two" 
-                                to="/equipe" 
-                                >Ver equipe completa
+                                to="/collaborators" 
+                                >
+                            <h3 className="title two">Ver equipe completa</h3>
                             </Link>
                         </strong>
                     </section>
