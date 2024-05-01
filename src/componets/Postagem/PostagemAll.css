@@ -1,5 +1,5 @@
 .container_post {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
   border-radius: 10px;
@@ -135,6 +135,35 @@
   .post-table th:nth-child(4), .post-table td:nth-child(4),
   .post-table th:nth-child(5), .post-table td:nth-child(5) {
     display: none;
+  }
+  @media only screen and (max-width: 768px) {
+    /* Outros estilos para telas menores que 768px */
+  .post-table,table,thead{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cursor_all{
+    width: 100%;
+  }
+  .post-table tbody{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+    .order-select {
+      width: 100%;
+      float: none; /* Remova o alinhamento à direita */
+      display: block; /* Transforme o select em bloco para ocupar toda a largura disponível */
+    }
+  }
+  
+
+  .init-post-table input{
+width: 100%;
+margin-bottom: 30px;
   }
 }
 

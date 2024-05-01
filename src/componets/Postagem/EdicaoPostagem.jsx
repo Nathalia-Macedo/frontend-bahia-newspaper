@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './EdicaoPostagem.css';
 
 function EdicaoPostagem({ post, onHide, onSave }) {
+  
   const [titulo, setTitulo] = useState('');
   const [conteudo, setConteudo] = useState('');
   const [tags, setTags] = useState([]);
@@ -10,10 +11,13 @@ function EdicaoPostagem({ post, onHide, onSave }) {
   const [categoriaSelecionada, setCategoriaSelecionada] = useState('');
   const [novaTag, setNovaTag] = useState('');
   const [categoriaSelecionadaId, setCategoriaSelecionadaId] = useState('');
+  const [postAtual, setPostAtual] = useState(null);
+
 
 
   useEffect(() => {
     if (post) {
+      setPostAtual(post)
       setTitulo(capitalizeFirstLetter(post.title));
       setConteudo(capitalizeFirstLetter(post.content));
       setTags(post.tags ? post.tags.map(tag => tag.name) : []);
@@ -55,6 +59,28 @@ function EdicaoPostagem({ post, onHide, onSave }) {
       setCategoriaSelecionadaId(categoria.id);
     }
   };
+
+
+  const handleStatusChange = async () => {
+    
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://34.125.197.110:3333/post/status/${post.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ published: status === 'publicado' ? true : false }),
+    });
+    if (!response.ok) {
+      console.error("Erro ao atualizar status da postagem:", response.statusText);
+    }else{
+      console.log('deu tudo certo!')
+      const data = await response.json()
+      console.log(data)
+    }
+  };
+  
   const updatePostCategoria = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -100,6 +126,11 @@ function EdicaoPostagem({ post, onHide, onSave }) {
 
       if (response.ok) {
         await updatePostCategoria();
+        console.log(status)
+        const statusValue = status === "publicado" ? true : false;
+        console.log(statusValue)
+        // Chama a função para atualizar o status da postagem
+        await handleStatusChange(statusValue);
         onSave(); // Chama a função onSave após salvar os dados
         console.log('tudo certo com o post')
       } else {
@@ -192,6 +223,38 @@ function EdicaoPostagem({ post, onHide, onSave }) {
     }
   };
 
+ 
+  
+
+  const handleRemoveCategoria = async (postId, categoryId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://34.125.197.110:3333/post/category/delete/${postId}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ category_id: categoryId }),
+      });
+      const data = await response.json()
+        console.log(data)
+      if (response.ok) {
+        console.log('Categoria removida com sucesso');
+        
+        // Atualizar o estado de categorias do post ou qualquer outra lógica necessária após a remoção
+      } else {
+        console.error("Erro ao remover categoria:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro ao remover categoria:", error);
+    }
+  };
+
+ 
+  
+  
+
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -228,6 +291,19 @@ function EdicaoPostagem({ post, onHide, onSave }) {
               onKeyPress={handleNovaTagKeyPress}
             />
           </div>
+          {/* // Adicione isso dentro da div com className="mb-3" para renderizar as categorias */}
+          <div>
+  <label htmlFor="categoriasPresentes" className="form-label">Categorias Presentes</label>
+  <ul className='tag-list-edition'>
+    {post.categories && post.categories.map((categoria, index) => (
+      <li key={index}>
+        {categoria.name}
+        <button onClick={() => handleRemoveCategoria(post.id, categoria.id)} className="remove-button">X</button>
+      </li>
+    ))}
+  </ul>
+</div>
+
           <div className="mb-3">
             <label htmlFor="categoria" className="form-label">Categoria</label>
                       <select

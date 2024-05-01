@@ -1,4 +1,5 @@
 import './Admin.css';
+import { FaQuestionCircle } from 'react-icons/fa';
 import ModalComponent from '../../componets/Modal/Modal';
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
@@ -38,14 +39,12 @@ import { SessionData } from '../../componets/SectionData/SectionData';
     {
       title: 'Qtd de Categorias',
       endpoint: 'http://34.125.197.110:3333/category',
-      buttonText: 'Ver Detalhes',
-      onClick: () => fetchCategoryData,
+      
     },
     
       {
         title: 'Qtd de Postagens',
         endpoint: 'http://34.125.197.110:3333/post',
-        buttonText: 'Ver Detalhes',
         onClick: async () => {
           const token = localStorage.getItem('token');
           const numPostagens = await fetchPostagens(token); // Adicione os parênteses para chamar a função
@@ -56,13 +55,11 @@ import { SessionData } from '../../componets/SectionData/SectionData';
     },{
       title: 'Qtd de Funcionários',
       endpoint: 'http://34.125.197.110:3333/user',
-      buttonText: 'Ver Detalhes',
-      onClick: () =>fetchEmployeeData 
+       
     },{
       title: 'Qtd de Anúncios',
       endpoint: 'http://34.125.197.110:3333/ad/',
-      buttonText: 'Ver Detalhes',
-      onClick: () => fetchNumberOfAds
+    
     }
 
   ]
@@ -152,7 +149,9 @@ import { SessionData } from '../../componets/SectionData/SectionData';
   }, []);
 
 
-
+  const handleNavigateHelpPage = () =>{
+    navigate('/help')
+  }
   const fetchEmployeeData = () => {
     const token = localStorage.getItem('token');
 
@@ -317,7 +316,7 @@ function renderModalContent(modalType) {
                   <li><a className="dropdown-item" id='dropdown-item' href="#" onClick={() =>  handleOpenModal("Criar Postagem",renderModalContent('postagem'))}> <span style={{marginRight:'10px'}} className='icone-azul'>
                     <AiOutlinePlusCircle/>
                     </span>Adicionar nova Postagem</a></li>
-                  <li><a className="dropdown-item"  href="#" id='dropdown-item' onClick={() =>  handleOpenModal("Ver Postagens",renderModalContent('ver postagens'))}><span style={{marginRight:'10px'}} className='icone-azul'><FaEye/></span>Ver todas as postagens</a></li>
+                  {/* <li><a className="dropdown-item"  href="#" id='dropdown-item' onClick={() =>  handleOpenModal("Ver Postagens",renderModalContent('ver postagens'))}><span style={{marginRight:'10px'}} className='icone-azul'><FaEye/></span>Ver todas as postagens</a></li> */}
                 </ul>
               </li>
               <li className="nav-item dropdown">
@@ -343,8 +342,13 @@ function renderModalContent(modalType) {
                   <li><a className="dropdown-item" href="#">Listar Permissões</a></li>
                 </ul>
               </li> */}
+             <a className="nav-link" id='font' href="#" onClick={handleNavigateHelpPage} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <span className="icone-azul"><FaQuestionCircle /></span> Ajuda
+</a>
+
 
             </ul>
+
 <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
   {/* Outros itens da barra de navegação */}
   <li className="nav-item">

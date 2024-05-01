@@ -15,6 +15,11 @@ CSS para o modal de confirmação de exclusão
     background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
 }
 
+.width-modal p, .width-modal strong{
+    display: flex;
+    text-align: center;
+}
+
 .confirm-delete-modal .modal-content {
     background-color: #fefefe; /* Cor de fundo do modal */
     margin: 15% auto;

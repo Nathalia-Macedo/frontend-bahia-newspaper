@@ -64,9 +64,13 @@ align-items: center;
   color: red;
 }
 .navbar-nav .nav-link,
-.navbar-nav .dropdown-item,
+.navbar-nav ,
 .navbar-toggler-icon {
   color: white;
+}
+
+.navbar-toggler-icon, .navbar-toggler{
+  background-color: white;
 }
 
 
