@@ -1,22 +1,41 @@
-.flexBox{
+.displayFlex{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
-    width: 100%;
-    gap: 40px;
-    
+
     @media (min-width: 980px) {
         justify-content: center;   
         flex-direction:row;
     } 
 }
 
-.slideItem {
-    position: relative;
+.flexBox{
     display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 20px 40px;
+    
+
+    @media (max-width: 980px) {
+        justify-content: center;   
+        padding: 0;
+        width: 100%;
+        margin-top: 2px;
+    }    
+}
+
+.Strong{
     width: 100%;
-    flex-wrap: wrap;
-    font-size: var(--font-primary);
+    margin-top: 10px;
+}
+
+.Strong > img {
+    width: 90%;
+    height: 200px;
+
+}
+
+
+.slideItem {
     
     @media (min-width: 980px) {
         flex-direction:row;
@@ -24,50 +43,54 @@
         
     }
 
-    .imageContainer{
-        position: relative;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.imageContainer{
+    display: flex;
+    justify-content: center;
+    width: 100%;  
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+    @media (max-width: 980px) {
+        margin-top: 30px;
+
+    }
+    & > img {
         width: 100%;
-        margin-top: 12px;
-        height: 400px;
-        overflow: hidden;
-        gap: 20px;
-        cursor: pointer;
+        object-fit: cover;
         
-        img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            @media (min-width: 980px) {
-                justify-content: center;   
-                flex-direction:row;
-            }
-            
-        }
-        video {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-        .overlay {
-            position: absolute;
-            top: 240px;
-            width: 100%;
-            height: 450px;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.5); 
-            color: white;
-            padding:  10px;
+    }
+    video {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+    .overlay {
+        position: absolute;
+        top: 240px;
+        width: 100%;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.5); 
+        color: white;
+        padding:  10px;
 
-
-            & > h1{
-                color: var(--color-red);
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+        & > h1{
+            color: var(--color-red);
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     }
 }
+
 
 .customSwiper {
     display: flex;
@@ -77,23 +100,6 @@
     flex-direction: row;
     align-self: flex-start;
 
-    strong{
-        display: flex;
-        width: 100%;
-        justify-content: center;        
-    }
-    & > strong > img {
-            padding: 10px;
-            width: 500px;
-            height: 15vh;
-            cursor: pointer;
-    }
-    
-    @media (min-width: 980px) {
-        max-width: 65%;  
-        justify-content: center;   
-        flex-direction:row;
-    }
 }
 
 

@@ -1,6 +1,5 @@
 import styles from "./style.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import img from "../../../assets/imgs/fake.png"
 import React, { useContext, useState } from "react";
 import { PostContext } from "../../../providers/PostContext";
 
@@ -29,12 +28,12 @@ export const AsideLeft = () => {
         <aside className={styles.leftAside}>
             <ul>
                 <h1 className="title center">RAPIDINHAS</h1>
-                {sortedPosts.slice(0,2).map((post) => (
+                {sortedPosts.slice(0,3).map((post) => (
                 <li 
                     key={post.id}
+                    className={styles.lists}
                     onClick={(e) => handleClick(post.id, e)}
                     >
-                    {/* Renderização condicional da imagem do post */}
                     {post.photoUrls && post.photoUrls.map((photoUrl,index) => (
                         <img 
                             key={index} 
@@ -60,19 +59,22 @@ export const AsideLeft = () => {
                     </div>
                 </li>
                 ))}
-            </ul>
+            
             {ads.slice(0,1).map((ad, index) => (
-                <span key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
+                <span 
+                className={styles.imageUrls}
+                key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
                     {ad.videoUrl.length > 0 && (
-                    <video controls>
+                    <video className={styles.imageUrls} controls>
                         <source src={ad.videoUrl} type="video/mp4" />
                     </video>
                     )}
                     {ad.imageUrl.length > 0 && (
-                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                    <img className={styles.imageUrls} src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
                     )}
                 </span>
-            ))}  
+            ))} 
+            </ul> 
         </aside>
     );
 };

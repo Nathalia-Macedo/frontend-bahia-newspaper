@@ -41,10 +41,10 @@ export const PostProvider = ({ children }) => {
         const getPosts = async () => {
             try {
                 setLoading(true);
-                const { data } = await Api.get(`/post/`
-                );
+                const { data } = await Api.get(`/post/`);
+                const publishedPosts = data.filter(post => post.published === true);
                 // Extrai os últimos 10 posts                
-                const lastTenPosts = data.slice(0, 10);
+                const lastTenPosts = publishedPosts.slice(0, 10);
                 setPostList(lastTenPosts)
             } catch (error) {
                 console.error(error);
@@ -62,7 +62,7 @@ export const PostProvider = ({ children }) => {
             const response = await Api.get("/ad");
             const adsData = response.data;
             const sortedAds = adsData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-            setAds(sortedAds.slice(0, 3));
+            setAds(sortedAds.slice(0, 4));
         } catch (error) {
             console.error('Erro ao obter os anúncios:', error);
         } finally {
