@@ -1,6 +1,19 @@
 .detalhes-postagem p{
     font-family: var(--font-primary);
+  
 }
+
+.content-container {
+  position: relative; /* Define a posição relativa para que o spinner seja posicionado em relação a este contêiner */
+}
+
+.spinner-container {
+  position: absolute; /* Define a posição absoluta para que o spinner seja posicionado dentro do contêiner pai */
+  top: 50%; /* Posiciona o spinner verticalmente no centro do contêiner pai */
+  left: 50%; /* Posiciona o spinner horizontalmente no centro do contêiner pai */
+  transform: translate(-50%, -50%); /* Move o spinner para o centro do contêiner pai */
+}
+
 
 .icons {
     display: flex;
@@ -33,6 +46,7 @@
 .content-container {
   max-height: 80vh; /* Defina uma altura máxima para o contêiner */
   overflow-y: auto; /* Adicione rolagem vertical quando o conteúdo exceder a altura máxima */
+ 
 }
 
 /* Adicione um media query para aplicar estilos apenas em tablets e celulares */

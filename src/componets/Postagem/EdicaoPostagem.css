@@ -24,6 +24,14 @@ display: flex;
 justify-content: space-between;    
   }
   
+  .remove-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 12px; /* Tamanho do texto do botão */
+    cursor: pointer;
+    padding: 2px 5px; /* Espaçamento interno do botão */
+  }
   
 #btn-admin-edition{
     background-color: #444;

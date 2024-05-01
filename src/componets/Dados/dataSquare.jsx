@@ -10,7 +10,6 @@ const DataSquare = ({ title, value, buttonText, onClick }) => {
           <h5  id='font'>{title}</h5>
           <p  id='font'>{value}</p>
         </div>
-        <button  id='font' className="btn-admin" onClick={onClick}>{buttonText}</button>
       </div>
     </Col>
   );

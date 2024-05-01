@@ -8,6 +8,38 @@
 
 }
 
+/* Seletor que contém as regras de estilo que estão causando scroll na largura */
+.anuncios-container,
+.anuncios-carousel,
+.search-bar-container {
+  overflow-x: hidden; /* Impede scroll na horizontal */
+}
+
+.anuncios-container {
+  padding: 2rem;
+  max-width: 1200px; /* Defina um máximo de largura para a div */
+  margin: 0 auto; /* Centralize a div na tela */
+}
+
+
+
+.anuncios-carousel {
+  margin-bottom: 50px;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* Ajuste para ocupar toda a largura disponível */
+  overflow: hidden; /* Oculte o conteúdo extra caso necessário */
+}
+
+/* Seletor que contém as regras de estilo que estão causando scroll na largura */
+.anuncios-container,
+.anuncios-carousel,
+.search-bar-container {
+  overflow-x: hidden; /* Impede scroll na horizontal */
+}
+
+
 .anuncio-card {
   position: relative;
 }
@@ -31,8 +63,20 @@
 
 .search-bar-container {
   margin-bottom: 20px;
-  padding: 2rem;
+  padding: 1rem;
 }
+
+.no-results-message {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+}
+
 
 .search-bar {
   width: 40%;
@@ -55,4 +99,31 @@
   outline: none;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   background-color: #fff;
+}
+/* Estilos para dispositivos móveis e tablets */
+@media (max-width: 768px) {
+  .anuncios-carousel {
+    display: block; /* Altera para exibição em bloco para que os itens fiquem um abaixo do outro */
+    overflow-x: auto; /* Adiciona scroll horizontal para acomodar todos os itens em dispositivos menores */
+  }
+
+  .slick-list{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Estilos para dispositivos maiores */
+.anuncios-carousel {
+  margin-bottom: 50px;
+  padding: 2rem;
+}
+
+
+
+
+@media screen  and (min-width:320px) and (max-width:768px){
+  .search-bar-container input{
+    width: 100%;
+  }
 }
