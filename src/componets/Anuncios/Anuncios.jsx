@@ -1,21 +1,17 @@
-
 // import React, { useState, useEffect } from 'react';
 // import Slider from 'react-slick';
 // import 'slick-carousel/slick/slick.css';
 // import 'slick-carousel/slick/slick-theme.css';
-// import Card from 'react-bootstrap/Card';
-// import ConfirmDeleteModal from '../Confirmacao/Confirmacao';
 // import './Anuncios.css';
 
 // function AnunciosCarousel() {
 //     const [anuncios, setAnuncios] = useState([]);
-//     const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para controlar a exibição do modal de confirmação
-//     const [entityToDelete, setEntityToDelete] = useState(null); // Entidade a ser excluída
-//     const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o termo de pesquisa
+//     const [searchTerm, setSearchTerm] = useState('');
+//     const [noResults, setNoResults] = useState(false); 
 
 //     useEffect(() => {
 //         fetchAnuncios();
-//     }, []); // Executa apenas uma vez ao montar o componente
+//     }, []);
 
 //     const fetchAnuncios = async () => {
 //         try {
@@ -45,79 +41,46 @@
 //         slidesToScroll: 1
 //     };
 
-//     const handleDeleteClick = (entity) => {
-//         setEntityToDelete(entity);
-//         setShowDeleteModal(true);
-//     };
-
-//     const deleteAd = async () => {
-//         try {
-//             const token = localStorage.getItem("token");
-//             const response = await fetch(`http://34.125.197.110:3333/ad/delete/${entityToDelete.id}`, {
-//                 method: 'DELETE',
-//                 headers: {
-//                     Authorization: `Bearer ${token}`,
-//                 },
-//             });
-
-//             if (response.ok) {
-//                 console.log("Anúncio excluído com sucesso.");
-//                 fetchAnuncios(); // Busca novamente os anúncios após a exclusão bem-sucedida
-//                 setShowDeleteModal(false);
-//             } else {
-//                 console.error("Erro ao excluir o anúncio:", response.statusText);
-//             }
-//         } catch (error) {
-//             console.error("Erro ao excluir o anúncio:", error);
-//         }
-//     };
-
-//     // Função para filtrar os anúncios com base no termo de pesquisa
 //     const filteredAnuncios = anuncios.filter(anuncio =>
 //         anuncio.description.toLowerCase().includes(searchTerm.toLowerCase())
 //     );
 
+//     useEffect(() => {
+//         setNoResults(filteredAnuncios.length === 0);
+//     }, [filteredAnuncios]);
+
 //     return (
 //         <>
-//            <div className="search-bar-container">
-//   <input
-//       type="text"
-//       placeholder="Pesquisar..."
-//       value={searchTerm}
-//       onChange={(e) => setSearchTerm(e.target.value)}
-//   />
-// </div>
+//             <div className="search-bar-container">
+//                 <input
+//                     type="text"
+//                     className="search-bar"
+//                     placeholder="Pesquisar..."
+//                     value={searchTerm}
+//                     onChange={(e) => setSearchTerm(e.target.value)}
+//                 />
+//             </div>
 
+//             {noResults && <div className='no-results-message'>Nenhum resultado encontrado.</div>} 
+            
 //             <Slider {...settings} className="anuncios-carousel">
 //                 {filteredAnuncios.map(anuncio => (
 //                     <div key={anuncio.id} className="anuncio-card">
-//                         <Card>
-//                             <button className="close-button" onClick={() => handleDeleteClick(anuncio)}>X</button> {/* Botão de fechar (X) */}
-//                             <Card.Img
-//                                 variant="top"
+//                         <div className="anuncio-content">
+//                             <button className="close-button">X</button>
+//                             <img
 //                                 src={anuncio.imageUrl}
 //                                 alt={anuncio.description}
-//                                 style={{ height: '200px', objectFit: 'cover' }} // Definindo uma altura fixa e ajustando o redimensionamento da imagem
+//                                 className="anuncio-image"
 //                             />
-//                             <Card.Body>
-//                                 <Card.Title>{anuncio.description}</Card.Title>
-//                                 <Card.Text>
-//                                     <a href={anuncio.link} target="_blank" rel="noopener noreferrer">Ver mais</a>
-//                                 </Card.Text>
-//                             </Card.Body>
-//                         </Card>
+//                             <div className="anuncio-text">
+//                                 <h3>{anuncio.description}</h3>
+//                                 <a href={anuncio.link} target="_blank" rel="noopener noreferrer">Ver mais</a>
+//                             </div>
+//                         </div>
 //                     </div>
 //                 ))}
 //             </Slider>
-//             <ConfirmDeleteModal
-//                 show={showDeleteModal}
-//                 onHide={() => setShowDeleteModal(false)}
-//                 entityName={entityToDelete ? entityToDelete.description : ""}
-//                 onConfirmDelete={() => {
-//                     console.log("Excluir", entityToDelete);
-//                     deleteAd(); // Chamar a função deleteAd ao confirmar a exclusão
-//                 }}
-//             />
 //         </>
 //     );
 // }
@@ -127,15 +90,12 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Card from 'react-bootstrap/Card';
-import ConfirmDeleteModal from '../Confirmacao/Confirmacao';
 import './Anuncios.css';
 
 function AnunciosCarousel() {
     const [anuncios, setAnuncios] = useState([]);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [entityToDelete, setEntityToDelete] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [noResults, setNoResults] = useState(false); 
 
     useEffect(() => {
         fetchAnuncios();
@@ -169,36 +129,13 @@ function AnunciosCarousel() {
         slidesToScroll: 1
     };
 
-    const handleDeleteClick = (entity) => {
-        setEntityToDelete(entity);
-        setShowDeleteModal(true);
-    };
-
-    const deleteAd = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            const response = await fetch(`http://34.125.197.110:3333/ad/delete/${entityToDelete.id}`, {
-                method: 'DELETE',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-
-            if (response.ok) {
-                console.log("Anúncio excluído com sucesso.");
-                fetchAnuncios();
-                setShowDeleteModal(false);
-            } else {
-                console.error("Erro ao excluir o anúncio:", response.statusText);
-            }
-        } catch (error) {
-            console.error("Erro ao excluir o anúncio:", error);
-        }
-    };
-
     const filteredAnuncios = anuncios.filter(anuncio =>
         anuncio.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    useEffect(() => {
+        setNoResults(filteredAnuncios.length === 0);
+    }, [filteredAnuncios]);
 
     return (
         <>
@@ -212,38 +149,31 @@ function AnunciosCarousel() {
                 />
             </div>
 
+            {noResults && <div className='no-results-message'>Nenhum resultado encontrado.</div>} 
+            
             <Slider {...settings} className="anuncios-carousel">
                 {filteredAnuncios.map(anuncio => (
                     <div key={anuncio.id} className="anuncio-card">
-                        <Card>
-                            <button className="close-button" onClick={() => handleDeleteClick(anuncio)}>X</button>
-                            <Card.Img
-                                variant="top"
+                        <div className="anuncio-content">
+                            <button className="close-button">X</button>
+                            <img
                                 src={anuncio.imageUrl}
                                 alt={anuncio.description}
-                                style={{ height: '200px', objectFit: 'cover' }}
+                                className="anuncio-image"
                             />
-                            <Card.Body>
-                                <Card.Title>{anuncio.description}</Card.Title>
-                                <Card.Text>
-                                    <a href={anuncio.link} target="_blank" rel="noopener noreferrer">Ver mais</a>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
+                            <div className="anuncio-text d-none d-md-block"> {/* Oculta em dispositivos móveis e tablets */}
+                                <h3>{anuncio.description}</h3>
+                                <a href={anuncio.link} target="_blank" rel="noopener noreferrer">Ver mais</a>
+                            </div>
+                        </div>
                     </div>
                 ))}
             </Slider>
-            <ConfirmDeleteModal
-                show={showDeleteModal}
-                onHide={() => setShowDeleteModal(false)}
-                entityName={entityToDelete ? entityToDelete.description : ""}
-                onConfirmDelete={() => {
-                    console.log("Excluir", entityToDelete);
-                    deleteAd();
-                }}
-            />
         </>
     );
 }
 
 export default AnunciosCarousel;
+
+
+

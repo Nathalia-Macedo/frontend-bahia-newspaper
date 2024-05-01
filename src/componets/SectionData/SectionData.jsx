@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from "react";
 import "./SectionData.css"; // Importando o arquivo CSS para estilização
-import { Spinner } from "react-bootstrap";
+import { Spinner, Toast } from "react-bootstrap";
 
 export function SessionData() {
   const [tags, setTags] = useState([]);
@@ -9,6 +10,9 @@ export function SessionData() {
   const [description, setDescription] = useState(""); // Estado para armazenar a descrição do anúncio
   const [fileBase64, setFileBase64] = useState(""); // Estado para armazenar a imagem em base64
   const [link, setLink] = useState(""); // Estado para armazenar o link do anúncio
+  const [showToast, setShowToast] = useState(false); // Estado para controlar a exibição do Toast
+  const [toastMessage, setToastMessage] = useState(""); // Estado para armazenar a mensagem do Toast
+  const [toastVariant, setToastVariant] = useState("success"); // Estado para controlar a variante do Toast (success ou danger)
 
   useEffect(() => {
     fetchTags();
@@ -73,12 +77,19 @@ export function SessionData() {
 
   const handleAddAdvertisement = async () => {
     try {
+      if (!description || !fileBase64 || !link) {
+        setToastVariant("danger");
+        setToastMessage("Erro: Preencha todos os campos");
+        setShowToast(true);
+        return; // Retorna se algum campo estiver vazio
+      }
+
       const token = localStorage.getItem("token");
       const formData = new FormData();
       formData.append("description", description);
       formData.append("files", fileBase64); // Envia a imagem em base64
       formData.append("link", link);
-      console.log(fileBase64)
+      
       const response = await fetch("http://34.125.197.110:3333/ad/new", {
         method: "POST",
         headers: {
@@ -86,36 +97,31 @@ export function SessionData() {
         },
         body: formData,
       });
-      const data = await response.json()
-      console.log(data)
+
       if (response.ok) {
-        console.log("Anúncio criado com sucesso!");
+        setToastVariant("success");
+        setToastMessage("Anúncio adicionado com sucesso");
+        setShowToast(true);
         // Limpa os campos após o envio bem-sucedido
         setDescription("");
         setFileBase64("");
         setLink("");
-    
+
         // Resetar o valor do input do tipo arquivo para limpar a seleção
         const inputElement = document.querySelector('input[type="file"]');
         if (inputElement) {
           inputElement.value = ""; // Define o valor do input como uma string vazia
         }
       } else {
+        setToastVariant("danger");
+        setToastMessage("Erro: Anúncio não foi adicionado");
+        setShowToast(true);
         console.error("Erro ao criar anúncio:", response.statusText);
       }
     } catch (error) {
       console.error("Erro ao criar anúncio:", error);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="loading-spinner-section">
-          <Spinner/>
-        <div className="spinner"></div>
-      </div>
-    );
-  }
 
   return (
     <div className="container_section">
@@ -149,6 +155,25 @@ export function SessionData() {
           </ul>
         </div>
       </div>
+
+      {/* Toast para exibir mensagens de sucesso ou erro */}
+      <Toast
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        delay={3000} // Delay de 3 segundos
+        autohide // Habilita o fechamento automático
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          backgroundColor: toastVariant === "danger" ? "red" : "green",
+          color: "white",
+        }}
+      >
+        <Toast.Body>{toastMessage}</Toast.Body>
+      </Toast>
     </div>
   );
 }
+;

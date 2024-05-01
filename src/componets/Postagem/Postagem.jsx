@@ -541,4 +541,3 @@ const clearImageInput = () => {
 }
 
 export default ModalAddPostagem;
-

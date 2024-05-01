@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import orderBy from 'lodash/orderBy';
 import './PostagemAll.css';
-import { MdDateRange } from 'react-icons/md';
-import { MdLabel } from 'react-icons/md';
+
 import { FaSearchPlus, FaFilter } from 'react-icons/fa';
 import ModalComponent from "../Modal/Modal";
 import DetalhesPostagem from "./DetalhesPostagem";
@@ -110,59 +109,78 @@ function PostagemAll() {
     setPostIdSelecionado(postId);
     setShowDetalhesModal(true);
   };
-  //estabelecendo uma função que aceita um objeto de evento como argumento
-  const handleSearchInputChange = (event) => {
-    /*Estamos normalizando o valor do campo de busca neste 
-    caso. O valor do campo de busca atual é representado por 
-    event.target.value. Para tornar a busca insensível a 
-    maiúsculas/minúsculas, toLowerCase() transforma todas as 
-    letras em minúsculas. A normalização ("NFD") é usada para
-     separar os caracteres acentuados ou especiais em formas 
-     básicas , como acentos. 
- */
-    const searchTermNormalized = event.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    
-    /*Esta linha informa o estado do termo de busca usando o 
-    valor do campo de busca atual. Isso é para garantir que o
-     estado esteja sincronizado com as informações fornecidas
-      pelo usuário .
- */
-    setSearchTerm(event.target.value);
 
-/*Aqui, estamos criando uma nova lista chamada Posts Filtrados que conterá apenas coisas que passaram pelo filtro.
- */
+
+  const handleSearchInputChange = (event) => {
+    const searchTermValue = event.target.value;
+    const searchTermNormalized = searchTermValue.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    setSearchTerm(searchTermNormalized);
+  
     const filteredPostagens = postagensOriginais.filter((postagem) => {
-      /*O título de cada postagem da lista Original foi
-       normalizado nesta linha , da mesma forma que fizemos 
-       com o termo de busca.  */
       const titleNormalized = postagem.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      // De forma semelhante, normalizamos o conteúdo de cada
-      // postagem de acordo com o procedimento adotado para o
-      // título.
       const contentNormalized = postagem.content.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      // Os nomes das tags associadas a cada postagem são
-       //normalizados nesta linha. Para evitar erros, a 
-       //expressão postagem.tags || [] retorna um array vazio
-       // se uma postagem não tiver tags.
       const tagsNormalized = (postagem.tags || []).map(tag => tag.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
-      //Aqui, verificamos o título ,
-      // o conteúdo ou qualquer uma das
-      // tags da postagem contém o termo de busca 
-      //normalizado. A função include() pode identificar se 
-      //uma string contém outra string. A função "some()" é 
-      //usada para determinar se pelo menos um elemento de um
-      // array atende a uma condição específica.
       return titleNormalized.includes(searchTermNormalized) || 
              contentNormalized.includes(searchTermNormalized) || 
              (tagsNormalized.length > 0 && tagsNormalized.some(tag => tag.includes(searchTermNormalized)));
     });
-
-    // Por fim, atualizamos o estado das postagens usando a
-    // lista filtrada das postagens. Isso significará que 
-    //apenas as postagens que cumprem os requisitos de 
-    //pesquisa serão mostradas na interface.
+  
     setPostagens(filteredPostagens);
   };
+  
+//   //estabelecendo uma função que aceita um objeto de evento como argumento
+//   const handleSearchInputChange = (event) => {
+//     /*Estamos normalizando o valor do campo de busca neste 
+//     caso. O valor do campo de busca atual é representado por 
+//     event.target.value. Para tornar a busca insensível a 
+//     maiúsculas/minúsculas, toLowerCase() transforma todas as 
+//     letras em minúsculas. A normalização ("NFD") é usada para
+//      separar os caracteres acentuados ou especiais em formas 
+//      básicas , como acentos. 
+//  */
+//     const searchTermNormalized = event.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    
+//     /*Esta linha informa o estado do termo de busca usando o 
+//     valor do campo de busca atual. Isso é para garantir que o
+//      estado esteja sincronizado com as informações fornecidas
+//       pelo usuário .
+//  */
+//     setSearchTerm(event.target.value);
+
+// /*Aqui, estamos criando uma nova lista chamada Posts Filtrados que conterá apenas coisas que passaram pelo filtro.
+//  */
+//     const filteredPostagens = postagensOriginais.filter((postagem) => {
+//       /*O título de cada postagem da lista Original foi
+//        normalizado nesta linha , da mesma forma que fizemos 
+//        com o termo de busca.  */
+//       const titleNormalized = postagem.title.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+//       // De forma semelhante, normalizamos o conteúdo de cada
+//       // postagem de acordo com o procedimento adotado para o
+//       // título.
+//       const contentNormalized = postagem.content.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+//       // Os nomes das tags associadas a cada postagem são
+//        //normalizados nesta linha. Para evitar erros, a 
+//        //expressão postagem.tags || [] retorna um array vazio
+//        // se uma postagem não tiver tags.
+//       const tagsNormalized = (postagem.tags || []).map(tag => tag.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+//       //Aqui, verificamos o título ,
+//       // o conteúdo ou qualquer uma das
+//       // tags da postagem contém o termo de busca 
+//       //normalizado. A função include() pode identificar se 
+//       //uma string contém outra string. A função "some()" é 
+//       //usada para determinar se pelo menos um elemento de um
+//       // array atende a uma condição específica.
+//       return titleNormalized.includes(searchTermNormalized) || 
+//              contentNormalized.includes(searchTermNormalized) || 
+//              (tagsNormalized.length > 0 && tagsNormalized.some(tag => tag.includes(searchTermNormalized)));
+//     });
+
+//     // Por fim, atualizamos o estado das postagens usando a
+//     // lista filtrada das postagens. Isso significará que 
+//     //apenas as postagens que cumprem os requisitos de 
+//     //pesquisa serão mostradas na interface.
+//     setPostagens(filteredPostagens);
+//   };
   
   
   
@@ -198,24 +216,6 @@ function PostagemAll() {
           value={searchTerm}
           onChange={handleSearchInputChange}
         />
-        <div className="filter-options">
-          <div onClick={() => setShowFiltroOpcoes(!showFiltroOpcoes)} className="filter-icon">
-            <FaFilter />
-          </div>
-          {showFiltroOpcoes && (
-            <div className="options-menu">
-              <span>Adicionar Filtro</span>
-              <div className="filter-option" onClick={handleFiltrarClick}>
-                <MdDateRange />
-                <span>Data</span>
-              </div>
-              <div className="filter-option" onClick={handleFiltrarClick}>
-                <MdLabel />
-                <span>Tags</span>
-              </div>
-            </div>
-          )}
-        </div>
         <select className="order-select" value={ordenacao} onChange={handleOrdenacaoChange}>
           <option value="">Selecione uma opção de ordenação</option>
           <option value="MaisRecentes">Mais recentes</option>
@@ -228,6 +228,7 @@ function PostagemAll() {
       <table className="post-table">
         <thead>
           <tr>
+          <th>Ativo</th>
             <th>Título</th>
             <th>Conteúdo</th>
             <th>Categorias</th>
@@ -237,8 +238,12 @@ function PostagemAll() {
           </tr>
         </thead>
         <tbody>
+          {/* Adicione a célula indicando se a postagem está ativa ou não */}
+    
           {postagens.slice(startIndex, endIndex).map((postagem) => (
+           
             <tr key={postagem.id}>
+               <td>{postagem.published ? "Sim" : "Não"}</td>
               <td>{postagem.title}</td>
               <td><div className="scrollable-content">{postagem.content}</div></td>
               <td>
@@ -266,11 +271,18 @@ function PostagemAll() {
   show={showDetalhesModal}
   handleClose={() => setShowDetalhesModal(false)}
   modalTitle="Detalhes da Postagem"
-  modalContent={<DetalhesPostagem postId={postIdSelecionado} updatePostagens={updatePostagens} />} // Adicione updatePostagens aqui
+  modalContent={
+    <DetalhesPostagem
+      postId={postIdSelecionado}
+      updatePostagens={updatePostagens}
+      setShowDetalhesModal={setShowDetalhesModal} // Passando a função setShowDetalhesModal
+    />
+  }
   modalSize="md"
-  position="right" // Defina a posição do modal (opcional)
-
+  position="right"
 />
+
+
 
     </div>
   );

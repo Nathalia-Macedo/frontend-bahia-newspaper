@@ -159,6 +159,7 @@
 @media only screen and (max-width: 768px) {
   .content {
     flex-direction: column; /* Altera a direção do flex para coluna */
+    align-items: center;
   }
 
   .advertisement,
@@ -170,6 +171,18 @@
     margin-bottom: 20px; /* Adiciona espaço entre as seções */
   }
 }
+.tags {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+  max-width: 400px;
+  max-height: 400px; /* Defina a altura máxima desejada */
+  overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
+}
+
+
 
 
 @media  screen and (min-width: 1024px) {
