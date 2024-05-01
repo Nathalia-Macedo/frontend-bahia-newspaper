@@ -97,14 +97,17 @@ export const BannerSection = () => {
               onClick={() => handleAds(ad.link)}
               className={styles.Strong} 
               style={{ cursor: "pointer" }}>
-              {ad.videoUrl.length > 0 && (
-                <video controls>
+              {ad.videoUrl.length > 0 ? (
+                <video className={styles.imageUrls} controls>
                   <source src={ad.videoUrl} type="video/mp4" />
                 </video>
-              )}
-                {ad.imageUrl.length > 0 && (
-                  <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
-                )}
+              ) : (
+                ad.imageUrl.length > 0 && (
+                  <img 
+                  className={styles.imageUrls} 
+                  src={ad.imageUrl} 
+                  alt={`Anúncio ${index + 1}`} />
+              ))}
               </strong>
           ))}
             <NewSection/>

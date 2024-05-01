@@ -79,7 +79,7 @@ export const AsideRight = () => {
                     </div>     
                 </li>
                 ))}
-            {ads.slice(0,2).map((ad, index) => (
+            {ads.slice(0,1).map((ad, index) => (
                 <span 
                     className={styles.imageUrls}
                     key={index} 

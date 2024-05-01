@@ -1,14 +1,12 @@
 .flexBox{
     display: flex;
     flex-direction: column;
-    height: 40vh;
+    justify-content: center;
     margin-top: 20px; 
 
     @media (min-width: 980px) {
-        height: 10vh;
         margin-top: 0;
-    } 
-    
+    }     
     img{
         width: 300px;
     }
@@ -16,13 +14,16 @@
     section{
         display: flex;
         width: 100%;
+        height: 10em;
         padding: 10px ;
         align-items: center;
         flex-wrap: wrap;
         gap : 15px;    
-        justify-content: space-between;  
+        justify-content: center;  
+
         @media (min-width: 980px) {
-            // gap: 155px;
+            height: 5em;
+            justify-content: space-between;
         } 
     }
 
@@ -67,4 +68,15 @@
 
     footer > div > section{ 
         margin-top: 20px;
+        @media (max-width: 980px) {
+            margin-top: 90px;
+        }
+
+    }
+
+    footer { 
+
+        @media screen and (min-width: 768px) and (max-width: 815px){
+            margin-top: 500px;
+        }
     }

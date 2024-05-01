@@ -5,6 +5,8 @@
 @import './grid.scss';
 
 body {
-    // font-family: var(--font-primary);
-    // background: black;
+    font-family: var(--font-primary);
+    // min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
