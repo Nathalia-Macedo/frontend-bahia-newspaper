@@ -30,7 +30,7 @@ export const Header = () => {
     }
     return (
         <header>
-            <div className="container">
+            <div className="container1">
                 <div className={styles.flexBox}>
                     <Link to="/">
                         <img src={Logo} alt="Logo do jornal"/>

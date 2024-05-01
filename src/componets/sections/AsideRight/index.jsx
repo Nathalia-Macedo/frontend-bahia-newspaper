@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import img from "../../../assets/imgs/fake.png"
 import styles from "./style.module.scss";
 import { PostContext } from "../../../providers/PostContext";
 import { Api } from "../../../../services/api";
@@ -21,7 +20,7 @@ export const AsideRight = () => {
             try {
                 setLoading(true);
                 const response = await Api.get(`/filter/post/views`);                
-                const lastTenPosts = response.data.slice(0, 2);
+                const lastTenPosts = response.data.slice(0, 3);
                 setMostViewedPosts(lastTenPosts)
 
             } catch (error) {
@@ -50,6 +49,7 @@ export const AsideRight = () => {
                 <h1 className="title center">MAIS LIDAS</h1>
                 {mostViewedPosts.map((post) => (
                 <li 
+                className={styles.lists}
                 key={post.id}
                 onClick={(e) => handleClick(post.id, e)}
                 >
@@ -79,19 +79,23 @@ export const AsideRight = () => {
                     </div>     
                 </li>
                 ))}
-            </ul>
-            {ads.slice(0,1).map((ad, index) => (
-                <span key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
+            {ads.slice(0,2).map((ad, index) => (
+                <span 
+                    className={styles.imageUrls}
+                    key={index} 
+                    onClick={() => handleAds(ad.link)} 
+                    style={{ cursor: "pointer" }}>
                     {ad.videoUrl.length > 0 && (
-                    <video controls>
-                        <source src={ad.videoUrl} type="video/mp4" />
-                    </video>
+                        <video className={styles.imageUrls} controls>
+                            <source src={ad.videoUrl} type="video/mp4" />
+                        </video>
                     )}
                     {ad.imageUrl.length > 0 && (
-                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                        <img className={styles.imageUrls} src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
                     )}
                 </span>
             ))}
+            </ul>
         </aside>
     );
 };

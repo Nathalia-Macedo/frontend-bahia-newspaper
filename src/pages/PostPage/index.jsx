@@ -5,7 +5,6 @@ import { PostContext } from "../../providers/PostContext";
 import { DefaultTemplate } from "../../componets/DefaultTemplate";
 import { useParams } from "react-router-dom";
 import { Api } from "../../../services/api";
-// import Loading from "../../assets/spinner/Loading.svg";
 import Spinner from "react-bootstrap/Spinner";
 
 export const PostPage = () => {
@@ -13,7 +12,7 @@ export const PostPage = () => {
     
 
     const { id } = useParams();
-    //   Requizisao para trazer  as postagens por id
+
 
     useEffect(() => {
         scrollTo(0, 0);

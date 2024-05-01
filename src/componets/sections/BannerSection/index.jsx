@@ -11,8 +11,9 @@ import { AsideRight } from "../AsideRight";
 import { AsideLeft } from "../AsideLeft";
 import { PostContext } from "../../../providers/PostContext";
 import { useNavigate } from "react-router-dom";
-import img from "../../../assets/imgs/fake.png";
-import noImage from "../../../assets/imgs/noImage.jpg";
+import { PostSection } from "../PosteSection";
+import { PostCard } from "../PosteSection/PostCard";
+import { NewSection } from "../NewSection";
 
 export const BannerSection = () => {
   const [slidePerView] = useState(1);
@@ -38,35 +39,38 @@ export const BannerSection = () => {
   };
 
   return (
-    <section className="container">
-    <div className={styles.flexBox}>
-      <AsideRight />
-      <Swiper
-        className={styles.customSwiper}
-        pagination={{ clickable: true }}
-        slidesPerView={slidePerView}
-        modules={[Pagination, Navigation, EffectFade]}
-        effect="fade"
-      >
-        {sortedPosts.map((item) => (
-            <SwiperSlide 
-            className={styles.slideItem} 
-            key={item.id}
+    <section className="container1">
+      <div className={styles.displayFlex}> 
+      
+        <AsideRight />
+      <div className={styles.flexBox}>
+          <Swiper
+            className={styles.customSwiper}
+            autoHeight={true}
+            pagination={{ clickable: true }}
+            slidesPerView={slidePerView}
+            modules={[Pagination, Navigation, EffectFade]}
+            effect="fade"
           >
-            <div 
-              onClick={(e) => handleCategoryClick(item.id, e)}  
-              className={styles.imageContainer}
+            {sortedPosts.map((item) => (
+            <SwiperSlide 
+                className={styles.slideItem} 
+                key={item.id}
             >
-              {item.videoUrls.length !== 0 ? (
-                <video controls>
-                  <source src={item.videoUrls[0]} type="video/mp4"/>
-                </video>                                
-              ) : (
-                <img 
-                  src={item.photoUrls.length !== 0 ? item.photoUrls[0] : noImage} 
-                  alt="Slider"                   
-                />                  
-              )}            
+                <div 
+                  onClick={(e) => handleCategoryClick(item.id, e)}  
+                  className={styles.imageContainer}
+                >
+                  {item.videoUrls.length !== 0 ? (
+                    <video controls>
+                      <source src={item.videoUrls[0]} type="video/mp4"/>
+                    </video>                                
+                  ) : (
+                    <img 
+                      src={item.photoUrls.length !== 0 && item.photoUrls[0] } 
+                      alt="Slider"                   
+                    />                  
+                  )}            
                 <div className={styles.overlay}>
                   {item.categories.length !== 0 ? (
                     <h1 className="title one">
@@ -78,29 +82,35 @@ export const BannerSection = () => {
                     </h1>
                   )}
                   {item.title && (
-                  <p className="title three">
-                    {item.title}
-                  </p>
+                    <p className="title three">
+                      {item.title}
+                    </p>
                   )}
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-            {ads.slice(0,1).map((ad, index) => (
-                <strong key={index} onClick={() => handleAds(ad.link)} style={{ cursor: "pointer" }}>
-                    {ad.videoUrl.length > 0 && (
-                    <video controls>
-                        <source src={ad.videoUrl} type="video/mp4" />
-                    </video>
-                    )}
-                    {ad.imageUrl.length > 0 && (
-                    <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
-                    )}
-                </strong>
-            ))}  
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+          {ads.slice(0,1).map((ad, index) => (
+            <strong 
+              key={index} 
+              onClick={() => handleAds(ad.link)}
+              className={styles.Strong} 
+              style={{ cursor: "pointer" }}>
+              {ad.videoUrl.length > 0 && (
+                <video controls>
+                  <source src={ad.videoUrl} type="video/mp4" />
+                </video>
+              )}
+                {ad.imageUrl.length > 0 && (
+                  <img src={ad.imageUrl} alt={`Anúncio ${index + 1}`} />
+                )}
+              </strong>
+          ))}
+            <NewSection/>
+      </div>
       <AsideLeft />
-    </div>
+      </div>
   </section>
   
   );

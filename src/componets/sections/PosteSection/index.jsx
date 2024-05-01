@@ -4,7 +4,6 @@ import { AsideLeft } from "../AsideLeft";
 import styles from "./style.module.scss";
 import { AsideAds } from "../AsideAds";
 import { PostContext } from "../../../providers/PostContext";
-import img from "../../../assets/imgs/fake.png"
 
 export const PostSection = () => {
   const {  postList, filteredPost, ads } = useContext(PostContext);

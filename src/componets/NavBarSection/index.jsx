@@ -40,7 +40,7 @@ export const NavBarSection = () => {
                     {!menuOpen ? <FaBars size={20} /> : <IoMdClose size={20}/>}  
                 </span>
                     {menuOpen && 
-                    <ul className={styles.menu}>
+                    <ul id={styles.menu}>
                         {uniqueCategories.map((category, index) => (
                             <NavBarCard key={index}  
                                 category={category} 

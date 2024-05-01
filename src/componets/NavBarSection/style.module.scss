@@ -4,7 +4,7 @@
     z-index: 50;
     width: 100%;
     height: 40px;
-
+    flex-direction: row;
     background: var(--color-white);
     border-bottom: 2px solid var(--color-red);
     border-top: 2px solid var(--color-gray);
@@ -16,14 +16,22 @@
 
 }
 
-.flexBox > ul{
+#menu{
     display: flex;
     padding: 0;
-    width: 140px;
+    width: 100%;
+    max-width: 100%;
+    align-items: center;
+    margin-bottom: 0;
+    top: 40px;
+    gap: 5px;
 
+    
     li {
         width: 100%;
-        max-width: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -33,19 +41,23 @@
         flex-direction:column;
         position: relative;
         background-color: #0d0d0d16;
+
         
     }
-    .flexBox > ul {
+    #menu {
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        align-items: center;
+        flex-direction: column;
         position: absolute;
-        top: 38px;
+        margin-top: 0;
         max-width: 100%;
         width: 100%;
+        gap: 10px;
         background-color: whitesmoke;
+
     }
+    
+
     .flexBox ul > li {
         display: flex; 
         align-items: center; 
