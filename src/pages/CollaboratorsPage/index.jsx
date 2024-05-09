@@ -18,7 +18,8 @@ export const CollaboratorsPage = () => {
                     <img src={Nathy} alt="Nathalia Macedo" />
                     <div>
                         <h2 className='title one'>Nathalia Macedo</h2>
-                        <h3 className='title two'>Gestora de Projeto Front-End</h3>
+                        <h3 className='title two'>Gestora de Projeto <br/>
+                        Front-End</h3>
                         <a href="https://www.linkedin.com/in/nathalia-de-macedo-martins-4aa693253/" target="_blank" rel="noopener noreferrer">
                             Perfil LinkedIn
                         </a>
@@ -27,7 +28,7 @@ export const CollaboratorsPage = () => {
                 <div className={styles.collaborator}>
                     <img src={Iara} alt="Iara Reis" />
                     <div>
-                        <h2>Iara Reis</h2>
+                        <h2 className='title one'>Iara Reis</h2>
                         <h3 className='title two'>Front-End</h3>
                         <a href="https://www.linkedin.com/in/iara-reis-010a89240/" target="_blank" rel="noopener noreferrer">
                             Perfil LinkedIn
@@ -37,11 +38,19 @@ export const CollaboratorsPage = () => {
                 <div className={styles.collaborator}>
                     <img src={Farias} alt="Josenilson Farias" />
                     <div>
-                        <h2>Josenilson Farias</h2>
+                        <h2 className='title one'>Josenilson Farias</h2>
                         <h3 className='title two'>Back-End</h3>
                         <a href="https://www.linkedin.com/in/josenilsonfarias/" target="_blank" rel="noopener noreferrer">
                             Perfil LinkedIn
                         </a>
+                        <span>
+                            <Link className='title two' to="/">
+                                Voltar para Home
+                            </Link>
+                            <Link  className='title two' to="/login">
+                                Login
+                            </Link>
+                        </span>                        
                     </div>
                 </div>
             </div>
