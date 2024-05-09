@@ -15,14 +15,17 @@
 }
 .container a > img{
     width: 400px;
-    margin-bottom: 2em;
+
+}
+.container > h1{
+    margin-bottom: 30px;
 
 }
 
 .collaborator {
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    gap: 20px;
 
 }
 
@@ -36,6 +39,7 @@
 .collaborator div {
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
 }
 
 .collaborator h1 {
@@ -50,6 +54,29 @@
     text-decoration: underline;
 }
 
-.collaborator a {
+
+.collaborator  a {
     color: blue;
+    margin-bottom: 40px;
+}
+
+
+.collaborator span > a {
+    border: solid 1px transparent; 
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px; 
+    text-decoration: none;
+    background-color: #f0f0f0; 
+    color: #333; 
+    transition: all 0.3s ease;
+}
+
+.collaborator span > a{
+    margin: 10px;
+}
+
+.collaborator span > a:hover {
+    background-color: #e0e0e0; 
+
 }
