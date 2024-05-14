@@ -33,7 +33,7 @@ export function RecuperarSenha() {
         }
 
         try {
-            const response = await fetch('http://34.125.197.110:3333/user/password', {
+            const response = await fetch('http://89.116.214.37:3333/user/password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export function RecuperarSenha() {
 
     const handleSendNewPassword = async () => {
         try {
-            const response = await fetch(`http://34.125.197.110:3333/user/password/new/${userId}`, {
+            const response = await fetch(`http://89.116.214.37:3333/user/password/new/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

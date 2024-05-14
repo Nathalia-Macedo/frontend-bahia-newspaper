@@ -28,7 +28,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
     const fetchCategorias = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://34.125.197.110:3333/category", {
+        const response = await fetch("http://89.116.214.37:3333/category", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -64,7 +64,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
   const handleStatusChange = async () => {
     
     const token = localStorage.getItem("token");
-    const response = await fetch(`http://34.125.197.110:3333/post/status/${post.id}`, {
+    const response = await fetch(`http://89.116.214.37:3333/post/status/${post.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
     try {
       const token = localStorage.getItem("token");
       console.log(post.id)
-      const response = await fetch(`http://34.125.197.110:3333/post/category/${post.id}`, {
+      const response = await fetch(`http://89.116.214.37:3333/post/category/${post.id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -112,7 +112,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/post/${post.id}`, {
+      const response = await fetch(`http://89.116.214.37:3333/post/${post.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
   const checkTagExists = async (tagName) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/tag", {
+      const response = await fetch("http://89.116.214.37:3333/tag", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -202,7 +202,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
   const createNewTag = async (tagName) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/tag", {
+      const response = await fetch("http://89.116.214.37:3333/tag", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -229,7 +229,7 @@ function EdicaoPostagem({ post, onHide, onSave }) {
   const handleRemoveCategoria = async (postId, categoryId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/post/category/delete/${postId}`, {
+      const response = await fetch(`http://89.116.214.37:3333/post/category/delete/${postId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

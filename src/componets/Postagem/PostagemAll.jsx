@@ -27,7 +27,7 @@ function PostagemAll() {
   const fetchPostagens = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/post?page=${currentPage}&limit=${postagensPorPagina}`, {
+      const response = await fetch(`http://89.116.214.37:3333/post?page=${currentPage}&limit=${postagensPorPagina}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

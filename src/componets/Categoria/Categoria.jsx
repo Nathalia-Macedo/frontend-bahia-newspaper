@@ -12,7 +12,7 @@ function ModalAddCategoria() {
         const fetchCategorias = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch("http://34.125.197.110:3333/category", {
+                const response = await fetch("http://89.116.214.37:3333/category", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -64,7 +64,7 @@ function ModalAddCategoria() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch("http://34.125.197.110:3333/category", {
+            const response = await fetch("http://89.116.214.37:3333/category", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

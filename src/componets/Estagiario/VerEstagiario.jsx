@@ -27,7 +27,7 @@ function VerEstagiarios() {
   const fetchEstagiarios = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/user", {
+      const response = await fetch("http://89.116.214.37:3333/user", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ function VerEstagiarios() {
 
       // Verificar se a opção selecionada é "Nome de usuário"
       if (selectedOption === "Nome de usuário") {
-        const response = await fetch(`http://34.125.197.110:3333/user/${id}`, {
+        const response = await fetch(`http://89.116.214.37:3333/user/${id}`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -92,7 +92,7 @@ function VerEstagiarios() {
         body.email = newValue;
       }
 
-      const response = await fetch(`http://34.125.197.110:3333/user/${id}`, {
+      const response = await fetch(`http://89.116.214.37:3333/user/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +136,7 @@ function VerEstagiarios() {
   const handleDeleteEstagiario = async (estagiario) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/user/${estagiario.id}`, {
+      const response = await fetch(`http://89.116.214.37:3333/user/${estagiario.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

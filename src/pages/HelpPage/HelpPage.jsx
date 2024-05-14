@@ -11,13 +11,13 @@ export function HelpPage() {
             <nav className="help-nav">
                 <img src={logo} alt="Logo" className="logo" />
                 <ul className="nav-links">
-                    <li><a href="#funcionalidades">Funcionalidades</a></li>
-                    <li><a href="#como-navegar">Como Navegar</a></li>
+                    <li><a href="#Funcionários">Funcionários</a></li>
+                    <li><a href="#Categorias">Categorias</a></li>
                     <li><a href="#contato">Contato</a></li>
                 </ul>
             </nav>
           
-            <section id="como-navegar" className="help-section">
+            <section id="Categorias" className="help-section">
                 <h2>Categorias</h2>
                 <HelpQuestion
     question={'Como adicionar novas categorias?'}
@@ -41,7 +41,7 @@ export function HelpPage() {
 
                     
             </section>
-            <section id="contato" className="help-section">
+            <section id="Funcionários" className="help-section">
                 <h2>Funcionários</h2>
                 <HelpQuestion
     question={'Como Adicionar funcionários?'}
