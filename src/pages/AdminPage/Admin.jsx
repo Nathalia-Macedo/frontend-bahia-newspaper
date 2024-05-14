@@ -3,7 +3,7 @@ import { FaQuestionCircle } from 'react-icons/fa';
 import ModalComponent from '../../componets/Modal/Modal';
 import React, { useState, useEffect, useRef } from 'react';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
-import logo from "../../assets/imgs/logoFinal.png"
+import logo from "../../assets/imgs/LogoBa.png"
 import AnunciosCarousel from '../../componets/Anuncios/Anuncios';
 import  ModalAddEstagiario  from '../../componets/Estagiario/Estagiario';
 import ModalAddPermissoes from '../../componets/Permissoes/Permissoes';
@@ -38,13 +38,13 @@ import { SessionData } from '../../componets/SectionData/SectionData';
     
     {
       title: 'Qtd de Categorias',
-      endpoint: 'http://34.125.197.110:3333/category',
+      endpoint: 'http://89.116.214.37:3333/category',
       
     },
     
       {
         title: 'Qtd de Postagens',
-        endpoint: 'http://34.125.197.110:3333/post',
+        endpoint: 'http://89.116.214.37:3333/post',
         onClick: async () => {
           const token = localStorage.getItem('token');
           const numPostagens = await fetchPostagens(token); // Adicione os parênteses para chamar a função
@@ -54,11 +54,11 @@ import { SessionData } from '../../componets/SectionData/SectionData';
         
     },{
       title: 'Qtd de Funcionários',
-      endpoint: 'http://34.125.197.110:3333/user',
+      endpoint: 'http://89.116.214.37:3333/user',
        
     },{
       title: 'Qtd de Anúncios',
-      endpoint: 'http://34.125.197.110:3333/ad/',
+      endpoint: 'http://89.116.214.37:3333/ad/',
     
     }
 
@@ -70,7 +70,7 @@ import { SessionData } from '../../componets/SectionData/SectionData';
 
   const fetchNumberOfAds = async (token) => {
     try {
-      const response = await fetch("http://34.125.197.110:3333/ad/", {
+      const response = await fetch("http://89.116.214.37:3333/ad/", {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`
@@ -92,7 +92,7 @@ import { SessionData } from '../../componets/SectionData/SectionData';
   
   const fetchPostagens = async (token) => {
     try {
-      const response = await fetch("http://34.125.197.110:3333/post", {
+      const response = await fetch("http://89.116.214.37:3333/post", {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`
@@ -116,7 +116,7 @@ import { SessionData } from '../../componets/SectionData/SectionData';
     const token = localStorage.getItem('token');
 
     if (token) {
-      fetch('http://34.125.197.110:3333/category', {
+      fetch('http://89.116.214.37:3333/category', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -156,7 +156,7 @@ import { SessionData } from '../../componets/SectionData/SectionData';
     const token = localStorage.getItem('token');
 
     if (token) {
-      fetch('http://34.125.197.110:3333/user', {
+      fetch('http://89.116.214.37:3333/user', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -234,7 +234,7 @@ function renderModalContent(modalType) {
       }
     }
     try {
-      const consumo = await fetch(`https://backend-bahia-newspaper.onrender.com/post/`, {
+      const consumo = await fetch(`http://89.116.214.37:3333/post/`, {
         method: 'POST',
         body: formData
       })
@@ -365,7 +365,7 @@ function renderModalContent(modalType) {
         </div>
       </nav>
       <main className='main_admin'>
-      {/* <img src={logo} className='img_admin_logo' alt="" /> */}
+      <img src={logo} className='img_admin_logo' alt="" />
       <AdminSession dataSquares={dataSquare}/>
       </main>
       

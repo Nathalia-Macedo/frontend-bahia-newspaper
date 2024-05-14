@@ -37,7 +37,7 @@ function ModalAddEstagiario(props) {
             
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://34.125.197.110:3333/user', {
+                const response = await fetch('http://89.116.214.37:3333/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

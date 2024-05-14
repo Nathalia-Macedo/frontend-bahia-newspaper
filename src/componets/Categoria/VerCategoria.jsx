@@ -22,7 +22,7 @@ function VerCategoriasModal() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/category", {
+      const response = await fetch("http://89.116.214.37:3333/category", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ function VerCategoriasModal() {
   const handleConfirmDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/category/`, {
+      const response = await fetch(`http://89.116.214.37:3333/category/`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ function VerCategoriasModal() {
   
     try {
       const token = localStorage.getItem("token");
-      const endpoint = `http://34.125.197.110:3333/category/${categoriaToUpdate}`;
+      const endpoint = `http://89.116.214.37:3333/category/${categoriaToUpdate}`;
       const body = {};
   console.log(campoAtualizado)
       // Adiciona o campo atualizado ao corpo da requisição

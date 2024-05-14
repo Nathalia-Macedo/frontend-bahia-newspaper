@@ -40,7 +40,7 @@ function ModalAddPostagem() {
   //A função fetchCategories faz o consumo da api, e recebe o token como parâmetro
   const fetchCategories = async (authToken) => {
     try {
-      const response = await fetch("http://34.125.197.110:3333/category", {
+      const response = await fetch("http://89.116.214.37:3333/category", {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -99,7 +99,7 @@ function ModalAddPostagem() {
       }
 
       //fazendo o consumo da api, passando o token para mostrar que temos permissão para fazer o consumo
-      const response = await fetch("http://34.125.197.110:3333/post", {
+      const response = await fetch("http://89.116.214.37:3333/post", {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -123,7 +123,7 @@ function ModalAddPostagem() {
   const obterIdTags = async (tagsDigitadas) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch("http://34.125.197.110:3333/tag", {
+      const response = await fetch("http://89.116.214.37:3333/tag", {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -179,7 +179,7 @@ const clearImageInput = () => {
       const token = localStorage.getItem('token');
       const categoryId = categorias.find(cat => cat.name === categoria)?.id;
       console.log(categoryId)
-      const responseCategoria = await fetch(`http://34.125.197.110:3333/post/category/${postId}`, {
+      const responseCategoria = await fetch(`http://89.116.214.37:3333/post/category/${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +199,7 @@ const clearImageInput = () => {
   
       // Vincular todas as tags à postagem
       await Promise.all(tagsIds.map(async (tagId) => {
-        const response = await fetch(`http://34.125.197.110:3333/post/tag/${postId}/`, {
+        const response = await fetch(`http://89.116.214.37:3333/post/tag/${postId}/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -270,7 +270,7 @@ const clearImageInput = () => {
   const criarTag = async (tagName) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch("http://34.125.197.110:3333/tag", {
+      const response = await fetch("http://89.116.214.37:3333/tag", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

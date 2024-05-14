@@ -34,7 +34,7 @@ function PostagensModal() {
     try {
       setLoading(true); // Definir loading como true antes de iniciar a busca
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/post", {
+      const response = await fetch("http://89.116.214.37:3333/post", {
         headers: {
           Authorization: `Bearer ${token}`,
         }
@@ -59,7 +59,7 @@ function PostagensModal() {
   const confirmDeleteHandler = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://34.125.197.110:3333/post/${postIdToDelete}`, {
+      const response = await fetch(`http://89.116.214.37:3333/post/${postIdToDelete}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -97,7 +97,7 @@ function PostagensModal() {
   const handleAddKeyword = async (postId, keyword) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/tag", {
+      const response = await fetch("http://89.116.214.37:3333/tag", {
         headers: {
           Authorization: `Bearer ${token}`,
         }

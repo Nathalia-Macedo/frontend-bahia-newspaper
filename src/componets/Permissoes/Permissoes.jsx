@@ -17,7 +17,7 @@ function ModalAddPermissoes({ handleSubmit }) {
         let token = localStorage.getItem('token')
         // Enviar os dados para a API
         try {
-            const response = await fetch('https://backend-bahia-newspaper.onrender.com/permission/', {
+            const response = await fetch('http://89.116.214.37:3333/permission/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

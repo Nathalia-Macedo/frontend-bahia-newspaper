@@ -22,7 +22,7 @@ export function SessionData() {
   const fetchTags = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/tag", {
+      const response = await fetch("http://89.116.214.37:3333/tag", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,7 +46,7 @@ export function SessionData() {
   const fetchTopNews = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://34.125.197.110:3333/post", {
+      const response = await fetch("http://89.116.214.37:3333/post", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -90,7 +90,7 @@ export function SessionData() {
       formData.append("files", fileBase64); // Envia a imagem em base64
       formData.append("link", link);
       
-      const response = await fetch("http://34.125.197.110:3333/ad/new", {
+      const response = await fetch("http://89.116.214.37:3333/ad/new", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
