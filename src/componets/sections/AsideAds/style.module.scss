@@ -16,7 +16,7 @@
 .asideAds > div {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     height: 15em;
     cursor: pointer;
@@ -30,7 +30,7 @@
         // object-fit: cover;
         @media (min-width: 980px) {
             width: 100%;
-            height: 15em;
+            height: 12em;
         }
     }
 }

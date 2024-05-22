@@ -8,7 +8,7 @@
     }
 
     &.two{
-        font-size: clamp(14px, 3vw, 10px);
+        font-size: clamp(1em, 3vw, 0.5em);
     }
 
     &.three{
@@ -36,7 +36,7 @@
     color: var(--black);
 
     &.text {
-        font-size: clamp(18px, 2vw, 15px);
+        font-size: clamp(1.4em, 2vw, 15px);
         line-height: 1.6;
     }
 
@@ -51,7 +51,7 @@
     }
     &.small{
         font-weight: 600;
-        font-size: clamp(13px, 2vw, 12px);
+        font-size: clamp(0.9em, 2vw, 12px);
     }
 }
 

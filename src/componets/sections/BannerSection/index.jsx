@@ -44,6 +44,25 @@ export const BannerSection = () => {
       
         <AsideRight />
       <div className={styles.flexBox}>
+      {ads.slice(0,1).map((ad, index) => (
+            <strong 
+              key={index} 
+              onClick={() => handleAds(ad.link)}
+              className={styles.Strong} 
+              style={{ cursor: "pointer" }}>
+              {ad.videoUrl.length > 0 ? (
+                <video className={styles.imageUrls} controls>
+                  <source src={ad.videoUrl} type="video/mp4" />
+                </video>
+              ) : (
+                ad.imageUrl.length > 0 && (
+                  <img 
+                  className={styles.imageUrls} 
+                  src={ad.imageUrl} 
+                  alt={`Anúncio ${index + 1}`} />
+              ))}
+              </strong>
+          ))}
           <Swiper
             className={styles.customSwiper}
             autoHeight={true}

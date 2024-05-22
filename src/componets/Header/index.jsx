@@ -5,6 +5,8 @@ import Logo from "../../assets/imgs/Logo.png";
 import styles from "./style.module.scss";
 import { PostContext } from "../../providers/PostContext";
 import { useContext, useState } from "react";
+import { FaWhatsapp, FaInstagram, FaTwitter, FaEnvelope } from 'react-icons/fa';
+
 
 export const Header = () => {
     const {  postList , setFilteredPost } = useContext(PostContext);
@@ -48,6 +50,32 @@ export const Header = () => {
                         </button>
                     </form>
                 </div>
+                <span className={styles.containerIcons}>
+                        <Link 
+                            to="https://wa.me/557193485952"
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                            <FaWhatsapp size={25} color="#25D366" />
+                        </Link>
+                        <Link 
+                            to="https://www.instagram.com/jornaldabahia.ba?utm_source=qr&igsh=MWxmd3p2dG12dnM4YQ%3D%3D"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            <FaInstagram size={25} color="#E4405F" /> 
+                        </Link>
+                        <Link 
+                            to="https://twitter.com/jornaldabahia01?t=ywFx66CkQyp5JaJSdIISqA&s=08"
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                            <FaTwitter size={25} color="#1DA1F2" /> 
+                        </Link>
+                        <Link 
+                            to="mailto:seuemail@dominio.com"
+                            target="_blank" 
+                            rel="noopener noreferrer">
+                            <FaEnvelope size={25} color="#D44638" /> 
+                        </Link>
+                </span>
                 <NavBarSection/>
             </div>
         </header>
