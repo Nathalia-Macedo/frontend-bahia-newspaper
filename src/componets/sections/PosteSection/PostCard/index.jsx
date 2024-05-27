@@ -14,10 +14,12 @@ export const PostCard = ({post}) => {
     return (
         <li className={styles.liContainer}>
             {post.categories && post.categories.length > 0 && (
-                <p className="category">Notícia: {post.categories[0].name}</p>
+                <p className="category">
+                    {post.categories[0].name}
+                </p>
             )}
             <h3 className="title post">{post.title}</h3>
-            <p className="created-at">{capitalizedDate}</p>
+            <p className="tittle post">{capitalizedDate}</p>
             {post.videoUrls && post.videoUrls.length > 0 && (
                 <span>
                     {post.videoUrls.map((url, index) => (
@@ -28,11 +30,14 @@ export const PostCard = ({post}) => {
                 </span>
             )}
             {post.photoUrls && post.photoUrls.length > 0 && (
-                <div >
+                <div className="tittle post">
                     {post.photoUrls.map((url, index) => (
-                        <img key={index} src={url} alt={`Imagem ${index}`} />
-                    ))}
-                </div>
+                <img key={index} src={url} alt={`Imagem ${index}`} />
+                ))}
+                {post.categories && post.categories.length > 0 && (
+                <strong className="category">Autor: {post.categories[0].description}</strong>
+                )}
+            </div>
             )}
             <p className="paragraph text">{post.content}</p>
         </li>
