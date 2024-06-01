@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import styles from "./style.module.scss";
 import { format} from "date-fns";
 import { ptBR } from 'date-fns/locale';
@@ -10,6 +11,9 @@ export const PostCard = ({post}) => {
     // Formata a data da postagem
     const formattedDate = format(new Date(post.createdAt), "EEEE, dd/MM/yyyy - HH'h'mm", {locale: ptBR}).toString();
     const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+     // Sanitiza o conteúdo do post
+    const sanitizedContent = DOMPurify.sanitize(post.content);
 
     return (
         <li className={styles.liContainer}>
@@ -34,12 +38,12 @@ export const PostCard = ({post}) => {
                     {post.photoUrls.map((url, index) => (
                 <img key={index} src={url} alt={`Imagem ${index}`} />
                 ))}
-                {post.categories && post.categories.length > 0 && (
+                {/* {post.categories && post.categories.length > 0 && (
                 <strong className="category">Autor: {post.categories[0].description}</strong>
-                )}
+                )} */}
             </div>
             )}
-            <p className="paragraph text">{post.content}</p>
+            <p className="paragraph text"  dangerouslySetInnerHTML={{ __html: sanitizedContent }}></p>
         </li>
     );
 };

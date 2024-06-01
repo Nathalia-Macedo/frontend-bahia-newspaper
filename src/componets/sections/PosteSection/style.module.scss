@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 100%;    
     gap: 30px;
+    overflow-wrap: break-word; 
     
 
     @media (min-width: 980px) {
