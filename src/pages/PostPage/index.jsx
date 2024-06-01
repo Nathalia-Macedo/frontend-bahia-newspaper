@@ -8,12 +8,6 @@ import { Api } from "../../../services/api";
 import Spinner from "react-bootstrap/Spinner";
 
 
-// Função para renderizar o conteúdo com tags HTML
-const renderContentWithHTML = (content) => {
-    return { __html: content }; // Define o conteúdo como HTML seguro
-};
-
-
 export const PostPage = () => {
     const { loading, setLoading, filteredPost } = useContext(PostContext);
     const [postContent, setPostContent] = useState('');
@@ -53,7 +47,6 @@ export const PostPage = () => {
                     ) : (
                         <p className="title three">Escolha uma Notícia.</p>
                     )}
-                        {/* <div dangerouslySetInnerHTML={renderContentWithHTML(postContent)}/> */}
                     </>
                 )}
             </div>

@@ -38,6 +38,8 @@
     &.text {
         font-size: clamp(1.4em, 2vw, 15px);
         line-height: 1.6;
+        word-wrap: break-word;
+        color: inherit; 
     }
 
     &.bold{
